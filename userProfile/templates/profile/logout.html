@@ -1,0 +1,16 @@
+{% extends 'home/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="card">
+<br>
+<hr>
+
+<div class="card bg-light">
+<article class="card-body mx-auto" style="max-width: 400px;">
+	<h4 class="card-title mt-3 text-center">تم تسجيل الخروج</h4>
+	
+    <p class="text-center">هل تريد تسجيل الدخول؟ <a href="{% url 'login' %}">تسجيل دخول</a> </p>
+</article>
+{% endblock  %}
+  
