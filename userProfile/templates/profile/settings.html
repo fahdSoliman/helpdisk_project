@@ -1,0 +1,144 @@
+
+{% extends 'home/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+{% load static %}
+<div class="dx-main">
+<header class="dx-header dx-box-5">
+    <div class="container">
+        <div class="bg-image bg-image-parallax">
+            <img src="{% static 'assets/images/cover.jpg' %}" class="jarallax-img" alt="">
+            <div style="background-color: rgba(27, 27, 27, .8);"></div>
+        </div>
+
+        <div class="container mnb-8">
+            <h1 class="h4 mb-10 text-white text-center">الاعدادات</h1>
+            
+            
+<!-- START: Breadcrumbs -->
+            <ul class="dx-breadcrumbs text-center">
+                
+                <li><a href="{% url 'home' %}">الصفحة الرئيسية</a></li>
+                
+                <li>الاعدادات</li>
+                
+                
+            </ul>
+<!-- END: Breadcrumbs -->
+
+        </div>
+    </div>
+</header>
+
+<div class="dx-box-5 pb-100 bg-grey-6">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-7">
+                <div class="dx-box-decorated">
+                    <div class="dx-box-content text-center">
+                        <h2 class="h6 mnt-5 mnb-5" dir="rtl">معلومات الحساب</h2>
+                    </div>
+                    <div class="dx-separator"></div>
+
+                    <form method="POST" class="dx-form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        <div class="dx-box-content text-right">
+                            <div class="dx-form-group">
+                                <label for="first-name" class="mnt-7">الاسم الاول</label>
+                                {% render_field u_form.first_name class="form-control form-control-style-2" placeholder="أدخل الاسم الاول" %}
+                            </div>
+                            <div class="dx-form-group">
+                                <label for="last-name" class="mnt-7">الاسم الاخير</label>
+                                {% render_field u_form.last_name class="form-control form-control-style-2" placeholder="أدخل الاسم الاخير" %}
+                            </div>
+                            <div class="dx-form-group">
+                                <label for="email-address" class="mnt-7">عنوان البريد الالكتروني</label>
+                                {% render_field u_form.email class="form-control form-control-style-2" placeholder="أدخل عنوان البريد الالكتروني" %}
+                            </div>
+                            <div class="dx-form-group">
+                                <label for="line-one" class="mnt-7">حساب الفيسبوك</label>
+                                {% render_field p_form.fbName class="form-control form-control-style-2" placeholder="أدخل اسم المستخدم الخاص بالفيسبوك" %}
+                            </div>
+                            <div class="dx-form-group">
+                                <label for="line-two" class="mnt-7">حساب التيليغرام</label>
+                                {% render_field p_form.telegram class="form-control form-control-style-2" placeholder="أدخل عنوان التيليغرام" %}
+                            </div>
+                            <div class="dx-form-group">
+                                <label for="city" class="mnt-7">الجنس</label>
+                                {% render_field p_form.gender class="form-control form-control-style-2" placeholder="" %}
+                            </div>
+                            <div class="dx-form-group">
+                                <label for="zip" class="mnt-7">الصورة الشخصية</label>
+                                {% render_field p_form.image class="form-control form-control-style-2" placeholder="" %}
+                            </div><br>
+                            <div class="dx-separator"></div>
+                            <div class="dx-box-content text-center">
+                                <h2 class="h6 mnt-5 mnb-5" dir="rtl">معلومات الشركة/الجهة صاحبة الحساب</h2>
+                            </div>
+                            <div class="dx-separator"></div>
+                            <br>
+                            <div class="dx-form-group">
+                                <label class="mnt-7">اسم الشركة</label>
+                                {% render_field company_form.customer_name class="form-control form-control-style-2" placeholder="أدخل اسم الشركة" %}
+                            </div>
+                            <div class="dx-form-group">
+                                <label class="mnt-7">نوع الشركة</label>
+                                {% render_field company_form.customer_type class="form-control form-control-style-2" placeholder="" %}
+                            </div>
+                            <div class="dx-form-group">
+                                <label class="mnt-7">المدينة</label>
+                                {% render_field company_form.country class="form-control form-control-style-2" placeholder="أدخل اسم المدينة" %}
+                            </div>
+                            <div class="dx-form-group">
+                                <label class="mnt-7">الهاتف</label>
+                                {% render_field company_form.phone class="form-control form-control-style-2" type="tel" placeholder="أدخل رقم الهاتف" %}
+                            </div>
+                            <div class="dx-form-group">
+                                <label class="mnt-7">البريد الالكتروني</label>
+                                {% render_field company_form.email class="form-control form-control-style-2" type="email" placeholder="أدخل البريد الالكتروني" %}
+                            </div>
+                            <br>
+                            <div class="dx-separator"></div>
+                            <div class="dx-box-content text-center">
+                                <h2 class="h6 mnt-5 mnb-5" dir="rtl">معلومات المسؤول المالي</h2>
+                            </div>
+                            <div class="dx-separator"></div><br>
+                            <div class="dx-form-group">
+                                <label class="mnt-7">اسم المسؤول المالي</label>
+                                {% render_field fin_form.financial_name class="form-control form-control-style-2" placeholder="أدخل اسم المسؤول المالي" %}
+                            </div><div class="dx-form-group">
+                                <label class="mnt-7">رقم الهاتف</label>
+                                {% render_field fin_form.phone class="form-control form-control-style-2" type="tel" placeholder="أدخل رقم الهاتف" %}
+                            </div><div class="dx-form-group">
+                                <label class="mnt-7">البريد الالكتروني</label>
+                                {% render_field fin_form.email class="form-control form-control-style-2" type="email" placeholder="أدخل البريد الالكتروني" %}
+                            </div>
+                            <br>
+                            <div class="dx-separator"></div>
+                            <div class="dx-box-content text-center">
+                                <h2 class="h6 mnt-5 mnb-5" dir="rtl">معلومات المسؤول الفني</h2>
+                            </div>
+                            <div class="dx-separator"></div><br>
+                            <div class="dx-form-group">
+                                <label class="mnt-7">اسم المسؤول التقني</label>
+                                {% render_field tech_form.technical_name class="form-control form-control-style-2" placeholder="أدخل اسم المسؤول التقني" %}
+                            </div><div class="dx-form-group">
+                                <label class="mnt-7">اسم الشركة</label>
+                                {% render_field tech_form.phone class="form-control form-control-style-2" type="tel" placeholder="أدخل رقم الهاتف" %}
+                            </div><div class="dx-form-group">
+                                <label class="mnt-7">اسم الشركة</label>
+                                {% render_field tech_form.email class="form-control form-control-style-2" type="email" placeholder="أدخل البريد الالكتروني" %}
+                            </div>
+                            <div class="dx-form-group">
+                                <button type="submit" class="dx-btn dx-btn-xl dx-btn-block">حفظ البيانات</button>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

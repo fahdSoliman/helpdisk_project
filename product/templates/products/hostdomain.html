@@ -1,0 +1,30 @@
+{% extends 'products/add_product.html' %}
+{% load widget_tweaks %}
+{% block reg %}
+<form method="POST" class="dx-form" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="dx-box-content text-right">
+        <div class="dx-form-group">
+            <label for="first-name" class="mnt-7">اسم النطاق</label>
+            {% render_field hostdomain_form.domain_name class="form-control form-control-style-2" placeholder="اسم النطاق" %}
+        </div>
+        <div class="dx-form-group">
+            <label for="last-name" class="form-check-label">عنوان الشبكة العام IP Address</label>
+            {% render_field hostdomain_form.ip_address class="form-control form-control-style-2" placeholder="xxx.xxx.xxx.xxx" %}
+        </div>
+        <div class="dx-form-group">
+            <label for="line-two" class="mnt-7">ملف الدفع البنكي</label>
+            {% render_field hostdomain_form.bill_file class="form-control form-control-style-2" placeholder="" %}
+        </div>
+        <div class="dx-form-group">
+            <button type="submit" class="dx-btn dx-btn-xl dx-btn-block">حفظ البيانات</button>
+        </div>
+    </div>
+        
+</form>
+
+
+{% endblock reg %}
+
+
+

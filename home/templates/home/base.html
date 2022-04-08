@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 {% load static %}
-
+{% load custom_tag %} 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -17,10 +17,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- START: Styles -->
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/dist/css/bootstrap.min.css' %}">
 
@@ -52,12 +52,53 @@
     <!-- Custom Styles -->
     <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
     
+ 
     <!-- END: Styles -->
 
     <!-- jQuery -->
     <script src="{% static 'assets/vendor/jquery/dist/jquery.min.js' %}"></script>
-    
-    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+
+    .toast {
+        position: absolute !important; 
+        top: 5em; 
+        right: 0;
+        margin: 1em;
+        z-index: 99;
+    }
+
+    .toast .logo {
+        height: 2em;
+    }
+
+    /* IMG displaying */
+    .person-card {
+        margin-top: 5em;
+        padding-top: 5em;
+    }
+    .person-card .card-title{
+        text-align: center;
+    }
+    .person-card .person-img{
+        width: 10em;
+        position: absolute;
+        top: -5em;
+        left: 50%;
+        margin-left: -5em;
+        border-radius: 100%;
+        overflow: hidden; 
+        background-color: white;
+        border-top: 3px solid #3a3535;
+
+    }
+
+    .btn-perso {
+        position: center;
+    }
+    </style>
 </head>
 
 <body>
@@ -74,190 +115,193 @@
 <nav class=" dx-navbar dx-navbar-top dx-navbar-collapse dx-navbar-sticky dx-navbar-expand-lg dx-navbar-dropdown-triangle dx-navbar-autohide">
     <div class="container">
         
-        <a href="index.html" class="dx-nav-logo">
+        <a href="{% url 'home' %}" class="dx-nav-logo">
             <img src="{% static 'assets/images/logo.png' %}" alt="" width="57px">
         </a>
-        
-
         <button class="dx-navbar-burger">
             <span></span><span></span><span></span>
         </button>
-
-        <div class="dx-navbar-content">
-            
+        <div class="dx-navbar-content"> 
         <ul class="dx-nav dx-nav-align-left">
+            <li class="dx-drop-item {% if request.path  == "/product/" %} active{% endif %}">
+                <a href="{% url 'product' %}" >
+                    الخدمات
+                </a>
+                <ul class="dx-navbar-dropdown">       
+                    <li class="{% if request.path  == "/product/" %}active{% endif %}">
+                        <a href="{% url 'product' %}" >
+                            الخدمات
+                        </a>
+                    </li>
+                    <li>
+                        <a dir="rtl" href="#">
+                            الاستضافة Hosting
+                        </a>
+                    </li>
+                    <li>
+                        <a dir="rtl" href="#">
+                            النطاق Domain
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li class="dx-drop-item">
-                <a href="blog.html">
+                <a href="{% url 'default' %}">
                     المدونة
                 </a>
                 <ul class="dx-navbar-dropdown">
                     <li>
-                        <a href="blog.html">
+                        <a href="#">
                             المدونة
                         </a>
                     </li>
                     <li>
-                        <a href="single-post.html">
-                            Single Post
+                        <a href="#">
+                            التصنيفات
                         </a>
                     </li>
                 </ul>
             </li>
         
             <li class="dx-drop-item">
-                <a href="help-center.html">
+                <a href="{% url 'default' %}">
                     مركز الدعم
-                </a><ul class="dx-navbar-dropdown">
-                        
-            <li>
-                <a href="help-center.html">
-                    Help Center
                 </a>
-            </li>
-        <li class="dx-drop-item">
-            <a href="documentations.html">
-                بنك المعلومات
-            </a>
-            <ul class="dx-navbar-dropdown">          
-                <li>
-                    <a href="documentations.html">
-                        دليل التقنيات
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="dx-drop-item">
-            <a href="articles.html">
-                Knowledge Base
-            </a><ul class="dx-navbar-dropdown">
-                    
-        <li>
-            <a href="articles.html">
-                Knowledge Base
-            </a>
-        </li>
-        <li>
-            <a href="single-article-category.html">
-                Single Article Category
-            </a>
-        </li>
-        <li>
-            <a href="single-article.html">
-                Single Article
-            </a>
-        </li>
-                </ul>
-        </li>
-        <li class="dx-drop-item">
-            <a href="forums.html">
-                المنتديات
-            </a><ul class="dx-navbar-dropdown">
-                    
-        <li>
-            <a href="forums.html">
-                Forums
-            </a>
-        </li>
-        <li>
-            <a href="topics.html">
-                Topics
-            </a>
-        </li>
-        <li>
-            <a href="single-topic.html">
-                Single Topic
-            </a>
-        </li>
-                </ul>
-        </li>
-        <li class="dx-drop-item">
-            <a href="ticket.html">
-                Ticket System
-            </a><ul class="dx-navbar-dropdown">
-                    
-        <li>
-            <a href="ticket.html">
-                Ticket System
-            </a>
-        </li>
-        <li>
-            <a href="ticket-submit.html">
-                Submit Ticket
-            </a>
-        </li>
-        <li>
-            <a href="ticket-submit-2.html">
-                Submit Ticket 2
-            </a>
-        </li>
-        <li>
-            <a href="single-ticket.html">
-                Single Ticket
-            </a>
-        </li>
-                </ul>
-        </li>
-                </ul>
-        </li>
-        <li class="dx-drop-item">
-            <a href="account.html">
-                Account
-            </a><ul class="dx-navbar-dropdown">
-                    
-        <li>
-            <a href="account.html">
-                Account
-            </a>
-        </li>
-        <li>
-            <a href="account-licenses.html">
-                Licenses
-            </a>
-        </li>
-        <li>
-            <a href="account-settings.html">
-                Settings
-            </a>
-        </li>
-                </ul>
-        </li>
-            </ul>
-            
-            <ul class="dx-nav dx-nav-align-right">
-                
-                {% if user.is_authenticated %}
-                <li>
-                    <div class="dropdown dx-dropdown dx-dropdown-signin">
-                        <a class="dx-nav-signin" href="account.html" role="button" id="dropdownSignin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="dx-nav-signin-img"><img src="{{ profile.image.url }}" alt=""></span>
-                            <span class="dx-nav-signin-name">{{ user.username }}</span>
+                <ul class="dx-navbar-dropdown">        
+                    <li>
+                        <a href="#">
+                            مركز الدعم
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownSignin">
+                    </li>
+                    <li class="dx-drop-item">
+                        <a href="#">
+                            دليل الاستخدام
+                        </a>
+                        <ul class="dx-navbar-dropdown">          
                             <li>
-                                <a href="{% url 'account' %}"><span class="icon pe-7s-user"></span> Account</a>
-                            </li>
-                            <li>
-                                <a href="account-licenses.html"><span class="icon pe-7s-download"></span> Items & Licenses</a>
-                            </li>
-                            <li>
-                                <a href="account-settings.html"><span class="icon pe-7s-config"></span> Settings</a>
-                            </li>
-                            <li>
-                                <a href="{% url 'logout' %}"><span class="icon pe-7s-back"></span> Logout</a>
+                                <a href="#">
+                                    التوثيقات
+                                </a>
                             </li>
                         </ul>
-                    </div>
-                </li>
+                    </li>
+                    <li class="dx-drop-item">
+                        <a href="#">
+                            بنك المعلومات
+                        </a>
+                        <ul class="dx-navbar-dropdown">       
+                            <li>
+                                <a href="#">
+                                    بنك المعلومات
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dx-drop-item">
+                        <a href="#">
+                            المنتديات
+                        </a>
+                        <ul class="dx-navbar-dropdown">  
+                            <li>
+                                <a href="#">
+                                    المنتديات
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    علوم الحاسب
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    أمن المعلومات
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="{% if request.path  == "/about/" %}active{% endif %}">
+                <a href="{% url 'about' %}">عن المشروع</a>
+            </li>
+        </ul>
+            
+        <ul class="dx-nav dx-nav-align-right">
+                
+            {% if request.user.is_authenticated %}
+                {% if request.user.is_superuser %}
+                    <li class="dx-drop-item">
+                        <div class="dropdown dx-dropdown dx-dropdown-signin">
+                            <a class="dx-nav-signin" href="" role="button" id="dropdownSignin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="dx-nav-signin-img"><img src="{{ user.profile.image.url }}" alt=""></span>
+                                <span class="dx-nav-signin-name">{{ user.username }}</span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownSignin">
+                                <li>
+                                    <a href="{% url 'admin_botpress' %}"><span class="icon pe-7s-download"></span> إدارة الحسابات</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'admin_settings' %}"><span class="icon pe-7s-config"></span> الاعدادات</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'logout' %}"><span class="icon pe-7s-back"></span> تسجيل الخروج</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                {% elif request.user|has_group:"stuff" %}
+                    <li>
+                        <div class="dropdown dx-dropdown dx-dropdown-signin">
+                            <a class="dx-nav-signin" href="#" role="button" id="dropdownSignin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="dx-nav-signin-img"><img src="{{ user.profile.image.url }}" alt=""></span>
+                                <span class="dx-nav-signin-name">{{ user.username }}</span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownSignin">
+                                <li>
+                                    <a href="{% url 'view_request' %}"><span class="icon pe-7s-download"></span> عرض طلبات الزبائن</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'settings' %}"><span class="icon pe-7s-config"></span> الاعدادات</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'logout' %}"><span class="icon pe-7s-back"></span> تسجيل الخروج</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                 {% else %}
-                <li>
-                    <a href="{% url 'login' %}">Log In</a>
-                </li>
-                <li>
-                    <span><a href="{% url 'register' %}" class="dx-btn dx-btn-md dx-btn-transparent">Sign Up</a></span>
-                </li>
+                    <li>
+                        <div class="dropdown dx-dropdown dx-dropdown-signin">
+                            <a class="dx-nav-signin" href="#" role="button" id="dropdownSignin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="dx-nav-signin-img"><img src="{{ user.profile.image.url }}" alt=""></span>
+                                <span class="dx-nav-signin-name">{{ user.username }}</span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownSignin">
+                                <li>
+                                    <a href="{% url 'account' %}"><span class="icon pe-7s-user"></span> الحساب</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'myproducts' %}"><span class="icon pe-7s-download"></span> منتجاتي</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'settings' %}"><span class="icon pe-7s-config"></span> الاعدادات</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'logout' %}"><span class="icon pe-7s-back"></span> تسجيل الخروج</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                 {% endif %}
-            </ul>
-        </div>
+            {% else %}
+                <li>
+                    <a href="{% url 'login' %}">تسجيل الدخول</a>
+                </li>
+                <li>
+                    <span><a href="{% url 'register' %}" class="dx-btn dx-btn-md dx-btn-transparent">حساب جديد</a></span>
+                </li>
+            {% endif %}
+        </ul>
     </div>
 </nav>
 <div class="dx-navbar dx-navbar-fullscreen">
@@ -265,195 +309,139 @@
         <button class="dx-navbar-burger">
             <span></span><span></span><span></span>
         </button>
-        <div class="dx-navbar-content">
-            
+        <div class="dx-navbar-content"> 
             <ul class="dx-nav dx-nav-align-left">
-                
-        <li class="dx-drop-item">
-            <a href="store.html">
-                Store
-            </a><ul class="dx-navbar-dropdown">
-                    
-        <li>
-            <a href="store.html">
-                Store
-            </a>
-        </li>
-        <li>
-            <a href="product.html">
-                Product
-            </a>
-        </li>
-        <li>
-            <a href="checkout.html">
-                Checkout
-            </a>
-        </li>
-                </ul>
-        </li>
-        <li class="dx-drop-item">
-            <a href="blog.html">
-                Blog
-            </a><ul class="dx-navbar-dropdown">
-                    
-        <li>
-            <a href="blog.html">
-                Blog
-            </a>
-        </li>
-        <li>
-            <a href="single-post.html">
-                Single Post
-            </a>
-        </li>
-                </ul>
-        </li>
-        <li class="dx-drop-item">
-            <a href="help-center.html">
-                Help Center
-            </a><ul class="dx-navbar-dropdown">
-                    
-        <li>
-            <a href="help-center.html">
-                Help Center
-            </a>
-        </li>
-        <li class="dx-drop-item">
-            <a href="documentations.html">
-                Documentations
-            </a><ul class="dx-navbar-dropdown">
-                    
-        <li>
-            <a href="documentations.html">
-                Documentations
-            </a>
-        </li>
-        <li>
-            <a href="single-documentation.html">
-                Single documentation
-            </a>
-        </li>
-                </ul>
-        </li>
-        <li class="dx-drop-item">
-            <a href="articles.html">
-                Knowledge Base
-            </a><ul class="dx-navbar-dropdown">
-                    
-        <li>
-            <a href="articles.html">
-                Knowledge Base
-            </a>
-        </li>
-        <li>
-            <a href="single-article-category.html">
-                Single Article Category
-            </a>
-        </li>
-        <li>
-            <a href="single-article.html">
-                Single Article
-            </a>
-        </li>
-                </ul>
-        </li>
-        <li class="dx-drop-item">
-            <a href="forums.html">
-                Forums
-            </a><ul class="dx-navbar-dropdown">
-                    
-        <li>
-            <a href="forums.html">
-                Forums
-            </a>
-        </li>
-        <li>
-            <a href="topics.html">
-                Topics
-            </a>
-        </li>
-        <li>
-            <a href="single-topic.html">
-                Single Topic
-            </a>
-        </li>
-                </ul>
-        </li>
-        <li class="dx-drop-item">
-            <a href="ticket.html">
-                Ticket System
-            </a><ul class="dx-navbar-dropdown">
-                    
-        <li>
-            <a href="ticket.html">
-                Ticket System
-            </a>
-        </li>
-        <li>
-            <a href="ticket-submit.html">
-                Submit Ticket
-            </a>
-        </li>
-        <li>
-            <a href="ticket-submit-2.html">
-                Submit Ticket 2
-            </a>
-        </li>
-        <li>
-            <a href="single-ticket.html">
-                Single Ticket
-            </a>
-        </li>
-                </ul>
-        </li>
-                </ul>
-        </li>
-        <li class="dx-drop-item">
-            <a href="account.html">
-                Account
-            </a><ul class="dx-navbar-dropdown">
-                    
-        <li>
-            <a href="account.html">
-                Account
-            </a>
-        </li>
-        <li>
-            <a href="account-licenses.html">
-                Licenses
-            </a>
-        </li>
-        <li>
-            <a href="account-settings.html">
-                Settings
-            </a>
-        </li>
-                </ul>
-        </li>
+                <li class="dx-drop-item">
+                    <a href="{% url 'product' %}">
+                        الخدمات
+                    </a>
+                    <ul class="dx-navbar-dropdown">       
+                        <li>
+                            <a href="{% url 'product' %}">
+                                الخدمات
+                            </a>
+                        </li>
+                        <li>
+                            <a dir="rtl" href="#">
+                                الاستضافة Hosting
+                            </a>
+                        </li>
+                        <li>
+                            <a dir="rtl" href="#">
+                                النطاق Domain
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dx-drop-item">
+                    <a href="{% url 'default' %}">
+                        المدونة
+                    </a>
+                    <ul class="dx-navbar-dropdown">
+                        <li>
+                            <a href="#">
+                                المدونة
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                التصنيفات
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+        
+                <li class="dx-drop-item">
+                    <a href="{% url 'default' %}">
+                        مركز الدعم
+                    </a>
+                    <ul class="dx-navbar-dropdown">        
+                        <li>
+                            <a href="#">
+                                مركز الدعم
+                            </a>
+                        </li>
+                        <li class="dx-drop-item">
+                            <a href="#">
+                                دليل الاستخدام
+                            </a>
+                            <ul class="dx-navbar-dropdown">          
+                                <li>
+                                    <a href="#">
+                                        التوثيقات
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dx-drop-item">
+                            <a href="#">
+                                بنك المعلومات
+                            </a>
+                            <ul class="dx-navbar-dropdown">       
+                                <li>
+                                    <a href="#">
+                                        بنك المعلومات
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dx-drop-item">
+                            <a href="#">
+                                المنتديات
+                            </a>
+                            <ul class="dx-navbar-dropdown">  
+                                <li>
+                                    <a href="#">
+                                        المنتديات
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        علوم الحاسب
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        أمن المعلومات
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
             </ul>
             
-            <ul class="dx-nav dx-nav-align-right">
-                
-                <li>
-                    <a class="dx-nav-icon" href="checkout.html">
-                        <span class="dx-nav-badge">2</span>
-                        <span class="icon dx-icon-bag"></span>
-                    </a>
-                </li>
-                <li>
-                    <a data-fancybox data-touch="false" data-close-existing="true" data-src="#login" href="javascript:;">Log In</a>
-                </li>
-                <li>
-                    <span><a data-fancybox data-touch="false" data-close-existing="true" data-src="#signup" href="javascript:;" class="dx-btn dx-btn-md dx-btn-transparent">Sign Up</a></span>
-                </li>
-                
+            <ul class="dx-nav dx-nav-align-right justify-content-between">
+                    
+                {% if user.is_authenticated %}
+                    <li>
+                        <span>
+                            <a class="dx-nav-signin" href="{% url 'account' %}" >
+                                <span class="dx-nav-signin-img"><img src="{{ user.profile.image.url }}" alt=""></span>
+                                <span class="dx-nav-signin-name">{{ user.username }}</span>
+                            </a>
+                        </span>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% url 'login' %}">تسجيل الدخول</a>
+                    </li>
+                    <li>
+                        <span><a href="{% url 'register' %}" class="dx-btn dx-btn-md dx-btn-transparent">حساب جديد</a></span>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>
 </div>
 <!-- END: Navbar -->
-{% block content %}
-{% endblock %}
+
+<div class="dx-main">
+{% include 'home/messages.html' %}
+
+    {% block content %}
+    {% endblock %}
+</div>
 <!-- START: Footer -->
 <footer class="dx-footer">
     <div class="dx-box-1">
@@ -464,12 +452,12 @@
                     
                     <div class="dx-widget-footer">
                         <div class="dx-widget-title">
-                            <a href="index.html" class="dx-widget-logo">
-                                <img src="assets/images/logo.svg" alt="" width="88px">
+                            <a href="{% url 'home' %}" class="dx-widget-logo">
+                                <img src="{% static 'assets/images/logo.png' %}" alt="" width="88px">
                             </a>
                         </div>
                         <div class="dx-widget-text">
-                            <p class="mb-0">&copy; 2019 <span class="dib">All rights reserved.</span> <span class="dib">Dexad &amp; nK.</span></p>
+                            <p class="mb-0">&copy; {% now "Y" %} <span class="dib"> All rights reserved. </span> <span class="dib">NANS</span></p>
                         </div>
                         <div class="dx-widget-text">
                             <ul class="dx-social-links mnt-3">
@@ -488,100 +476,7 @@
     </div>
 </footer>
 <!-- END: Footer -->
-{% load widget_tweaks %}
 
-
-    <div class="dx-popup dx-popup-signin" id="signup">
-    <button type="button" data-fancybox-close class="fancybox-button fancybox-close-small" title="Close"><svg xmlns="http://www.w3.org/2000/svg" version="10" viewBox="0 0 24 24"><path d="M13 12l5-5-1-1-5 5-5-5-1 1 5 5-5 5 1 1 5-5 5 5 1-1z"></path></svg></button>
-        <div class="dx-popup-content dx-signin text-center">
-            <h1 class="h3 text-white mb-30">Sign Up</h1>
-
-            <form  method="POST" class="dx-form" id="register">
-                {% csrf_token %}
-                {{ form.non_field_errors }}
-                {% for hidden_field in form.hidden_fields %}
-                    {{ hidden_field.errors }}
-                    {{ hidden_field }}
-                {% endfor %}
-
-                {% for field in form.visible_fields %}
-                <div class="dx-form-group-md">
-                {{ field.errors }}
-                {% render_field field class="form-control form-control-style-4" placeholder=field.name %}
-                {{ field.help_text }}
-                </div>
-                {% endfor %}
-                <div class="dx-form-group-md">
-                    <button class="dx-btn dx-btn-block dx-btn-popup" type="submit">Sign Up</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="dx-popup dx-popup-signin" id="login">
-    <button type="button" data-fancybox-close class="fancybox-button fancybox-close-small" title="Close">
-    <svg xmlns="http://www.w3.org/2000/svg" version="1" viewBox="0 0 24 24">
-    <path d="M13 12l5-5-1-1-5 5-5-5-1 1 5 5-5 5 1 1 5-5 5 5 1-1z"></path></svg></button>
-    <div class="dx-signin-content dx-signin text-center">
-        <h1 class="h3 text-white mb-30">Log In</h1>
-
-        <form action="#" class="dx-form" id="login">
-        {% csrf_token %}
-            <div class="dx-form-group-md">
-                <input type="text" class="form-control form-control-style-4" placeholder="Username Or Email">
-            </div>
-            <div class="dx-form-group-md">
-                <input type="password" class="form-control form-control-style-4" placeholder="Password">
-            </div>
-            <div class="dx-form-group-md">
-                <a href="account.html" class="dx-btn dx-btn-block dx-btn-popup">Log In</a>
-            </div>
-            <div class="dx-form-group-md">
-                <div class="d-flex justify-content-between">
-                    <a data-fancybox data-touch="false" data-close-existing="true" data-src="#reset-password" href="javascript:;">Reset your password</a>
-                    <a data-fancybox data-touch="false" data-close-existing="true" data-src="#signup" href="javascript:;">Sign Up</a>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-
-<div class="dx-popup dx-popup-signin" id="reset-password">
-    <button type="button" data-fancybox-close class="fancybox-button fancybox-close-small" title="Close"><svg xmlns="http://www.w3.org/2000/svg" version="1" viewBox="0 0 24 24"><path d="M13 12l5-5-1-1-5 5-5-5-1 1 5 5-5 5 1 1 5-5 5 5 1-1z"></path></svg></button>
-    <div class="dx-popup-content dx-signin text-center">
-        <h1 class="h3 text-white mb-30">Reset Password</h1>
-
-        <form action="" class="dx-form">
-            <div class="dx-form-group-md">
-                <input type="email" class="form-control form-control-style-4" aria-describedby="emailHelp" placeholder="Email">
-            </div>
-            <div class="dx-form-group-md">
-                <button class="dx-btn dx-btn-block dx-btn-popup">Reset My Password</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<div id="subscribe" class="dx-popup dx-popup-modal dx-popup-subscribe">
-    <button type="button" data-fancybox-close class="fancybox-button fancybox-close-small" title="Close"><svg xmlns="http://www.w3.org/2000/svg" version="1" viewBox="0 0 24 24"><path d="M13 12l5-5-1-1-5 5-5-5-1 1 5 5-5 5 1 1 5-5 5 5 1-1z"></path></svg></button>
-    <div class="dx-box dx-box-decorated">
-        <div class="dx-box-content">
-            <h6 class="mnt-5 mnb-5">Subscribe to Newsletter</h6>
-        </div>
-        <div class="dx-separator"></div>
-        <div class="dx-box-content">
-            <p class="mnt-5 fs-15">Join the newsletter to receive news, updates, new products and freebies in your inbox.</p>
-            <form action="#" class="dx-form dx-form-group-inputs">
-                <input type="email" name="" value="" aria-describedby="emailHelp" class="form-control form-control-style-2" placeholder="Your Email Address">
-                <button class="dx-btn dx-btn-lg dx-btn-icon"><span class="icon fas fa-paper-plane"></span></button>
-            </form>
-        </div>
-    </div>
-</div>
-
-    
-
-    
 <!-- START: Scripts -->
 
 <!-- Object Fit Images -->
@@ -635,16 +530,50 @@
 <script src="{% static 'assets/js/amdesk-init.js' %}"></script>
 <!-- END: Scripts -->
 
-
     
 </body>
 </html>
 
 <script src="http://localhost:3000/assets/modules/channel-web/inject.js"></script>
+
+{% if user.is_authenticated %}
 <script>
-  window.botpressWebChat.init({ 
-    host: 'http://localhost:3000/', 
-    botId: 'nansagent',
-    extraStylesheet: '/assets/modules/channel-web/chat.css'
-})
+    window.botpressWebChat.init({ 
+        host: 'http://localhost:3000/', 
+        botId: 'nansagent',
+        extraStylesheet: '/assets/modules/channel-web/chat.css'
+    })
+    window.addEventListener('message', function(event) {
+        if (event.data.name === 'webchatLoaded') {
+            window.botpressWebChat.sendEvent({
+                type: 'set_name',
+                channel: 'web',
+                payload: { username: '{{ request.user.username }}', 
+                        firstname: '{{ request.user.first_name }}' , 
+                        lastname: '{{ request.user.last_name }}' ,
+                        email: '{{ request.user.email }}'}
+            })
+        }
+    })
 </script>
+
+
+{% else %}
+<script>
+    window.botpressWebChat.init({ 
+        host: 'http://localhost:3000/', 
+        botId: 'nansagent',
+        extraStylesheet: 'assets/modules/channel-web/chat.css'
+    })
+    window.addEventListener('message', function(event) {
+        if (event.data.name === 'webchatOpened') {
+            window.botpressWebChat.sendEvent({
+                type: 'proactive-trigger',
+                channel: 'web',
+                payload: { text: 'مرحبا' }
+            })
+        }
+    })
+</script>
+{% endif %}
+

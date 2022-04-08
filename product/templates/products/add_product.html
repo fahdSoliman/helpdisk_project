@@ -1,0 +1,46 @@
+{% extends 'home/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+{% load static %}
+
+
+<header class="dx-header dx-box-5">
+    <div class="container">
+        <div class="bg-image bg-image-parallax">
+            <img src="{% static 'assets/images/cover.jpg' %}" class="jarallax-img" alt="">
+            <div style="background-color: rgba(27, 27, 27, .8);"></div>
+        </div>
+
+        <div class="container mnb-8">
+            <h1 class="h4 mb-10 text-white text-center">تسجيل الخدمة</h1>
+            
+            
+<!-- START: Breadcrumbs -->
+            <ul class="dx-breadcrumbs text-center">
+                <li><a href="index.html">المنتجات</a></li>
+                <li>{{ product }}</li>
+            </ul>
+<!-- END: Breadcrumbs -->
+        </div>
+    </div>
+</header>
+<div class="dx-box-5 pb-100 bg-grey-6">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-7">
+                <div class="dx-box-decorated">
+                    <div class="dx-box-content text-center">
+                        <h2 class="h6 mnt-5 mnb-5" dir="rtl">التسجيل بالخدمة</h2>
+                    </div>
+                    <div class="dx-separator">
+                    </div>
+                    {% block reg %}
+                    
+                    {% endblock reg %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock  %}

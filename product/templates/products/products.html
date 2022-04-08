@@ -1,0 +1,67 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+
+<header class="dx-header dx-box-1">
+    <div class="container">
+        <div class="bg-image bg-image-parallax">
+            <img src="{% static 'assets/images/cover.jpg' %}" class="jarallax-img" alt="">
+            <div style="background-color: rgba(27, 27, 27, .8);"></div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-xl-7">
+                <h1 class="h2 mb-30 text-white text-center">الخدمات</h1>
+                <form action="#" class="dx-form dx-form-group-inputs">
+                    <input dir="rtl" type="text" name="" value="" class="form-control" placeholder="أدخل للبحث.">
+                    <button class="dx-btn dx-btn-lg">بحث</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="dx-isotope-container">
+    <div class="dx-box bg-white">
+        <div class="container">
+            <ul class="dx-links dx-isotope-filter text-center">
+                <li class="active" data-filter="*">كل الخدمات</li>
+                <li data-filter=".domain">النطاق Domain</li>
+                <li data-filter=".shared">الاستضافة المشتركة</li>
+                <li data-filter=".arial">الاستضافة المكانية</li>
+                <li data-filter=".vps">الاستضافة المستقلة الافتراضية</li>
+            </ul>
+        </div>
+    </div>
+    <div class="dx-separator"></div>
+
+    <div class="dx-box-5 pb-100 bg-grey-6">
+        <div class="container">
+            <div class="row vertical-gap dx-isotope-grid">
+                {% for product in products %}
+                <div class="col-12 col-md-6 col-lg-4 dx-isotope-grid-item {% if product.product_type.type_name == 'استضافة نطاق' or product.product_type.type_name == 'حجز نطاق' %}domain{% elif product.product_type.type_name == 'استضافة مستقلة افتراضية' %}vps{% elif product.product_type.type_name == 'استضافة مكانية' %}arial{% elif product.product_type.type_name == 'استضافة مشتركة' %}shared{% endif %}">
+                    <div class="dx-portfolio-item dx-block-decorated">
+                        <div class="dx-portfolio-item-image">
+                            <div class="dx-portfolio-item-overlay" style="background-color: rgba(27, 27, 27, .8);">
+                                <a  dir="rtl" href="{% url 'add_product' product.id %}" class="dx-btn dx-btn-md dx-btn-transparent-style-2 m-10"> اشراءالخدمة</a>
+                            </div>
+                            <img src="{{ product.product_img.url }}" alt="">
+                        </div>
+                        <a href="{% url 'detail' product.id %}" class="dx-portfolio-item-info">
+                            <span dir="rtl" class="dx-portfolio-item-title">{{ product.product_type.type_name }} – {{ product.product_name }}</span>
+                            <span  class="dx-portfolio-item-price">{{ product.year_fees }}</span>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="text-center mt-70">
+                <a href="#" class="dx-btn dx-btn-grey dx-btn-lg dx-btn-load" data-btn-loaded="all products shown">Load More</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

@@ -1,0 +1,124 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+{% load static %}
+<div class="dx-main">
+<header class="dx-header dx-box-5">
+    <div class="container">
+        <div class="bg-image bg-image-parallax">
+            <img src="{% static 'assets/images/cover.jpg' %}" class="jarallax-img" alt="">
+            <div style="background-color: rgba(27, 27, 27, .8);"></div>
+        </div>
+
+        <div class="container mnb-8">
+            <h1 class="h4 mb-10 text-white text-center">طلبات الزبائن</h1>
+            
+            
+<!-- START: Breadcrumbs -->
+            <ul class="dx-breadcrumbs text-center">
+                
+                <li><a href="{% url 'home' %}">الصفحة الرئيسية</a></li>
+                
+                <li>طلبات الزبائن</li>
+                
+                
+            </ul>
+<!-- END: Breadcrumbs -->
+
+        </div>
+    </div>
+</header>
+
+<div class="dx-box bg-white">
+    <div class="container">
+        <ul class="dx-links text-center">
+            <li><a href="help-center.html">Support Home</a></li>
+            <li><a href="documentations.html">Documentations</a></li>
+            <li><a href="articles.html">Knowledge Base</a></li>
+            <li><a href="forums.html">Forums</a></li>
+            <li class="active"><a href="ticket.html">Ticket System</a></li>
+        </ul>
+    </div>
+</div>
+<div class="dx-separator"></div>
+
+<div class="dx-box-5 bg-grey-6">
+    <div class="container">
+        <div class="row align-items-center justify-content-between vertical-gap mnt-30 sm-gap mb-50">
+            <div class="col-auto">
+                <h2 class="h4 mb-0 mt-0">Your Tickets</h2>
+            </div>
+            <div class="col pl-30 pr-30 d-none d-sm-block">
+                <div class="dx-separator ml-10 mr-10"></div>
+            </div>
+            <div class="col-auto">
+                <a href="ticket-submit.html" class="dx-btn dx-btn-md">Submit a ticket</a>
+            </div>
+        </div>
+
+        
+        
+<a href="single-ticket.html" class="dx-ticket-item dx-ticket-new dx-ticket-open dx-block-decorated">
+    <span class="dx-ticket-img">
+        
+        <img src="assets/images/avatar-1.png" alt="">
+        
+    </span>
+    <span class="dx-ticket-cont">
+        <span class="dx-ticket-name">
+            John Leonard
+        </span>
+        <span class="dx-ticket-title h5">
+            Need help with customization. Some options are not appearing...
+        </span>
+        <ul class="dx-ticket-info">
+            
+            <li>Update: 5 Nov 2018</li>
+            
+            <li>Product: Quantial</li>
+            
+            <li>Comments: 2</li>
+            
+            
+            <li class="dx-ticket-new">New</li>
+            
+        </ul>
+    </span>
+    <span class="dx-ticket-status">
+        Open
+    </span>
+</a>
+
+        
+<a href="single-ticket.html" class="dx-ticket-item dx-ticket-closed dx-block-decorated">
+    <span class="dx-ticket-img">
+        
+        <img src="assets/images/avatar-default.svg" alt="">
+        
+    </span>
+    <span class="dx-ticket-cont">
+        <span class="dx-ticket-name">
+            Bruno Rice
+        </span>
+        <span class="dx-ticket-title h5">
+            Theme not updating in downloads
+        </span>
+        <ul class="dx-ticket-info">
+            
+            <li>Update: 4 Nov 2018</li>
+            
+            <li>Product: Sensific</li>
+            
+            <li>Comments: 11</li>
+            
+            
+        </ul>
+    </span>
+    <span class="dx-ticket-status">
+        Closed
+    </span>
+</a>
+
+    </div>
+</div>
+{% endblock content %}

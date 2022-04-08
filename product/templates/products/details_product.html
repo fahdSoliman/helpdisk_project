@@ -1,0 +1,317 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+    <header class="dx-header dx-box-5">
+        <div class="bg-image bg-image-parallax">
+            <img src="{% static 'assets/images/cover.jpg' %}" class="jarallax-img" alt="">
+            <div style="background-color: rgba(27, 27, 27, .8);"></div>
+        </div>
+
+        <div class="container mnb-8">
+            <h1 dir="rtl" class="h4 mb-10 text-white text-center">{{ detail.product_type.type_name }}
+                -
+                {{ detail.product_name }}</h1>
+            <!-- START: Breadcrumbs -->
+            <ul class="dx-breadcrumbs text-center">
+                <li dir="ltr">
+                    <a href="{% url 'home' %}">الصفحة الرئيسية</a>
+                </li>
+                <li dir="ltr">
+                    <a href="{% url 'product' %}">الخدمات</a>
+                </li>
+                <li dir="ltr">{{ detail.product_type.type_name }}
+                    –
+                    {{ detail.product_name }}</li>
+            </ul>
+            <!-- END: Breadcrumbs -->
+        </div>
+        
+    </header>
+
+    <div class="dx-box-5 pb-100 bg-grey-6">
+        <div class="container">
+            <div class="row vertical-gap md-gap">
+                <div class="col-lg-8">
+                    <div class="dx-box dx-box-decorated">
+                        <div class="dx-gallery p-10">
+                            <a href="{{ detail.product_img.url }}" data-fancybox="images" class="dx-gallery-item">
+                                <span class="dx-gallery-item-overlay">
+                                    <span class="icon pe-7s-exapnd2"></span>
+                                </span>
+                                <img src="{{ detail.product_img.url }}" class="dx-img" alt="">
+                            </a>
+                            <!-- START: Slider Gallery
+                            Additional Classes:
+                            .dx-slider-arrows (clone arrows)
+                    
+                            Additional Attributes:
+                            data-swiper-speed                (numbers)
+                            data-swiper-space                (numbers)
+                            data-swiper-autoPlay             (numbers)
+                            data-swiper-slides               (numbers)
+                            data-swiper-slidesAuto           (true or false)
+                            data-swiper-arrows-clone         (true or false)
+                            data-swiper-grabCursor           (true or false)
+                            data-swiper-lazy                 (true or false)
+                            data-swiper-breakpoints          (true or false)
+                            data-swiper-arrows               (true or false)
+                            data-swiper-pagination           (true or false)
+                            data-swiper-pagination-dynamic   (true or false)
+                            data-swiper-pagination-scrollbar (true or false)
+                            data-swiper-autoHeight           (true or false)
+                            data-swiper-freeMode             (true or false)
+                            data-swiper-loop                 (true or false)
+                    
+                                            -->
+                            <div class="swiper-container dx-slider dx-slider-gallery mt-10" data-swiper-speed="800" data-swiper-space="10" data-swiper-slides="4" data-swiper-pagination-scrollbar="true">
+                                <div class="swiper-scrollbar">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dx-box-content pt-20 pb-0 d-md-block d-lg-none">
+                            <div class="row vertical-gap xs-gap justify-content-between">
+                                <div class="col col-sm-5 col-md-4">
+                                    <a href="" class="dx-btn dx-btn-lg dx-btn-block">شراء الخدمة</a>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="nav dx-tab mt-35" role="tablist">
+                            <li>
+                                <a class="active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">الوصف</a>
+                            </li>
+                            <li>
+                                <a id="changelog-tab" data-toggle="tab" href="#changelog" role="tab" aria-controls="changelog" aria-selected="false">ملفات</a>
+                            </li>
+                            <li>
+                                <a href="#">التوثيقات
+                                <span class="icon fas fa-external-link-alt"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">بنك المعلومات
+                                <span class="icon fas fa-external-link-alt"></span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="dx-blog-post">
+                            <div class="dx-blog-post-box">
+                                <div class="tab-content dx-tab-content">
+                                    <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                                        {{ detail.product_description|safe }}
+                                    </div>
+                                    <div class="tab-pane fade" id="changelog" role="tabpanel" aria-labelledby="changelog-tab">
+                                        <div class="dx-changelog mt-4">
+                                            <div class="h5">ملفات مرتبطة</div>
+                                            <ul>
+                                                <li class="link">
+                                                    <span class="link">
+                                                        للتحميل
+                                                    </span>
+                                                    <a href="{{ detail.product_file }}">
+                                                        أنقر هنا
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dx-separator"></div>
+                            <div class="dx-blog-post-box pt-30 pb-30">
+                                <ul class="dx-blog-post-info mnt-15 mnb-1">
+                                    <li>Date:
+                                        {{ detail.pub_date }}</li>
+                                    <li>Views: 163</li>
+                                </ul>
+                                <ul class="dx-social-links dx-social-links-style-2 mt-15">
+                                    <li>
+                                        <a href="#" class="dx-social-twitter">
+                                            <span class="icon fab fa-twitter"></span>
+                                            Twitter</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dx-social-facebook">
+                                            <span class="icon fab fa-facebook"></span>
+                                            Facebook</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dx-social-google">
+                                            <span class="icon fab fa-google"></span>
+                                            Google</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dx-social-pinterest">
+                                            <span class="icon fab fa-pinterest"></span>
+                                            Pinterest</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dx-box mt-55">
+                        <h2 class="h4 mb-45">Comments:</h2>
+
+                        <div class="dx-comment">
+                            <div>
+                                <div class="dx-comment-img">
+                                    <img src="assets/images/avatar-1.png" alt=""></div>
+                                    <div class="dx-comment-cont">
+                                        <a href="#" class="dx-comment-name">John Leonard</a>
+                                        <a href="#" class="dx-comment-reply">Reply</a>
+                                        <div class="dx-comment-text">
+                                            <p class="mb-0">Nullam ac dui et purus malesuada gravida id fermentum orci. In eu ipsum quis urna hendrerit condimentum vitae a mauris. 
+                                                                                                                                                                                                                                                In congue turpis purus, vitae tempus ante id. Donec orci arcu, sagittis ut finibus vitae.</p>
+                                        </div>
+                                        <div class="dx-comment-date">12 Feb 2018 7:40 pm</div>
+                                    </div>
+                                </div>
+                                <div class="dx-comment">
+                                    <div>
+                                        <div class="dx-comment-img">
+                                            <img src="assets/images/avatar-2.png" alt=""></div>
+                                            <div class="dx-comment-cont">
+                                                <a href="#" class="dx-comment-name">Mercy Shields</a>
+                                                <a href="#" class="dx-comment-reply">Reply</a>
+                                                <div class="dx-comment-text">
+                                                    <p class="mb-0">In at nunc sodales lorem blandit egestas. Suspendisse molestie fringilla purus, eget sagittis nunc ornare sit amet. 
+                                                                                                                                                                                                                                                                            Praesent vitae ligula eu massa rutrum hendrerit non facilisis nulla interdum ut.</p>
+                                                </div>
+                                                <div class="dx-comment-date">14 Feb 2018 8:29 am</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dx-comment">
+                                    <div>
+                                        <div class="dx-comment-img">
+                                            <img src="assets/images/avatar-3.png" alt=""></div>
+                                            <div class="dx-comment-cont">
+                                                <a href="#" class="dx-comment-name">Maria Anthony</a>
+                                                <a href="#" class="dx-comment-reply">Reply</a>
+                                                <div class="dx-comment-text">
+                                                    <p class="mb-0">Donec libero sapien, dapibus id blandit sit amet, iaculis sed ligula. Morbi cursus maximus elementum. 
+                                                                                                                                                                                                                                                                        Phasellus viverra lacinia sapien sagittis tristique.</p>
+                                                </div>
+                                                <div class="dx-comment-date">18 Feb 2018 7:13 pm</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <form action="#" class="dx-form mt-50">
+                                        <div class="row vertical-gap">
+                                            <div class="col-md-6">
+                                                <input class="form-control form-control-style-3" type="text" placeholder="Name"></div>
+                                                <div class="col-md-6">
+                                                    <input class="form-control form-control-style-3" type="text" placeholder="Name"></div>
+                                                    <div class="col-12">
+                                                        <textarea class="form-control form-control-style-3" name="name" rows="8" cols="80" placeholder="Comment..."></textarea>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <button type="button" name="button" class="dx-btn dx-btn-lg">Post a comment</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="dx-sticky dx-sidebar" data-sticky-offsetTop="120" data-sticky-offsetBot="40">
+                                            <div class="d-none d-lg-block mb-40">
+                                                <div class="row vertical-gap xs-gap justify-content-between">
+                                                    <div class="col">
+                                                        <a href="checkout.html" class="dx-btn dx-btn-lg dx-btn-block">شراء الخدمة</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="dx-widget dx-box dx-box-decorated text-right">
+                                                <div class="dx-widget-title">
+                                                    معلومات عن الخدمة
+                                                </div>
+                                                <div class="dx-widget-information">
+                                                    <div class="dx-widget-information-title">Created</div>
+                                                    <span>11 February 2018</span>
+                                                </div>
+                                                <div class="dx-widget-information">
+                                                    <div class="dx-widget-information-title">Licenses</div>
+                                                    <span>Standard,</span>
+                                                    <span>Extended</span>
+                                                </div>
+                                                <div class="dx-widget-information">
+                                                    <div class="dx-widget-information-title">File Types</div>
+                                                    <span>PHP Files,</span>
+                                                    <span>CSS Files,</span>
+                                                    <span>JS Files</span>
+                                                </div>
+                                                <div class="dx-widget-information">
+                                                    <div class="dx-widget-information-title">Compatible With</div>
+                                                    <span>WPML,</span>
+                                                    <span>Visual Composer 4.12.x</span>
+                                                </div>
+                                                <div class="dx-widget-information">
+                                                    <div class="dx-widget-information-title">Software Version</div>
+                                                    <span>WordPress 4.7.x,</span>
+                                                    <span>WordPress 4.6.1,</span>
+                                                    <span>WordPress 4.6,</span>
+                                                    <span>WordPress 4.5.x,</span>
+                                                    <span>WordPress 4.5.2,</span>
+                                                    <span>WordPress 4.5.1,</span>
+                                                    <span>WordPress 4.5</span>
+                                                </div>
+                                                <div class="dx-widget-information">
+                                                    <div class="dx-widget-information-title">Features</div>
+                                                    <span>Responsive,</span>
+                                                    <span>Well Documented,</span>
+                                                    <span>Widget Ready</span>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="dx-widget dx-box dx-box-decorated">
+                                                <div class="dx-widget-title">
+                                                    Related Products
+                                                </div>
+                                                <a href="#" class="dx-widget-products">
+                                                    <span class="dx-widget-products-img">
+                                                        <img src="#" alt=""></span>
+                                                        <span class="dx-widget-products-text">
+                                                        <span class="dx-widget-products-title"></span>
+                                                        <span class="dx-widget-products-price"></span>
+                                                    </span>
+                                                </a>
+                                            </div>
+
+
+                                                <div class="dx-widget dx-box dx-box-decorated">
+                                                    <div class="dx-widget-title">
+                                                        Subscribe to Newsletter
+                                                    </div>
+                                                    <div class="dx-widget-subscribe">
+                                                        <div class="dx-widget-text">
+                                                            <p>Join the newsletter to receive news, updates, new products and freebies in your inbox.</p>
+                                                        </div>
+                                                        <form action="#" class="dx-form dx-form-group-inputs">
+                                                            <input type="email" name="" value="" aria-describedby="emailHelp" class="form-control form-control-style-2" placeholder="Your Email Address">
+                                                                <button class="dx-btn dx-btn-lg dx-btn-icon">
+                                                                    <span class="icon fas fa-paper-plane"></span>
+                                                                </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="dx-widget dx-box dx-box-decorated">
+                                                    <form action="#" class="dx-form dx-form-group-inputs">
+                                                        <input type="text" name="" value="" class="form-control form-control-style-2" placeholder="Search...">
+                                                            <button class="dx-btn dx-btn-lg dx-btn-grey dx-btn-grey-style-2 dx-btn-icon">
+                                                                <span class="icon fas fa-search"></span>
+                                                            </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+{% endblock content %}

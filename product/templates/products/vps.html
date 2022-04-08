@@ -1,0 +1,38 @@
+{% extends 'products/add_product.html' %}
+{% load widget_tweaks %}
+{% block reg %}
+<form method="POST" class="dx-form" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="dx-box-content text-right">
+        <div class="dx-form-group">
+            <label for="first-name" class="mnt-7">اسم النطاق</label>
+            {% render_field resdomain_form.domain_name class="form-control form-control-style-2" placeholder="أدخل الاسم الاول" %}
+        </div>
+        <div class="dx-form-group">
+            <label for="last-name" class="form-check-label">مفعل أو غير مفعل</label>
+            {% render_field resdomain_form.activate class="form-check" placeholder="أدخل الاسم الاخير" %}
+        </div>
+        <div class="dx-form-group">
+            <label for="email-address" class="mnt-7">عنوان السيرفر الاساسي</label>
+            {% render_field resdomain_form.primary_name_server class="form-control form-control-style-2" placeholder="أدخل عنوان البريد الالكتروني" %}
+        </div>
+        <div class="dx-form-group">
+            <label for="line-one" class="mnt-7">عنوان السيرفر الثانوي</label>
+            {% render_field resdomain_form.secondary_name_server class="form-control form-control-style-2" placeholder="أدخل اسم المستخدم الخاص بالفيسبوك" %}
+        </div>
+        <div class="dx-form-group">
+            <label for="line-two" class="mnt-7">ملف الدفع البنكي</label>
+            {% render_field resdomain_form.bill_file class="form-control form-control-style-2" placeholder="" %}
+        </div>
+        <div class="dx-form-group">
+            <button type="submit" class="dx-btn dx-btn-xl dx-btn-block">حفظ البيانات</button>
+        </div>
+    </div>
+        
+</form>
+
+
+{% endblock reg %}
+
+
+

@@ -95,9 +95,6 @@ a:hover {
     color: #2b72e6;
 }
 
-.dx-main {
-    overflow: hidden;
-}
 
 .dx-decorated {
     display: block;
@@ -2877,6 +2874,8 @@ h6,
 
 .dx-navbar .dx-nav-signin .dx-nav-signin-img + .dx-nav-signin-name {
     margin-left: 12px;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1rem;
 }
 
 .dx-navbar .dx-nav-signin .dx-nav-signin-img img {
@@ -2986,7 +2985,7 @@ h6,
 .dx-navbar ul > li > a {
     display: block;
     padding: 10px 0;
-    font-size: .75rem;
+    font-size: 1rem;
     font-weight: 500;
     line-height: 1;
     color: #bcbcbc;
@@ -3283,7 +3282,7 @@ h6,
 
 .dx-navbar .dx-navbar-dropdown > li > a {
     padding: 10px 50px 10px 20px;
-    font-size: .875rem;
+    font-size: 1rem;
     font-weight: 400;
     color: #7a7a7a;
     text-transform: none;
@@ -4088,7 +4087,7 @@ h6,
     display: block;
     margin-bottom: 6px;
     font-family: 'Tajawal', sans-serif;
-    font-size: .75rem;
+    font-size: 1rem;
     font-weight: 700;
     color: #1b1b1b;
     text-transform: uppercase;
@@ -6453,7 +6452,7 @@ h6,
     padding: 11px 26px;
     margin: 0;
     font-family: 'Tajawal', sans-serif;
-    font-size: 12px;
+    font-size: 1rem;
     font-weight: 500;
     line-height: 1;
     color: #fff;
@@ -7402,7 +7401,7 @@ h6,
 }
 
 .dx-box-1 {
-    padding: 100px 0;
+    padding: 50px 0;
 }
 
 .dx-box-1.dx-padding-top {

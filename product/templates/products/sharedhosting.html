@@ -1,0 +1,38 @@
+{% extends 'products/add_product.html' %}
+{% load widget_tweaks %}
+{% block reg %}
+<form method="POST" class="dx-form" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="dx-box-content text-right">
+        <div class="dx-form-group">
+            <label for="first-name" class="mnt-7">اسم الموقع</label>
+            {% render_field sharedhosting_form.website_name class="form-control form-control-style-2" placeholder="اسم الموقع" %}
+        </div>
+        <div class="dx-form-group">
+            <label for="last-name" class="mnt-7">نظام التشغيل</label>
+            {% render_field sharedhosting_form.operation class="custom-select form-control form-control-style-2" placeholder="نظام التشغيل" %}
+        </div>
+        <div class="dx-form-group">
+            <label for="email-address" class="mnt-7">نقل السيرفر</label>
+            {% render_field sharedhosting_form.transfer_website class="form-control form-control-style-2" placeholder="" %}
+        </div>
+        <div class="dx-form-group">
+            <label for="line-one" class="mnt-7">الحفظ الاحتياطي للسيرفر</label>
+            {% render_field sharedhosting_form.backup_website class="form-control form-control-style-2" placeholder="" %}
+        </div>
+        <div class="dx-form-group">
+            <label for="line-two" class="mnt-7">ملف الدفع البنكي</label>
+            {% render_field sharedhosting_form.bill_file class="form-control form-control-style-2" placeholder="" %}
+        </div>
+        <div class="dx-form-group">
+            <button type="submit" class="dx-btn dx-btn-xl dx-btn-block">حفظ البيانات</button>
+        </div>
+    </div>
+        
+</form>
+
+
+{% endblock reg %}
+
+
+

@@ -1,4 +1,16 @@
 from django.contrib import admin
-from .models import profile
+from .models import Profile, CompanyProfile, TechnicalResponse, FinanicalResponse
 
-admin.site.register(profile)
+
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ['fbName', 'telegram']
+    list_filter = ['fbName', 'telegram']
+    search_fields = ['fbName', 'telegram']
+    class Meta:
+        model = Profile
+
+
+admin.site.register(Profile, ProfileAdmin)
+admin.site.register(CompanyProfile)
+admin.site.register(TechnicalResponse)
+admin.site.register(FinanicalResponse)
