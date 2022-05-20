@@ -28,6 +28,7 @@ class ResDomainForm(forms.ModelForm):
             'activate',
             'primary_name_server',
             'secondary_name_server',
+            'hosting_company',
             'bill_file'
         ]
 

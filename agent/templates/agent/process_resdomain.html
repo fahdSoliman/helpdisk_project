@@ -1,0 +1,208 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+<header class="dx-header dx-box-5">
+    <div class="container">
+        <div class="bg-image bg-image-parallax">
+            <img src="{% static 'assets/images/cover.jpg' %}" class="jarallax-img" alt="">
+            <div style="background-color: rgba(27, 27, 27, .8);"></div>
+        </div>
+
+        <div class="container mnb-8">
+            <h1 class="h4 mb-10 text-white text-center">العميل</h1>
+            <!-- START: Breadcrumbs -->
+            <ul class="dx-breadcrumbs text-center">
+                <li><a href="index.html">الصفحة الرئيسية</a></li>
+                <li>عرض طلبات الزبائن</li>
+                <li>الحساب \ اسم المنتج</li>
+            </ul>
+            <!-- END: Breadcrumbs -->
+        </div>
+    </div>
+</header>
+<div class="dx-box-5 pb-100 bg-grey-6">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-12">
+                <div class="dx-box-decorated">
+                    <div class="dx-box-content text-center">
+                        <h2 class="h5 mnt-5 mnb-5" dir="rtl">معلومات حساب الزبون</h2>
+                        
+                    </div>
+                    <div class="dx-box-content">
+                        <div class="dx-separator"></div>
+                    </div>
+                    <div class="dx-box-content">
+                        
+                        <h6 class="text-center">الملف الشخصي</h6>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <image class="img-thumbnail rounded float-start" src="{{ customer.profile.image.url }}">
+                                <p class="text-center">{{ customer.first_name }} {{ customer.last_name }}</p>
+                            </div>
+                            <div class="col-md-5">
+                                <table class="table">
+                                    <tr>
+                                        <td>اسم المستخدم:</td>
+                                        <td class="text-left">{{ customer.username }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>البريد:</td>
+                                        <td class="text-left">{{ customer.email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>الجنس:</td>
+                                        <td class="text-left">{{ customer.profile.get_gender }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-md-5">
+                                <table class="table">
+                                    <tr>
+                                        <td>رقم الهاتف:</td>
+                                        <td class="text-left">{{ customer.profile.phone }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>telegram:</td>
+                                        <td class="text-left">{{ customer.profile.telegram }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>facebook</td>
+                                        <td class="text-left">{{customer.profile.fbname }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h6 class="text-center">معلومات الشركة</h6>
+                                <table class="table">
+                                    <tr>
+                                        <td>اسم الشركة:</td>
+                                        <td class="text-left">{{ customer.companyprofile.customer_name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>التصنيف:</td>
+                                        <td class="text-left">{{ customer.companyprofile.get_type }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>المدينة:</td>
+                                        <td class="text-left">{{ customer.companyprofile.country }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>البريد الالكتروني:</td>
+                                        <td class="text-left">{{ customer.companyprofile.email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>رقم الهاتف:</td>
+                                        <td dir="ltr"  class="text-left">{{ customer.companyprofile.phone }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col">
+                                <h6 class="text-center">معلومات المسؤول المالي</h6>
+                                <table class="table">
+                                    <tr>
+                                        <td>الاسم الكامل:</td>
+                                        <td>{{ customer.finanicalresponse.financial_name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>البريد</td>
+                                        <td>{{ customer.finanicalresponse.email}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>رقم الهاتف</td>
+                                        <td>{{ customer.finanicalresponse.phone}}</td>
+                                    </tr>
+                                    
+                                </table>
+                            </div>
+                            <div class="col">
+                                <h6 class="text-center">معلومات المسؤول التقني</h6>
+                                <table class="table">
+                                    <tr>
+                                        <td>الاسم الكامل:</td>
+                                        <td>{{customer.technicalresponse.fullname}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>البريد:</td>
+                                        <td>{{customer.technicalresponse.email}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>رقم الهاتف:</td>
+                                        <td>{{customer.technicalresponse.phone}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="dx-separator"></div>
+                    </div>
+                    <div class="dx-box-content">
+                        <h6 class="text-center">ملف الخدمة</h6>
+                    </div>
+                    <div class="dx-box-content">
+                        <div class="dx-separator"></div>
+                        <form method="POST" class="dx-form" enctype="multipart/form-data">
+                        {% csrf_token %}
+                            <div class="dx-box-content text-right">
+                                <div class="dx-form-group">
+                                    <label for="first-name" class="mnt-7">اسم النطاق</label>
+                                    {% render_field resdomain_form.domain_name class="form-control form-control-style-2" %}
+                                </div>
+                                <div class="dx-form-group">
+                                    <label for="first-name" class="mnt-7">خيار التفعيل</label>
+                                    {% render_field resdomain_form.activate class="form-control form-control-style-2" %}
+                                </div>
+                                <div class="dx-form-group">
+                                    <label for="first-name" class="mnt-7">مخدم الاسماء الاولي</label>
+                                    {% render_field resdomain_form.primary_name_server class="form-control form-control-style-2" %}
+                                </div>
+                                <div class="dx-form-group">
+                                    <label for="first-name" class="mnt-7">مخدم الاسماء الثانوي</label>
+                                    {% render_field resdomain_form.secondary_name_server class="form-control form-control-style-2" %}
+                                </div>
+                                <div class="dx-form-group">
+                                    <label for="first-name" class="mnt-7">الجهة المستضيفة</label>
+                                    {% render_field resdomain_form.hosting_company class="form-control form-control-style-2" %}
+                                </div>
+                                <div class="dx-form-group">
+                                    <label for="first-name" class="mnt-7">تاريخ بدء الاشتراك</label>
+                                    {% render_field resdomain_form.start_date class="form-control form-control-style-2" %}
+                                </div>
+                                <div class="dx-form-group">
+                                    <label for="first-name" class="mnt-7">تاريخ انتهاء الاشتراك</label>
+                                    {% render_field resdomain_form.expire_date class="form-control form-control-style-2" %}
+                                </div>
+                                <div class="dx-form-group">
+                                    <label for="first-name" class="mnt-7">حالة تدقيق الحساب</label>
+                                    {% render_field resdomain_form.is_valid class="form-control form-control-style-2" %}
+                                </div>
+                                <div class="dx-form-group">
+                                    <label for="first-name" class="mnt-7">حالة تفعيل الحساب</label>
+                                    {% render_field resdomain_form.is_active class="form-control form-control-style-2" %}
+                                </div>
+                                <div class="dx-form-group">
+                                    <label for="first-name" class="mnt-7">ملاحظات</label>
+                                    {% render_field resdomain_form.note class="form-control form-control-style-2" %}
+                                </div>
+                                <div class="dx-form-group">
+                                    <label for="first-name" class="mnt-7">وصل الدفع البنكي</label>
+                                    {% render_field resdomain_form.bill_file class="form-control form-control-style-2" %}
+                                </div>
+                                <div class="dx-form-group">
+                                    <button type="submit" class="dx-btn dx-btn-xl dx-btn-block">حفظ البيانات</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

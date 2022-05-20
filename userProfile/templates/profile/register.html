@@ -2,60 +2,58 @@
 
 {% block content %}
 {% load widget_tweaks %}
-<br>
-<br>
-<br>
-<br>
-<div class="card">
-    <div class="card bg-light">
-        <article class="card-body mx-auto" style="max-width: 400px;">
-            <h4 class="card-title mt-3 text-center">قم بإنشاء حساب جديد</h4>
-            <p class="text-center">لتتمكن من الاستفادة من الخدمات التي نقدمها</p>
-            <form method="POST">
-                {% csrf_token %}
-                <div class="form-group">
-                {{ form.non_field_errors}}
-                    {{ form.username.errors }}
-                    {{ form.email.errors }}
-                    {{ form.password1.errors }}
-                    {{form.password2.errors }}
+<div dir="ltr" class="dx-box-5 pb-100 bg-grey-6">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-7">
+                <div class="dx-box-decorated">
+                    <article class="card-body mx-auto" style="max-width: 400px;">
+                        <h4 class="card-title mt-3 text-center">قم بإنشاء حساب جديد</h4>
+                        <p class="text-center">لتتمكن من الاستفادة من الخدمات التي نقدمها</p>
+                        <form method="POST" class="">
+                            {% csrf_token %}
+                            <div class="form-group">
+                            {{ form.non_field_errors}}
+                                {{ form.username.errors }}
+                                {{ form.email.errors }}
+                                {{ form.password1.errors }}
+                                {{form.password2.errors }}
+                            </div>
+                            <div class="form-group input-group">
+                            
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                </div>
+                                {% render_field form.username class="form-control form-control-style-4" placeholder="Full name" type="text" %}
+                            </div> <!-- form-group// -->
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                                </div>
+                                {% render_field form.email class="form-control form-control-style-4" placeholder="Email address" type="email" %}
+                            </div> <!-- form-group// -->
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                </div>
+                                {% render_field form.password1 class="form-control form-control-style-4" placeholder="Create password" type="password" %}
+                            </div> <!-- form-group// -->
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                </div>
+                                {% render_field form.password2 class="form-control form-control-style-4" placeholder="Repeat password" type="password" %} 
+                            </div> <!-- form-group// -->                                      
+                            <div class="form-group">
+                                <button type="submit" class="dx-btn dx-btn-block dx-btn-popup"> أنشئ الحساب  </button>
+                            </div> <!-- form-group// -->      
+                            <p class="text-center">هل لديك حساب؟ <a href="{% url 'login' %}">تسجيل الدخول</a> </p>                                                                 
+                        </form>
+                    </article>
                 </div>
-                <div class="form-group input-group">
-                
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                    </div>
-                    {% render_field form.username class="form-control" placeholder="Full name" type="text" %}
-                </div> <!-- form-group// -->
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-                    </div>
-                    {% render_field form.email class="form-control" placeholder="Email address" type="email" %}
-                </div> <!-- form-group// -->
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                    </div>
-                    {% render_field form.password1 class="form-control" placeholder="Create password" type="password" %}
-                </div> <!-- form-group// -->
-                <div class="form-group input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                    </div>
-                    {% render_field form.password2 class="form-control" placeholder="Repeat password" type="password" %} 
-                </div> <!-- form-group// -->                                      
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block"> أنشئ الحساب  </button>
-                </div> <!-- form-group// -->      
-                <p class="text-center">هل لديك حساب؟ <a href="{% url 'login' %}">تسجيل الدخول</a> </p>                                                                 
-            </form>
-        </article>
+            </div>
+        </div>
     </div>
 </div>
-<br>
-<br>
-<br>
-<br>
 {% endblock  %}
   

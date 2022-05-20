@@ -5,24 +5,39 @@
     {% csrf_token %}
     <div class="dx-box-content text-right">
         <div class="dx-form-group">
-            <label for="first-name" class="mnt-7">اسم النطاق</label>
-            {% render_field resdomain_form.domain_name class="form-control form-control-style-2" placeholder="أدخل الاسم الاول" %}
+            <label for="website-name" class="mnt-7">اسم الموقع</label>
+            {% render_field vps_form.website_name id="website-name" class="form-control form-control-style-2" placeholder="أدخل اسم الموقع" %}
         </div>
         <div class="dx-form-group">
-            <label for="last-name" class="form-check-label">مفعل أو غير مفعل</label>
-            {% render_field resdomain_form.activate class="form-check" placeholder="أدخل الاسم الاخير" %}
+            <label for="last-name" class="mnt-7">نظام التشغيل</label>
+            {% render_field vps_form.operation_system class="custom-select form-control form-control-style-2" class="form-check" placeholder="إختر نظام التشغيل" %}
         </div>
         <div class="dx-form-group">
-            <label for="email-address" class="mnt-7">عنوان السيرفر الاساسي</label>
-            {% render_field resdomain_form.primary_name_server class="form-control form-control-style-2" placeholder="أدخل عنوان البريد الالكتروني" %}
+            <label  class="mnt-7">الحصول على عنوان IP</label>
+            {% render_field vps_form.ip_address id="ip-address" class="form-check-input" %}
+            <label for="ip-address" style="margin-right: 20px;" class="form-check-label">أرغب بالحصول على IP</label>
         </div>
         <div class="dx-form-group">
-            <label for="line-one" class="mnt-7">عنوان السيرفر الثانوي</label>
-            {% render_field resdomain_form.secondary_name_server class="form-control form-control-style-2" placeholder="أدخل اسم المستخدم الخاص بالفيسبوك" %}
+            <label for="line-one" class="mnt-7">عدد عناوين IP</label>
+            {% render_field vps_form.ip_count class="form-control form-control-style-2" placeholder="ادخل عدد عناوين IP التي تريدها" %}
+        </div>
+        <div class="dx-form-group">
+            <label for="line-one" class="mnt-7">عنوان المنفذ المفتوح</label>
+            {% render_field vps_form.port_numbers class="form-control form-control-style-2" placeholder="أدخل عنوان المنفذ" %}
+        </div>
+        <div class="dx-form-group">
+            <label for="data-transfer" class="mnt-7">نقل البيانات</label>
+            {% render_field vps_form.data_transfer id="data-transfer" class="form-check-input" %}
+            <label for="data-transfer" style="margin-right: 20px;" class="form-check-label">أرغب بنقل بيانات السيرفر</label>
+        </div>
+        <div class="dx-form-group">
+            <label for="data-backup" class="mnt-7">النسخ الاحتياطي</label>
+            {% render_field vps_form.data_backup id="data-backup" class="form-check-input" %}
+            <label for="data-backup" style="margin-right: 20px;" class="form-check-label">أرغب بإجراء نسخة احتياطية للسيرفر</label>
         </div>
         <div class="dx-form-group">
             <label for="line-two" class="mnt-7">ملف الدفع البنكي</label>
-            {% render_field resdomain_form.bill_file class="form-control form-control-style-2" placeholder="" %}
+            {% render_field vps_form.bill_file class="form-control form-control-style-2" placeholder="" %}
         </div>
         <div class="dx-form-group">
             <button type="submit" class="dx-btn dx-btn-xl dx-btn-block">حفظ البيانات</button>

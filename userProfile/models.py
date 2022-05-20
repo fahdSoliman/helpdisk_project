@@ -29,13 +29,17 @@ class CompanyProfile(models.Model):
     org_type = [(gov_fin_org, 'مؤسسة حكومية مالية'), (gov_man_org, 'مؤسسة حكومية إدارية'), (special_org, 'مؤسسة خاصة')]
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     customer_name = models.CharField(max_length=255)
-    customer_type = models.IntegerField(choices=org_type, null=True)
+    customer_type = models.IntegerField(choices=org_type,default=2, null=True)
     country = models.CharField(max_length=255, null=True)
     phone = PhoneNumberField(null=True)
     email = models.EmailField(null=True)
 
     def __str__(self):
         return str(self.customer_name)
+    
+    def get_type(self):
+        t = self.org_type[self.customer_type]
+        return str(t[1])
 
 class FinanicalResponse(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

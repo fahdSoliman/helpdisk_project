@@ -3,6 +3,10 @@ from . import views
 
 urlpatterns = [
     path('request/', views.view_request , name='view_request'),
-    path('admin/settings/', views.admin_settings, name='admin_settings'),
-    path('admin/botpress/', views.admin_botpress_accounts, name='admin_botpress'),
+    path('resdomain/<int:id>/', views.agent_process_resdomain, name='agent_process_resdomain'),
+    path('hostdomain/<int:id>/', views.agent_process_hostdomain, name='agent_process_hostdomain'),
+    path('shared/<int:id>/', views.agent_process_shared, name='agent_process_shared'),
+    path('vps/<int:id>/', views.agent_process_vps, name='agent_process_vps'),
+    path('settings/', views.agent_settings, name='agent_settings'),
+    path('botpress/', views.agent_botpress_accounts, name='agent_botpress'),
 ]

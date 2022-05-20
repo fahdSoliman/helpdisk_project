@@ -8,6 +8,8 @@ from .forms import (UserRegisterForm,
 from django.contrib import messages
 from .models import Profile
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from product.models import HostDomain,ResDomain,SharedHosting,VPS
 
 
 def register(request):
@@ -25,9 +27,33 @@ def register(request):
 
 @login_required(login_url='login')
 def profile(request):
-    
+    user = request.user.id
+    prof = User.objects.get(id=user)
+    try:
+        hostdomain_products = HostDomain.objects.filter(user=user)
+    except(HostDomain.DoesNotExist) as e:
+        print(e)
+    try:
+        resdomain_products = ResDomain.objects.filter(user=user)
+    except(ResDomain.DoesNotExist) as e:
+        print(e)
+    try:
+        shared_products = SharedHosting.objects.filter(user=user)
+    except(SharedHosting.DoesNotExist) as e:
+        print(e)
+    try:
+        vps_products = VPS.objects.filter(user=user)
+    except(VPS.DoesNotExist) as e:
+        print(e)
+    context = {
+        'profile': prof,
+        'host_products': hostdomain_products,
+        'resdomain_products': resdomain_products,
+        'shared_products': shared_products,
+        'vps_products': vps_products
+    }
 
-    return render(request, 'profile/account.html')
+    return render(request, 'profile/account.html', context)
 
 @login_required(login_url='login')
 def settings(request):
@@ -64,4 +90,29 @@ def settings(request):
 
 @login_required(login_url='login')
 def myproduct(request):
-    return render(request, 'profile/my_products.html')
+    user = request.user.id
+    prof = User.objects.get(id=user)
+    try:
+        hostdomain_products = HostDomain.objects.filter(user=user)
+    except(HostDomain.DoesNotExist) as e:
+        print(e)
+    try:
+        resdomain_products = ResDomain.objects.filter(user=user)
+    except(ResDomain.DoesNotExist) as e:
+        print(e)
+    try:
+        shared_products = SharedHosting.objects.filter(user=user)
+    except(SharedHosting.DoesNotExist) as e:
+        print(e)
+    try:
+        vps_products = VPS.objects.filter(user=user)
+    except(VPS.DoesNotExist) as e:
+        print(e)
+    context = {
+        'profile': prof,
+        'host_products': hostdomain_products,
+        'resdomain_products': resdomain_products,
+        'shared_products': shared_products,
+        'vps_products': vps_products
+    }
+    return render(request, 'profile/my_products.html', context)

@@ -5,20 +5,22 @@
     {% csrf_token %}
     <div class="dx-box-content text-right">
         <div class="dx-form-group">
-            <label for="first-name" class="mnt-7">اسم الموقع</label>
-            {% render_field sharedhosting_form.website_name class="form-control form-control-style-2" placeholder="اسم الموقع" %}
+            <label for="website_name" class="mnt-7">اسم الموقع</label>
+            {% render_field sharedhosting_form.website_name id="website-name" class="form-control form-control-style-2" placeholder="اسم الموقع" %}
         </div>
         <div class="dx-form-group">
-            <label for="last-name" class="mnt-7">نظام التشغيل</label>
-            {% render_field sharedhosting_form.operation class="custom-select form-control form-control-style-2" placeholder="نظام التشغيل" %}
+            <label for="operation" class="mnt-7">نظام التشغيل</label>
+            {% render_field sharedhosting_form.operation id="operation" class="custom-select form-control form-control-style-2" placeholder="نظام التشغيل" %}
         </div>
         <div class="dx-form-group">
-            <label for="email-address" class="mnt-7">نقل السيرفر</label>
-            {% render_field sharedhosting_form.transfer_website class="form-control form-control-style-2" placeholder="" %}
+            <label for="website-transfer" class="mnt-7">نقل السيرفر</label>
+            {% render_field sharedhosting_form.transfer_website id="website-transfer" class="form-check-input" %}
+            <label for="website-transfer" style="margin-right: 20px;" class="form-check-label">أرغب بنقل بيانات السيرفر</label>
         </div>
         <div class="dx-form-group">
-            <label for="line-one" class="mnt-7">الحفظ الاحتياطي للسيرفر</label>
-            {% render_field sharedhosting_form.backup_website class="form-control form-control-style-2" placeholder="" %}
+            <label for="website-backup" class="mnt-7">الحفظ الاحتياطي للسيرفر</label>
+            {% render_field sharedhosting_form.backup_website id="website-backup" class="form-check-input" %}
+            <label for="website-backup" style="margin-right: 20px;" class="form-check-label">أرغب بإجراء نسخة احتياطية للسيرفر</label>
         </div>
         <div class="dx-form-group">
             <label for="line-two" class="mnt-7">ملف الدفع البنكي</label>

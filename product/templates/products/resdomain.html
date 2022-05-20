@@ -5,12 +5,13 @@
     {% csrf_token %}
     <div class="dx-box-content text-right">
         <div class="dx-form-group">
-            <label for="first-name" class="mnt-7">اسم النطاق</label>
-            {% render_field resdomain_form.domain_name class="form-control form-control-style-2" placeholder="اسم النطاق" %}
+            <label for="domain-name" class="mnt-7">اسم النطاق</label>
+            {% render_field resdomain_form.domain_name id="domain-name" class="form-control form-control-style-2" placeholder="أدخل اسم للنطاق الخاص بك" %}
         </div>
         <div class="dx-form-group">
-            <label for="last-name" class="form-check-label">مفعل أو غير مفعل</label>
-            {% render_field resdomain_form.activate class="form-control form-control-style-4" %}
+            <label for="activate" class="form-check-label">التفعيل الفوري بعد التسجيل</label>
+            {% render_field resdomain_form.activate id="activate" class="form-check-input" %}
+            <label for="activate" style="margin-right: 20px;" class="form-check-label">أرغب بالتفعيل الفوري بعد التسجيل</label>
         </div>
         <div class="dx-form-group">
             <label for="email-address" class="mnt-7">عنوان السيرفر الاساسي</label>
@@ -19,6 +20,10 @@
         <div class="dx-form-group">
             <label for="line-one" class="mnt-7">عنوان السيرفر الثانوي</label>
             {% render_field resdomain_form.secondary_name_server class="form-control form-control-style-2" placeholder="عنوان السيرفر الثانوي" %}
+        </div>
+        <div class="dx-form-group">
+            <label for="line-one" class="mnt-7">عنوان الجهة المستضيفة</label>
+            {% render_field resdomain_form.hosting_company class="form-control form-control-style-2" placeholder="عنوان الجهة المستضيفة" %}
         </div>
         <div class="dx-form-group">
             <label for="line-two" class="mnt-7">ملف الدفع البنكي</label>

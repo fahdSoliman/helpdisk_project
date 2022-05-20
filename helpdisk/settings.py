@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
+    'ckeditor_uploader',
     'widget_tweaks',
     'phonenumber_field',
     'djmoney',
@@ -135,11 +137,30 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'helpdisk/static')
 ]
 
-########################
-# Phone Number Settings#
-########################
+#########################
+# Phone Number Settings #
+#########################
 
 PHONENUMBER_DB_FORMAT = "NATIONAL"
 PHONENUMBER_DEFAULT_REGION = "SY"
 
-########################
+
+#####################################
+##     CKEDITOR CONFIGURATION      ##
+#####################################
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+ 
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
+ 
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+ 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'basic',
+        'skin': 'moono',
+        "removePlugins": "stylesheetparser",
+    },
+}
+
+#####################################

@@ -28,7 +28,6 @@
                 <li class="active" data-filter="*">كل الخدمات</li>
                 <li data-filter=".domain">النطاق Domain</li>
                 <li data-filter=".shared">الاستضافة المشتركة</li>
-                <li data-filter=".arial">الاستضافة المكانية</li>
                 <li data-filter=".vps">الاستضافة المستقلة الافتراضية</li>
             </ul>
         </div>
@@ -48,7 +47,7 @@
                             <img src="{{ product.product_img.url }}" alt="">
                         </div>
                         <a href="{% url 'detail' product.id %}" class="dx-portfolio-item-info">
-                            <span dir="rtl" class="dx-portfolio-item-title">{{ product.product_type.type_name }} – {{ product.product_name }}</span>
+                            <span style="padding: 28px 26px 30px 5px;" class="dx-portfolio-item-title">{{ product.product_type.type_name }} – {{ product.product_name }}</span>
                             <span  class="dx-portfolio-item-price">{{ product.year_fees }}</span>
                         </a>
                     </div>

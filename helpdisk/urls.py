@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,6 +25,7 @@ urlpatterns = [
     path('account/', include('userProfile.urls')),
     path('product/', include('product.urls')),
     path('agent/', include('agent.urls')),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ] 
 
 

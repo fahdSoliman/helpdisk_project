@@ -56,12 +56,14 @@
     <!-- END: Styles -->
 
     <!-- jQuery -->
-    <script src="{% static 'assets/vendor/jquery/dist/jquery.min.js' %}"></script>
+    
+    <!-- <script src="{% static 'assets/vendor/jquery/dist/jquery.min.js' %}"></script> -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+    <!-- custom style for message notifications  -->
     <style>
-
     .toast {
         position: absolute !important; 
         top: 5em; 
@@ -238,10 +240,10 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownSignin">
                                 <li>
-                                    <a href="{% url 'admin_botpress' %}"><span class="icon pe-7s-download"></span> إدارة الحسابات</a>
+                                    <a href="{% url 'agent_botpress' %}"><span class="icon pe-7s-download"></span> إدارة الحسابات</a>
                                 </li>
                                 <li>
-                                    <a href="{% url 'admin_settings' %}"><span class="icon pe-7s-config"></span> الاعدادات</a>
+                                    <a href="{% url 'agent_settings' %}"><span class="icon pe-7s-config"></span> الاعدادات</a>
                                 </li>
                                 <li>
                                     <a href="{% url 'logout' %}"><span class="icon pe-7s-back"></span> تسجيل الخروج</a>
@@ -250,7 +252,7 @@
                         </div>
                     </li>
                 {% elif request.user|has_group:"stuff" %}
-                    <li>
+                    <li class="dx-drop-item">
                         <div class="dropdown dx-dropdown dx-dropdown-signin">
                             <a class="dx-nav-signin" href="#" role="button" id="dropdownSignin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="dx-nav-signin-img"><img src="{{ user.profile.image.url }}" alt=""></span>
@@ -414,7 +416,7 @@
             <ul class="dx-nav dx-nav-align-right justify-content-between">
                     
                 {% if user.is_authenticated %}
-                    <li>
+                    <li class="dx-drop-item">
                         <span>
                             <a class="dx-nav-signin" href="{% url 'account' %}" >
                                 <span class="dx-nav-signin-img"><img src="{{ user.profile.image.url }}" alt=""></span>
@@ -436,14 +438,16 @@
 </div>
 <!-- END: Navbar -->
 
-<div class="dx-main">
-{% include 'home/messages.html' %}
+<div dir="rtl" style="text-align: right;" class="dx-main">
+<div dir="ltr">
+    {% include 'home/messages.html' %}
+</div>    
 
     {% block content %}
     {% endblock %}
 </div>
 <!-- START: Footer -->
-<footer class="dx-footer">
+<footer dir="ltr" class="dx-footer">
     <div class="dx-box-1">
         <div class="container">
             <div class="row vertical-gap lg-gap">
@@ -458,14 +462,6 @@
                         </div>
                         <div class="dx-widget-text">
                             <p class="mb-0">&copy; {% now "Y" %} <span class="dib"> All rights reserved. </span> <span class="dib">NANS</span></p>
-                        </div>
-                        <div class="dx-widget-text">
-                            <ul class="dx-social-links mnt-3">
-                                <li><a href="#"><span class="fab fa-behance-square"></span></a></li>
-                                <li><a href="#"><span class="fab fa-instagram"></span></a></li>
-                                <li><a href="#"><span class="fab fa-dribbble"></span></a></li>
-                                <li><a href="#"><span class="fab fa-github"></span></a></li>
-                            </ul>
                         </div>
                     </div>
 
@@ -483,10 +479,10 @@
 <script src="{% static 'assets/vendor/object-fit-images/dist/ofi.min.js' %}"></script>
 
 <!-- Popper -->
-<script src="{% static 'assets/vendor/popper.js/dist/umd/popper.min.js' %}"></script>
+<!-- <script src="{% static 'assets/vendor/popper.js/dist/umd/popper.min.js' %}"></script> -->
 
 <!-- Bootstrap -->
-<script src="{% static 'assets/vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<!-- <script src="{% static 'assets/vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script> -->
 
 <!-- Fancybox -->
 <script src="{% static 'assets/vendor/fancybox/dist/jquery.fancybox.min.js' %}"></script>

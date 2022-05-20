@@ -52,7 +52,7 @@ def add_RegDomain(request, prod):
         if resdomain_form.is_valid():
             print("sucsses")
             resdomain_form.save()
-            messages.success(request, f'تم التسجيل في الخدمة بنجاح')
+            messages.success(request, f'تم التسجيل في الخدمة {product} بنجاح')
             return redirect('home')
     else:
         print("GET")
