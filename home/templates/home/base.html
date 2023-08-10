@@ -22,7 +22,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/dist/css/bootstrap.min.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/dist/css/bootstrap.min.css' %}"> {% endcomment %}
 
     <!-- Fancybox -->
     <link rel="stylesheet" href="{% static 'assets/vendor/fancybox/dist/jquery.fancybox.min.css' %}">
@@ -52,7 +52,9 @@
     <!-- Custom Styles -->
     <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
     
- 
+    <!-- iconify -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+
     <!-- END: Styles -->
 
     <!-- jQuery -->
@@ -62,50 +64,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     
-    <!-- custom style for message notifications  -->
-    <style>
-    .toast {
-        position: absolute !important; 
-        top: 5em; 
-        right: 0;
-        margin: 1em;
-        z-index: 99;
-    }
-
-    .toast .logo {
-        height: 2em;
-    }
-
-    /* IMG displaying */
-    .person-card {
-        margin-top: 5em;
-        padding-top: 5em;
-    }
-    .person-card .card-title{
-        text-align: center;
-    }
-    .person-card .person-img{
-        width: 10em;
-        position: absolute;
-        top: -5em;
-        left: 50%;
-        margin-left: -5em;
-        border-radius: 100%;
-        overflow: hidden; 
-        background-color: white;
-        border-top: 3px solid #3a3535;
-
-    }
-
-    .btn-perso {
-        position: center;
-    }
-    </style>
+    <!-- Style For Switch Bottom -->
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js"></script>
+    
+    
 </head>
 
 <body>
 <!--
-    START: Navbar
+    START: Navbar 
 
     Additional Classes:
         .dx-navbar-sticky || .dx-navbar-fixed
@@ -240,10 +208,13 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownSignin">
                                 <li>
-                                    <a href="{% url 'agent_botpress' %}"><span class="icon pe-7s-download"></span> إدارة الحسابات</a>
+                                    <a href="{% url 'agent_botpress' %}"><span class="icon pe-7s-tools"></span> إدارة Botpress</a>
                                 </li>
                                 <li>
-                                    <a href="{% url 'agent_settings' %}"><span class="icon pe-7s-config"></span> الاعدادات</a>
+                                    <a href="{% url 'admin:index' %}"><span class="icon pe-7s-users"></span> إدارة الموقع</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'settings' %}"><span class="icon pe-7s-config"></span> إعدادات حسابي</a>
                                 </li>
                                 <li>
                                     <a href="{% url 'logout' %}"><span class="icon pe-7s-back"></span> تسجيل الخروج</a>
@@ -260,13 +231,19 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownSignin">
                                 <li>
-                                    <a href="{% url 'view_request' %}"><span class="icon pe-7s-download"></span> عرض طلبات الزبائن</a>
+                                    <a href="{% url 'view_new_request' %}"><span class="icon pe-7s-note2"></span> معالجة الاشتتراكات الجديدة</a>
                                 </li>
                                 <li>
-                                    <a href="{% url 'settings' %}"><span class="icon pe-7s-config"></span> الاعدادات</a>
+                                    <a href="{% url 'view_old_request' %}"><span class="icon pe-7s-note2"></span> معالجة الاشتتراكات القديمة</a>
                                 </li>
                                 <li>
-                                    <a href="{% url 'logout' %}"><span class="icon pe-7s-back"></span> تسجيل الخروج</a>
+                                    <a href="{% url 'botpress_hitl' %}"><span class="icon pe-7s-paper-plane"></span> لوحة الدردشة Botpress</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'settings' %}"><span class="icon pe-7s-config"></span> إعدادات حسابي</a>
+                                </li>
+                                <li>
+                                    <a  href="{% url 'logout' %}" ><span class="icon pe-7s-back"></span> تسجيل الخروج</a>
                                 </li>
                             </ul>
                         </div>
@@ -286,10 +263,10 @@
                                     <a href="{% url 'myproducts' %}"><span class="icon pe-7s-download"></span> منتجاتي</a>
                                 </li>
                                 <li>
-                                    <a href="{% url 'settings' %}"><span class="icon pe-7s-config"></span> الاعدادات</a>
+                                    <a href="{% url 'settings' %}"><span class="icon pe-7s-config"></span> إعدادات حسابي</a>
                                 </li>
                                 <li>
-                                    <a href="{% url 'logout' %}"><span class="icon pe-7s-back"></span> تسجيل الخروج</a>
+                                    <a onclick="clearStorage()" href="{% url 'logout' %}"><span class="icon pe-7s-back"></span> تسجيل الخروج</a>
                                 </li>
                             </ul>
                         </div>
@@ -456,12 +433,9 @@
                     
                     <div class="dx-widget-footer">
                         <div class="dx-widget-title">
-                            <a href="{% url 'home' %}" class="dx-widget-logo">
-                                <img src="{% static 'assets/images/logo.png' %}" alt="" width="88px">
-                            </a>
                         </div>
                         <div class="dx-widget-text">
-                            <p class="mb-0">&copy; {% now "Y" %} <span class="dib"> All rights reserved. </span> <span class="dib">NANS</span></p>
+                            <p class="mb-0">&copy; {% now "Y" %} <span class="dib"> All rights reserved. </span> <span class="dib">WH Co.</span></p>
                         </div>
                     </div>
 
@@ -474,6 +448,9 @@
 <!-- END: Footer -->
 
 <!-- START: Scripts -->
+
+<!-- WebPack Script -->
+<script src="{% static 'js/index.js' %}"></script>
 
 <!-- Object Fit Images -->
 <script src="{% static 'assets/vendor/object-fit-images/dist/ofi.min.js' %}"></script>
@@ -524,52 +501,40 @@
 <!-- The Amdesk -->
 <script src="{% static 'assets/js/amdesk.min.js' %}"></script>
 <script src="{% static 'assets/js/amdesk-init.js' %}"></script>
-<!-- END: Scripts -->
 
-    
+<!-- END: Scripts -->
 </body>
 </html>
 
-<script src="http://localhost:3000/assets/modules/channel-web/inject.js"></script>
+{% if request.path == '/account/logout/' %}
+{% comment "about botpress integration" %}
 
-{% if user.is_authenticated %}
+{% endcomment %}
 <script>
-    window.botpressWebChat.init({ 
-        host: 'http://localhost:3000/', 
-        botId: 'nansagent',
-        extraStylesheet: '/assets/modules/channel-web/chat.css'
-    })
-    window.addEventListener('message', function(event) {
-        if (event.data.name === 'webchatLoaded') {
-            window.botpressWebChat.sendEvent({
-                type: 'set_name',
-                channel: 'web',
-                payload: { username: '{{ request.user.username }}', 
-                        firstname: '{{ request.user.first_name }}' , 
-                        lastname: '{{ request.user.last_name }}' ,
-                        email: '{{ request.user.email }}'}
-            })
+    localStorage.removeItem("userId");
+    function isLocalStorageAvailable(){
+        var test = 'test';
+        try {
+            localStorage.setItem(test, test);
+            localStorage.removeItem(test);
+            return true;
+        } catch(e) {
+            return false;
         }
-    })
-</script>
-
-
-{% else %}
-<script>
-    window.botpressWebChat.init({ 
-        host: 'http://localhost:3000/', 
-        botId: 'nansagent',
-        extraStylesheet: 'assets/modules/channel-web/chat.css'
-    })
-    window.addEventListener('message', function(event) {
-        if (event.data.name === 'webchatOpened') {
-            window.botpressWebChat.sendEvent({
-                type: 'proactive-trigger',
-                channel: 'web',
-                payload: { text: 'مرحبا' }
-            })
+    }
+    
+    if(isLocalStorageAvailable()){
+        if (window.localStorage.getItem('userId') == null) {
+            window.localStorage.setItem('userId', nanoid(24));
+            console.log(window.localStorage.getItem('userId'));
         }
-    })
+        console.log(window.localStorage.getItem('userId'));
+    }else{
+        console.log("your browser LocalStorage is Turned OFF, you need it to work the Botpress appropriately");
+    }
 </script>
 {% endif %}
 
+{% block botpress %}
+
+{% endblock botpress %}

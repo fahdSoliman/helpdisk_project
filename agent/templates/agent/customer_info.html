@@ -1,0 +1,104 @@
+<div class="dx-box-content">        
+    <h6 class="text-center">الملف الشخصي</h6>
+    <div class="row" style="padding-bottom: 15px;">
+        <div class="col-md-2">
+            <image class="img-thumbnail rounded float-start" src="{{ customer.profile.image.url }}">
+        </div>
+        <div class="col-md-5">
+            <table class="table">
+                <tr>
+                    <td>اسم المستخدم:</td>
+                    <td class="text-left">{{ customer.username }}</td>
+                </tr>
+                <tr>
+                    <td>البريد:</td>
+                    <td class="text-left">{{ customer.email }}</td>
+                </tr>
+                <tr>
+                    <td>الاسم الكامل:</td>
+                    <td class="text-left">{{ customer.first_name }} {{ customer.last_name }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-5">
+            <table class="table">
+                <tr>
+                    <td>الجنس:</td>
+                    <td class="text-left">{{ customer.profile.get_gender }}</td>
+                </tr>
+                <tr>
+                    <td>telegram:</td>
+                    <td class="text-left">{{ customer.profile.telegram }}</td>
+                </tr>
+                <tr>
+                    <td>facebook</td>
+                    <td class="text-left">{{customer.profile.facebook }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h6 class="text-center">معلومات الشركة</h6>
+            <table class="table">
+                <tr>
+                    <td>اسم الشركة:</td>
+                    <td class="text-left">{{ customer.companyprofile.customer_name }}</td>
+                </tr>
+                <tr>
+                    <td>التصنيف:</td>
+                    <td class="text-left">{{ customer.companyprofile.get_type }}</td>
+                </tr>
+                <tr>
+                    <td>المدينة:</td>
+                    <td class="text-left">{{ customer.companyprofile.country }}</td>
+                </tr>
+                <tr>
+                    <td>البريد الالكتروني:</td>
+                    <td class="text-left">{{ customer.companyprofile.email }}</td>
+                </tr>
+                <tr>
+                    <td>رقم الهاتف:</td>
+                    <td dir="ltr"  class="text-left">{{ customer.companyprofile.phone.as_national }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col">
+            <h6 class="text-center">معلومات المسؤول المالي</h6>
+            <table class="table">
+                <tr>
+                    <td>الاسم الكامل:</td>
+                    <td>{{ customer.finanicalresponse.financial_name}}</td>
+                </tr>
+                <tr>
+                    <td>البريد:</td>
+                    <td>{{ customer.finanicalresponse.email }}</td>
+                </tr>
+                <tr>
+                    <td>رقم الهاتف:</td>
+                    <td dir="ltr">{{ customer.finanicalresponse.phone.as_national }}</td>
+                </tr>
+                
+            </table>
+        </div>
+        <div class="col">
+            <h6 class="text-center">معلومات المسؤول التقني</h6>
+            <table class="table">
+                <tr>
+                    <td>الاسم الكامل:</td>
+                    <td>{{customer.technicalresponse.fullname}}</td>
+                </tr>
+                <tr>
+                    <td>البريد:</td>
+                    <td>{{ customer.technicalresponse.email }}</td>
+                </tr>
+                <tr>
+                    <td>رقم الهاتف:</td>
+                    <td dir="ltr">{{ customer.technicalresponse.phone.as_national }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+

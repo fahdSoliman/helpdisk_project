@@ -1,0 +1,176 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+
+<header class="dx-header dx-box-5">
+    <div class="container">
+        <div class="bg-image bg-image-parallax">
+            <img src="{% static 'assets/images/cover.jpg' %}" class="jarallax-img" alt="">
+            <div style="background-color: rgba(27, 27, 27, .8);"></div>
+        </div>
+
+        <div class="container mnb-8">
+            <h1 class="h4 mb-10 text-white text-center">الحساب</h1>
+            <!-- START: Breadcrumbs -->
+            <ul class="dx-breadcrumbs text-center">
+                <li><a href="{% url 'home' %}">الصفحة الرئيسية</a></li>
+                <li><a href="{% url 'myproducts' %}">قائمة منتجاتي</a></li>
+                <li>{{detail.website_name}}</li>
+            </ul>
+            <!-- END: Breadcrumbs -->
+        </div>
+    </div>
+</header>
+
+<!-- START: of service profile -->
+<div class="dx-box-5 bg-grey-6">
+    <div class="container">
+        <div class="row align-items-center justify-content-between vertical-gap mnt-30 sm-gap mb-50">
+            <div class="col pl-30 pr-30 d-none d-sm-block">
+                <div class="dx-separator ml-10 mr-10"></div>
+            </div>
+            <div class="col-auto">
+                <h2 class="h4 mb-0 mt-0">ملف الاشتراك</h2>
+            </div>
+            <div class="col pl-30 pr-30 d-none d-sm-block">
+                <div class="dx-separator ml-10 mr-10"></div>
+            </div>
+        </div>
+        <div class="dx-box-decorated">
+            <div class="dx-box-content">
+                <div class="row">
+                    <div class="col" style="padding-bottom: 15px;">
+                        <h2 class="h4 mb-0 mt-0 text-center">بيانات عامة عن الطلب</h2>
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom: 15px;">
+                    <div class="col-md-2">
+                        <image class="img-thumbnail rounded float-start" src="{{ detail.my_product.product_img.url }}">
+                    </div>
+                    <div class="col-md-7">
+                        <table class="table table-borderless">
+                            <tr>
+                                <td>حالة تدقيق الحساب:</td>
+                                <td>{{ detail.is_valid }}</td>
+                            </tr>
+                            <tr>
+                                <td>حالة تفعيل الحساب:</td>
+                                <td>{{ detail.is_active }}</td>
+                            </tr>
+                            <tr>
+                                <td>تاريخ بدء الصلاحية:</td>
+                                <td>{{ detail.pretty_start_date }}</td>
+                            </tr>
+                            <tr>
+                                <td>تاريخ انتهاء الصلاحية:</td>
+                                <td>{{ detail.pretty_expire_date }}</td>
+                            </tr>
+                            <tr>
+                                <td>الملاحظات:</td>
+                                <td>{{ detail.note|safe }}</td>
+                            </tr>
+                            <tr>
+                                <td>تاريخ الاشتراك:</td>
+                                <td>{{ detail.pretty_reg_date }}</td>
+                            </tr>
+                            <tr>
+                                <td>تاريخ أخر تعديل:</td>
+                                <td>{{ detail.pretty_updated }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-3">
+                        <p>ملف الدفع البنكي:</p>
+                        <div class="dx-gallery p-5">
+                            <a href="{{ detail.bill_file.url }}" data-fancybox="images" class="dx-gallery-item">
+                                <span class="dx-gallery-item-overlay">
+                                    <span class="icon pe-7s-exapnd2"></span>
+                                </span>
+                                <img src="{{ detail.bill_file.url }}" class="dx-img" alt="">
+                            </a>
+                            <!-- START: Slider Gallery
+                            Additional Classes:
+                            .dx-slider-arrows (clone arrows)
+                    
+                            Additional Attributes:
+                            data-swiper-speed                (numbers)
+                            data-swiper-space                (numbers)
+                            data-swiper-autoPlay             (numbers)
+                            data-swiper-slides               (numbers)
+                            data-swiper-slidesAuto           (true or false)
+                            data-swiper-arrows-clone         (true or false)
+                            data-swiper-grabCursor           (true or false)
+                            data-swiper-lazy                 (true or false)
+                            data-swiper-breakpoints          (true or false)
+                            data-swiper-arrows               (true or false)
+                            data-swiper-pagination           (true or false)
+                            data-swiper-pagination-dynamic   (true or false)
+                            data-swiper-pagination-scrollbar (true or false)
+                            data-swiper-autoHeight           (true or false)
+                            data-swiper-freeMode             (true or false)
+                            data-swiper-loop                 (true or false)
+                    
+                                            -->
+                            <div class="swiper-container dx-slider dx-slider-gallery mt-10" data-swiper-speed="800" data-swiper-space="10" data-swiper-slides="4" data-swiper-pagination-scrollbar="true">
+                                <div class="swiper-scrollbar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div class="row">
+                    <div class="col">
+                        <h2 class="h4 mb-0 mt-0 text-center">تعديل ملف الاشتراك</h2>
+                        <!--element of the agent form -->
+                        <form method="POST" class="dx-form" enctype="multipart/form-data">
+                        {% csrf_token %}
+                            <div class="dx-box-content text-right">
+                                <div class="dx-form-group">
+                                    <label for="first-name" class="mnt-7">اسم الموقع</label>
+                                    {% render_field vps_form.website_name dir="ltr" class="form-control form-control-style-2" %}
+                                </div>
+                                <div class="dx-form-group">
+                                    <label for="first-name" class="mnt-7">نظام التشغيل</label>
+                                    {% render_field vps_form.operation_system dir="ltr" class="form-control form-control-style-2" %}
+                                </div>
+                                <div class="dx-form-group">
+                                    <label for="first-name" class="mnt-7">عنوان الشبكة IP</label>
+                                    {% render_field vps_form.ip_address dir="ltr" class="form-control form-control-style-2" %}
+                                </div>
+                                <div class="dx-form-group">
+                                    <label for="first-name" class="mnt-7">عدد عناوين الشبكة</label>
+                                    {% render_field vps_form.ip_count dir="ltr" class="form-control form-control-style-2" %}
+                                </div>
+                                <div class="dx-form-group">
+                                    <label for="first-name" class="mnt-7">رقم المنفذ</label>
+                                    {% render_field vps_form.port_numbers dir="ltr" class="form-control form-control-style-2" %}
+                                </div>
+                                <div class="dx-form-group">
+                                    <label for="first-name" class="mnt-7">خيار نقل بيانات الموقع</label>
+                                    {% render_field vps_form.data_transfer dir="ltr" type="checkbox" data-toggle="switchbutton"  data-size="sm" %}
+                                </div>
+                                <div class="dx-form-group">
+                                    <label for="first-name" class="mnt-7">خيار النسخ الاحتياطي للموقع</label>
+                                    {% render_field vps_form.data_backup dir="ltr" type="checkbox" data-toggle="switchbutton"  data-size="sm" %}
+                                </div>
+                                <div class="dx-form-group">
+                                    <label for="first-name" class="mnt-7">رفع ملف الدفع البنكي</label>
+                                    {% render_field vps_form.bill_file class="form-control form-control-style-2" %}
+                                </div>
+                                <div class="dx-form-group">
+                                    <button type="submit" class="dx-btn dx-btn-xl dx-btn-block">حفظ البيانات</button>
+                                </div>
+                            </div>
+                        </form>
+                    <div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END: of service profile -->
+
+
+{% endblock content %}
+{% block botpress %}
+{% include 'home/botpress.html' %}
+{% endblock botpress %}

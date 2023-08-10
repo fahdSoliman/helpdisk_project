@@ -4,6 +4,7 @@
 <form method="POST" class="dx-form" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="dx-box-content text-right">
+        {{ sharedhosting_form.website_name.errors }}
         <div class="dx-form-group">
             <label for="website_name" class="mnt-7">اسم الموقع</label>
             {% render_field sharedhosting_form.website_name id="website-name" class="form-control form-control-style-2" placeholder="اسم الموقع" %}
@@ -12,14 +13,14 @@
             <label for="operation" class="mnt-7">نظام التشغيل</label>
             {% render_field sharedhosting_form.operation id="operation" class="custom-select form-control form-control-style-2" placeholder="نظام التشغيل" %}
         </div>
-        <div class="dx-form-group">
+        <div class="dx-form-group form-check pl-0">
             <label for="website-transfer" class="mnt-7">نقل السيرفر</label>
-            {% render_field sharedhosting_form.transfer_website id="website-transfer" class="form-check-input" %}
+            {% render_field sharedhosting_form.transfer_website id="website-transfer" type="checkbox" data-toggle="switchbutton"  data-size="sm" data-onlabel="نعم" data-offlabel="لا" %}
             <label for="website-transfer" style="margin-right: 20px;" class="form-check-label">أرغب بنقل بيانات السيرفر</label>
         </div>
         <div class="dx-form-group">
             <label for="website-backup" class="mnt-7">الحفظ الاحتياطي للسيرفر</label>
-            {% render_field sharedhosting_form.backup_website id="website-backup" class="form-check-input" %}
+            {% render_field sharedhosting_form.backup_website id="website-backup" type="checkbox" data-toggle="switchbutton"  data-size="sm" data-onlabel="نعم" data-offlabel="لا" %}
             <label for="website-backup" style="margin-right: 20px;" class="form-check-label">أرغب بإجراء نسخة احتياطية للسيرفر</label>
         </div>
         <div class="dx-form-group">
@@ -35,6 +36,3 @@
 
 
 {% endblock reg %}
-
-
-

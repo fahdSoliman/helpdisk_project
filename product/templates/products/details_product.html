@@ -101,7 +101,7 @@
                             <div  class="dx-blog-post-box">
                                 <div  class="tab-content dx-tab-content">
                                     <div  class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-                                        {{ detail.product_description }}
+                                        {{ detail.product_description|safe }}
                                     </div>
                                     <div class="tab-pane fade" id="changelog" role="tabpanel" aria-labelledby="changelog-tab">
                                         <div class="dx-changelog mt-4">
@@ -222,3 +222,6 @@
     </div>
 
 {% endblock content %}
+{% block botpress %}
+{% include 'home/botpress.html' %}
+{% endblock botpress %}

@@ -1,0 +1,172 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
+<header class="dx-header dx-box-5">
+    <div class="container">
+        <div class="bg-image bg-image-parallax">
+            <img src="{% static 'assets/images/cover.jpg' %}" class="jarallax-img" alt="">
+            <div style="background-color: rgba(27, 27, 27, .8);"></div>
+        </div>
+
+        <div class="container mnb-8">
+            <h1 class="h4 mb-10 text-white text-center">العميل</h1>
+            <!-- START: Breadcrumbs -->
+            <ul class="dx-breadcrumbs text-center">
+                <li><a href="index.html">الصفحة الرئيسية</a></li>
+                <li>عرض طلبات الزبائن</li>
+                <li>{{ customer.first_name}} {{customer.last_name}} / {{detail.domain_name}}</li>
+            </ul>
+            <!-- END: Breadcrumbs -->
+        </div>
+    </div>
+</header>
+<!-- START: cutomer profile -->
+<div class="dx-box-5 bg-grey-6">
+    <div class="container">
+        <div class="row align-items-center justify-content-between vertical-gap mnt-30 sm-gap mb-50">
+            <div class="col pl-30 pr-30 d-none d-sm-block">
+                <div class="dx-separator ml-10 mr-10"></div>
+            </div>
+            <div class="col-auto">
+                <h2 class="h4 mb-0 mt-0">ملف الزبون</h2>
+            </div>
+            <div class="col pl-30 pr-30 d-none d-sm-block">
+                <div class="dx-separator ml-10 mr-10"></div>
+            </div>
+        </div>
+        <div class="dx-box-decorated">
+        {% include 'agent/customer_info.html' %}
+        </div>
+    </div>    
+</div>
+<!-- END: of customer profile -->
+
+<!-- START: of service profile -->
+<div class="dx-box-5 bg-grey-6">
+    <div class="container">
+        <div class="row align-items-center justify-content-between vertical-gap mnt-30 sm-gap mb-50">
+            <div class="col pl-30 pr-30 d-none d-sm-block">
+                <div class="dx-separator ml-10 mr-10"></div>
+            </div>
+            <div class="col-auto">
+                <h2 class="h4 mb-0 mt-0">ملف الاشتراك</h2>
+            </div>
+            <div class="col pl-30 pr-30 d-none d-sm-block">
+                <div class="dx-separator ml-10 mr-10"></div>
+            </div>
+        </div>
+        <div class="dx-box-decorated">
+            <div class="dx-box-content">
+                <div class="row" style="padding-bottom: 15px;">
+                    <div class="col-md-2">
+                        <image class="img-thumbnail rounded float-start" src="{{ detail.my_product.product_img.url }}">
+                    </div>
+                    <div class="col-md-5">
+                        <table class="table table-borderless">
+                            <tr>
+                                <td>اسم الموقع</td>
+                                <td>{{ detail.website_name }}</td>
+                            </tr>
+                            <tr>
+                                <td>نظام التشغيل</td>
+                                <td>{{ detail.get_operation }}</td>
+                            </tr>
+                            <tr>
+                                <td>خيار نقل بيانات الموقع</td>
+                                <td>{{ detail.transfer_website }}</td>
+                            </tr>
+                            <tr>
+                                <td>خيار النسخ الاحتياطي</td>
+                                <td>{{ detail.backup_website }}</td>
+                            </tr>
+                            <tr>
+                                <td>تاريخ الاشتراك</td>
+                                <td>{{ detail.pretty_reg_date }}</td>
+                            </tr>
+                            <tr>
+                                <td>تاريخ أخر تعديل</td>
+                                <td>{{ detail.pretty_updated }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="dx-gallery p-5">
+                            <a href="{{ detail.bill_file.url }}" data-fancybox="images" class="dx-gallery-item">
+                                <span class="dx-gallery-item-overlay">
+                                    <span class="icon pe-7s-exapnd2"></span>
+                                </span>
+                                <img src="{{ detail.bill_file.url }}" class="dx-img" alt="">
+                            </a>
+                            <!-- START: Slider Gallery
+                            Additional Classes:
+                            .dx-slider-arrows (clone arrows)
+                    
+                            Additional Attributes:
+                            data-swiper-speed                (numbers)
+                            data-swiper-space                (numbers)
+                            data-swiper-autoPlay             (numbers)
+                            data-swiper-slides               (numbers)
+                            data-swiper-slidesAuto           (true or false)
+                            data-swiper-arrows-clone         (true or false)
+                            data-swiper-grabCursor           (true or false)
+                            data-swiper-lazy                 (true or false)
+                            data-swiper-breakpoints          (true or false)
+                            data-swiper-arrows               (true or false)
+                            data-swiper-pagination           (true or false)
+                            data-swiper-pagination-dynamic   (true or false)
+                            data-swiper-pagination-scrollbar (true or false)
+                            data-swiper-autoHeight           (true or false)
+                            data-swiper-freeMode             (true or false)
+                            data-swiper-loop                 (true or false)
+                    
+                                            -->
+                            <div class="swiper-container dx-slider dx-slider-gallery mt-10" data-swiper-speed="800" data-swiper-space="10" data-swiper-slides="4" data-swiper-pagination-scrollbar="true">
+                                <div class="swiper-scrollbar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div class="row">
+                    <div class="col">
+                        <h2 class="h4 mb-0 mt-0 text-center">تعديل ملف الاشتراك</h2>
+                        <!--element of the agent form -->
+                        <form method="POST" class="dx-form" enctype="multipart/form-data">
+                        {% csrf_token %}
+                            <div class="dx-box-content text-right">
+                                <div class="dx-form-group">
+                                    <label for="first-name" class="mnt-7">تاريخ بدء الاشتراك</label>
+                                    {% render_field shared_form.start_date type="date" class="form-control form-control-style-2" %}
+                                </div>
+                                <div class="dx-form-group">
+                                    <label for="first-name" class="mnt-7">تاريخ انتهاء الاشتراك</label>
+                                    {% render_field shared_form.expire_date type="date" class="form-control form-control-style-2" %}
+                                </div>
+                                <div class="dx-form-group">
+                                    <label for="first-name" class="mnt-7">حالة تدقيق الحساب</label>
+                                    {% render_field shared_form.is_valid type="checkbox" data-toggle="switchbutton"  data-size="sm" data-onlabel="Valid" data-offlabel="Not Valid" %}
+                                </div>
+                                <div class="dx-form-group">
+                                    <label for="first-name" class="mnt-7">حالة تفعيل الحساب</label>
+                                    {% render_field shared_form.is_active type="checkbox" data-toggle="switchbutton"  data-size="sm" data-onlabel="Activate" data-offlabel="Disactivate" %}
+                                </div>
+                                <div class="dx-form-group">
+                                    <label for="first-name" class="mnt-7">ملاحظات</label>
+                                    {% render_field shared_form.note class="form-control form-control-style-2" %}
+                                </div>
+                                <div class="dx-form-group">
+                                    <button type="submit" class="dx-btn dx-btn-xl dx-btn-block">حفظ البيانات</button>
+                                </div>
+                            </div>
+                        </form>
+                    <div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END: of service profile -->
+{% endblock content %}

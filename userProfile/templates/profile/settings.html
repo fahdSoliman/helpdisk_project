@@ -57,7 +57,7 @@
                             </div>
                             <div class="dx-form-group">
                                 <label for="line-one" class="mnt-7">حساب الفيسبوك</label>
-                                {% render_field p_form.fbName class="form-control form-control-style-2" placeholder="أدخل اسم المستخدم الخاص بالفيسبوك" %}
+                                {% render_field p_form.facebook class="form-control form-control-style-2" placeholder="أدخل اسم المستخدم الخاص بالفيسبوك" %}
                             </div>
                             <div class="dx-form-group">
                                 <label for="line-two" class="mnt-7">حساب التيليغرام</label>
@@ -142,3 +142,6 @@
 </div>
 
 {% endblock content %}
+{% block botpress %}
+{% include 'home/botpress.html' %}
+{% endblock botpress %}

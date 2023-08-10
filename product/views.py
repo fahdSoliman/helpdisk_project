@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Type, Product
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import User
 from product.models import Product, HostDomain, ResDomain, SharedHosting, VPS
 from django.contrib import messages
@@ -26,7 +26,10 @@ def product_details(request, product_id):
 
 @login_required(login_url='login')
 def add_product(request,id):
-
+    user = request.user.profile
+    if not user.is_complete:
+        messages.error(request,"حسابك غير مكتمل عليك بإكمال البيانات")
+        return redirect("profile")
     prod = get_object_or_404(Product, pk=id)
     print(prod.product_type.type_name)
     type_name = prod.product_type.type_name

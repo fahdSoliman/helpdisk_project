@@ -18,14 +18,10 @@
 
                 <!-- START: Breadcrumbs -->
                 <ul class="dx-breadcrumbs text-center">
-
                     <li>
                         <a href="{% url 'home' %}">الصفحة الرئيسية</a>
                     </li>
-
                     <li>عن المشروع</li>
-
-
                 </ul>
                 <!-- END: Breadcrumbs -->
 
@@ -36,71 +32,29 @@
     <div class="dx-box-5 pb-100 bg-grey-6">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-xl-10">
+                <div class="col-xl-12">
                     <div class="dx-box-decorated">
-                        <div class="table-responsive">
-                            <table class="dx-table dx-table-default">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Item</th>
-                                        <th scope="col">License Key</th>
-                                        <th scope="col">License</th>
-                                        <th scope="col">Website</th>
-                                        <th scope="col">Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row" class="dx-table-default-product">
-                                            <a href="product.html">Quantial – Moving Upon Signs Moveth Lesser</a>
-                                        </th>
-                                        <td class="dx-table-licenseKey">98vbjy-t46879ug-fd9iytvh-578g0-8ubfyj00</td>
-                                        <td>Standard</td>
-                                        <td class="dx-table-website dx-table-default-website">
-                                            <a href="#">https://example.info/</a>
-                                        </td>
-                                        <td>21.07.2018</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="dx-table-default-product">
-                                            <a href="product.html">Sensific – Saying Beast Lesser for in Fruitful</a>
-                                        </th>
-                                        <td class="dx-table-licenseKey">98vbjy-t46879ug-fd9iytvh-578g0-8ubfyj00</td>
-                                        <td>Extended</td>
-                                        <td class="dx-table-website dx-table-default-website">Not activated</td>
-                                        <td>18.07.2018</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="dx-table-default-product">
-                                            <a href="product.html">Minist – Subdue Above for Signs Dry is Have Great</a>
-                                        </th>
-                                        <td class="dx-table-licenseKey">98vbjy-t46879ug-fd9iytvh-578g0-8ubfyj00</td>
-                                        <td>Standard</td>
-                                        <td class="dx-table-website dx-table-default-website">
-                                            <a href="#" class="dx-btn dx-btn-md dx-btn-grey-2">Deactivate</a>
-                                        </td>
-                                        <td>18.07.2018</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="dx-table-default-product">
-                                            <a href="product.html">Desty – She'd Under Light Over Multiply Stars Winged</a>
-                                        </th>
-                                        <td class="dx-table-licenseKey">98vbjy-t46879ug-fd9iytvh-578g0-8ubfyj00</td>
-                                        <td>Extended</td>
-                                        <td class="dx-table-website dx-table-default-website">Not activated</td>
-                                        <td>15.07.2018</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" class="dx-table-default-product">
-                                            <a href="product.html">Silies – Grass Living Fly Subdue After Fruitful</a>
-                                        </th>
-                                        <td class="dx-table-licenseKey">98vbjy-t46879ug-fd9iytvh-578g0-8ubfyj00</td>
-                                        <td>Extended</td>
-                                        <td class="dx-table-website dx-table-default-website">Not activated</td>
-                                        <td>03.07.2018</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="dx-box-content text-center">
+                            <h2 class="h3" dir="rtl">مشروع بحث رسالة ماجستير بعنوان: </h2>
+                            <h2 class="h3" dir="rtl">تطوير بوت الدردشة في مجال خدمة العملاء للشركات العاملة بقطاع الاتصالات</h2>
+                        </div>
+                        <div class="dx-separator"></div>
+                        <div class="dx-box-content text-center">
+                            <h2 class="h4" dir="rtl">
+                                إعداد:
+                            </h2>
+                            <h2 class="h6 " dir="rtl">
+                                الطالب: فهد توفيق سليمان  Fahd_86660
+                            </h2>
+                            <h2 class="h4 " dir="rtl">
+                                إشراف:
+                            </h2>
+                            <h2 class="h5 " dir="rtl">
+                                الاستاذ الدكتور المهندس:
+                            </h2>
+                            <h2 class="h5 " dir="rtl">
+                                محمد بسام الكردي
+                            </h2>
                         </div>
                     </div>
                 </div>
@@ -113,3 +67,6 @@
 
 
 {% endblock content %}
+{% block botpress %}
+{% include 'home/botpress.html' %}
+{% endblock botpress %}

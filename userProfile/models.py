@@ -1,15 +1,19 @@
+from pkgutil import extend_path
 from django.db import models
 from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
+
 
 class Profile(models.Model):
     GENDER_MALE = 0
     GENDER_FEMALE = 1
     GENDER_CHOICES = [(GENDER_MALE, 'ذكر'), (GENDER_FEMALE, 'أنثى')]
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(default='default.png' ,upload_to='profile_Img/')
-    fbName = models.CharField(max_length=255, null=True)
-    telegram = models.CharField(max_length=255, null=True)
+    image = models.ImageField(default='default.png' ,upload_to='profile_Img/', null=True)
+    facebook = models.CharField(max_length=255,blank=True, null=True, unique=True)
+    telegram = models.CharField(max_length=255,blank=True, null=True, unique=True)
+    botpress = models.CharField(max_length=255,blank=True, null=True, unique=True)
+    is_complete = models.BooleanField(default=False)
     gender = models.IntegerField(choices=GENDER_CHOICES, null=True)
 
     def __str__(self):
@@ -38,7 +42,7 @@ class CompanyProfile(models.Model):
         return str(self.customer_name)
     
     def get_type(self):
-        t = self.org_type[self.customer_type]
+        t = self.org_type[self.customer_type] # type: ignore
         return str(t[1])
 
 class FinanicalResponse(models.Model):

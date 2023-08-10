@@ -4,13 +4,15 @@
 <form method="POST" class="dx-form" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="dx-box-content text-right">
+        {{ hostdomain_form.domain_name.errors }}
+        {{ hostdomain_form.ip_address.errors }}
         <div class="dx-form-group">
             <label for="first-name" class="mnt-7">اسم النطاق</label>
             {% render_field hostdomain_form.domain_name class="form-control form-control-style-2" placeholder="اسم النطاق" %}
         </div>
         <div class="dx-form-group">
             <label for="last-name" class="form-check-label">عنوان الشبكة العام IP Address</label>
-            {% render_field hostdomain_form.ip_address class="form-control form-control-style-2" placeholder="xxx.xxx.xxx.xxx" %}
+            {% render_field hostdomain_form.ip_address class="form-control form-control-style-2" placeholder="ex: 192.168.1.1" %}
         </div>
         <div class="dx-form-group">
             <label for="line-two" class="mnt-7">ملف الدفع البنكي</label>
@@ -25,6 +27,3 @@
 
 
 {% endblock reg %}
-
-
-

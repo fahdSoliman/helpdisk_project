@@ -1,8 +1,6 @@
 {% extends 'home/base.html' %}
 {% load static %}
 {% block content %}
-        
-
     <header class="dx-header dx-box-4">
         <div class="bg-image bg-image-parallax">
             <img src="{% static 'assets/images/header.jpg' %}" class="jarallax-img" alt="">
@@ -12,9 +10,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                    <h1 class="display-3 text-white">بنك المعلومات</h1>
-                    <p class="lead text-1">المكان المليء بالمعلومات التقنية في مجال تكنلوجيا المعلومات</p>
-                    <a href="#" class="dx-btn dx-btn-lg mt-10">إستكشف</a>
+                    <h1 class="display-3 text-black bold"> خدمات الاستضافة</h1>
+                    <p class="op-8">مجموعة واسعة من خدمات الاستضافة التي تلبي كل الفعاليات</p>
+                    <a href="#" class="h3 dx-btn dx-btn-lg mt-5">إستكشف</a>
                 </div>
             </div>
         </div>
@@ -291,3 +289,6 @@
         </div>
     </div>
 {% endblock content %}
+{% block botpress %}
+{% include 'home/botpress.html' %}
+{% endblock botpress %}

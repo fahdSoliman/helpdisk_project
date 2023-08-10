@@ -3,14 +3,28 @@ from .models import Profile, CompanyProfile, TechnicalResponse, FinanicalRespons
 
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['fbName', 'telegram']
-    list_filter = ['fbName', 'telegram']
-    search_fields = ['fbName', 'telegram']
+    list_display = ['user', 'facebook', 'telegram', 'botpress']
+    list_filter = ['user', 'facebook', 'telegram']
+    search_fields = ['user', 'facebook', 'telegram']
     class Meta:
         model = Profile
 
+class CompanyAdmin(admin.ModelAdmin):
+    list_display = ['user', 'customer_type', 'country', 'email']
+    class Meta:
+        model = CompanyProfile
+
+class TechAdmin(admin.ModelAdmin):
+    list_display = ['user', 'phone', 'email']
+    class Meta:
+        model = TechnicalResponse
+
+class FinAdmin(admin.ModelAdmin):
+    list_display = ['user', 'phone','email']
+    class Meta:
+        model = FinanicalResponse
 
 admin.site.register(Profile, ProfileAdmin)
-admin.site.register(CompanyProfile)
-admin.site.register(TechnicalResponse)
-admin.site.register(FinanicalResponse)
+admin.site.register(CompanyProfile, CompanyAdmin)
+admin.site.register(TechnicalResponse, TechAdmin)
+admin.site.register(FinanicalResponse, FinAdmin)

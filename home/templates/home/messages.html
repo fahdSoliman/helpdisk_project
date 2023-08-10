@@ -1,25 +1,27 @@
 {% if messages %}
     {% for message in messages %}
-    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
-        <div class="toast-header">
-        <strong class="mr-auto">
-            {% if message.tags == 'error' %}
-            <i class="fas fa-times mr-2"></i>
-            {% elif message.tags == 'warning' %}
-            <i class="fas fa-exclamation mr-2"></i>
-            {% elif message.tags == 'info' %}
-            <i class="fas fa-info mr-2"></i>
-            {% elif message.tags == 'success' %}
-            <i class="fas fa-check mr-2"></i>
-            {% endif %}
-            {{message.tags|capfirst}}
-        </strong>
-        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
-        <div class="toast-body" dir="rtl">
-        {{message|safe}}
+    <div class="position-fixed bottom-1 left-1 p-20" style="z-index: 5; left: 0; bottom: 0;">
+        <div id="livetoast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000">
+            <div class="toast-header" style="background-color: rgb(154 156 255 / 85%); color: #8d6900;">
+                <strong class="mr-auto">
+                    {% if message.tags == 'error' %}
+                    <i class="fas fa-times mr-2"></i>
+                    {% elif message.tags == 'warning' %}
+                    <i class="fas fa-exclamation mr-2"></i>
+                    {% elif message.tags == 'info' %}
+                    <i class="fas fa-info mr-2"></i>
+                    {% elif message.tags == 'success' %}
+                    <i class="fas fa-check mr-2"></i>
+                    {% endif %}
+                    {{message.tags|capfirst}}
+                </strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body text-primary" style="background-color: gainsboro;" dir="rtl">
+            {{message|safe}}
+            </div>
         </div>
     </div>
     {% endfor %}

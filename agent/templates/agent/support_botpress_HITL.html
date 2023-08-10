@@ -1,0 +1,59 @@
+<style>
+body, html {
+    width: 100%; 
+    height: 100%; 
+    margin: 0; 
+    padding: 0
+}
+.row-container {
+    display: flex; 
+    width: 100%; 
+    height: 100%; 
+    flex-direction: column; 
+    background-color: grey; 
+    overflow: hidden;
+}
+.first-row {
+    background-color: lime; 
+}
+.second-row { 
+    flex-grow: 1; 
+    border: none; 
+    margin: 0; 
+    padding: 0; 
+}
+.bar{
+    position: absolute;
+    top: 3px;
+    left: 0;
+    width: 75%;
+    height: 40px;
+    text-align: center;
+    margin-right: 25px;
+    margin-left: 100px;
+}
+a:link, a:visited {
+    background-color: blue;
+    color: white;
+    padding: 12px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 10px;
+    font-family: 'Tajawal', sans-serif;
+    
+  }
+  
+  a:hover, a:active {
+    background-color: gray;
+  }
+</style>
+
+<div class="row-container">
+    <div class='bar'>
+        <a href="{% url 'home' %}">Home Page</a>
+    </div>
+    <iframe allowfullscreen height='100%' width="100%"  src='{{ botpress.botpress_base_url }}/studio/techagent/modules/hitlnext'></iframe>
+  </div>
+
+

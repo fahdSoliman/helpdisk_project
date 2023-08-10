@@ -52,13 +52,13 @@
                     <li>تاريخ الانشاء: {{ host.pretty_reg_date }}</li>
                 </ul>
                 <ul class="dx-ticket-info">
-                    <li>أخر تعديل: {{ host.updated }}</li>
+                    <li>أخر تعديل: {{ host.pretty_updated }}</li>
                 </ul>
                 <ul class="dx-ticket-info">
-                    <li>بداية الاشتراك: {{ host.start_date }}</li>
+                    <li>بداية الاشتراك: {{ host.pretty_start_date }}</li>
                 </ul>
                 <ul class="dx-ticket-info">
-                    <li>نهاية الاشتراك: {{ host.expire_date }}</li>
+                    <li>نهاية الاشتراك: {{ host.pretty_expire_date }}</li>
                 </ul>
             </span>
             <span class="dx-ticket-cont" style="padding-right: 10px;" >
@@ -77,7 +77,7 @@
                     ملاحظات
                 </p>
                 <span class="dx-ticket-title">
-                    {{ host.note|safe }}
+                    {{ host.note | safe | truncatewords_html:10  }}
                 </span>
             </span>
             <span class="dx-ticket-cont" style="margin-left: 20px;">
@@ -91,6 +91,9 @@
                     {% if host.is_active == 1 %}<p class="text-success"><i class="fa fa-thumbs-up" aria-hidden="true"></i> مفعلة </p>
                     {% else %}<p class="text-danger"><i class="fa fa-thumbs-down" aria-hidden="true"></i>  معطلة </p>
                     {% endif %}
+                </span>
+                <span>
+                    <a class="dx-btn" href="{% url 'hostdomain_update' host.id %}">تعديل</a>
                 </span>
             </span>
         </div>
@@ -127,16 +130,16 @@
                     <p>{{ res.my_product.product_name }}</p>
                 </a>
                 <ul class="dx-ticket-info">
-                    <li>تاريخ الانشاء: {{ res.reg_date }}</li>
+                    <li>تاريخ الانشاء: {{ res.pretty_reg_date }}</li>
                 </ul>
                 <ul class="dx-ticket-info">
-                    <li>أخر تعديل: {{ res.updated }}</li>
+                    <li>أخر تعديل: {{ res.pretty_updated }}</li>
                 </ul>
                 <ul class="dx-ticket-info">
-                    <li>بداية الاشتراك: {{ res.start_date }}</li>
+                    <li>بداية الاشتراك: {{ res.pretty_start_date }}</li>
                 </ul>
                 <ul class="dx-ticket-info">
-                    <li>نهاية الاشتراك: {{ res.expire_date }}</li>
+                    <li>نهاية الاشتراك: {{ res.pretty_expire_date }}</li>
                 </ul>
             </span>
             <span class="dx-ticket-cont" style="padding-right: 10px;" >
@@ -162,7 +165,7 @@
                     ملاحظات
                 </p>
                 <span class="dx-ticket-title">
-                    {{ res.note|safe }}
+                    {{ res.note | safe | truncatewords_html:10  }}
                 </span>
             </span>
             <span class="dx-ticket-cont" style="margin-left: 20px;">
@@ -176,6 +179,9 @@
                     {% if res.is_active == 1 %}<p class="text-success"><i class="fa fa-thumbs-up" aria-hidden="true"></i> مفعلة </p>
                     {% else %}<p class="text-danger"><i class="fa fa-thumbs-down" aria-hidden="true"></i>  معطلة </p>
                     {% endif %}
+                </span>
+                <span>
+                    <a class="dx-btn" href="{% url 'resdomain_update' res.id %}">تعديل</a>
                 </span>
             </span>
         </div>
@@ -212,16 +218,16 @@
                     <p>{{ shared.my_product.product_name }}</p>
                 </a>
                 <ul class="dx-ticket-info">
-                    <li>تاريخ الانشاء: {{ shared.reg_date }}</li>
+                    <li>تاريخ الانشاء: {{ shared.pretty_reg_date }}</li>
                 </ul>
                 <ul class="dx-ticket-info">
-                    <li>أخر تعديل: {{ shared.updated }}</li>
+                    <li>أخر تعديل: {{ shared.pretty_updated }}</li>
                 </ul>
                 <ul class="dx-ticket-info">
-                    <li>بداية الاشتراك: {{ shared.start_date }}</li>
+                    <li>بداية الاشتراك: {{ shared.pretty_start_date }}</li>
                 </ul>
                 <ul class="dx-ticket-info">
-                    <li>نهاية الاشتراك: {{ shared.expire_date }}</li>
+                    <li>نهاية الاشتراك: {{ shared.pretty_expire_date }}</li>
                 </ul>
             </span>
             <span class="dx-ticket-cont" style="padding-right: 10px;" >
@@ -250,7 +256,7 @@
                     ملاحظات
                 </p>
                 <span class="dx-ticket-title">
-                    {{ shared.note|safe }}
+                    {{ shared.note | safe | truncatewords_html:10  }}
                 </span>
             </span>
             <span class="dx-ticket-cont" style="margin-left: 20px;">
@@ -264,6 +270,9 @@
                     {% if shared.is_active == 1 %}<p class="text-success"><i class="fa fa-thumbs-up" aria-hidden="true"></i> مفعلة </p>
                     {% else %}<p class="text-danger"><i class="fa fa-thumbs-down" aria-hidden="true"></i>  معطلة </p>
                     {% endif %}
+                </span>
+                <span>
+                    <a class="dx-btn" href="{% url 'shared_update' shared.id %}">تعديل</a>
                 </span>
             </span>
         </div>
@@ -343,7 +352,7 @@
                     ملاحظات
                 </p>
                 <span class="dx-ticket-title">
-                    {{ vps.note|safe }}
+                    {{ vps.note | safe | truncatewords_html:10  }}
                 </span>
             </span>
             <span class="dx-ticket-cont" style="margin-left: 20px;">
@@ -358,6 +367,9 @@
                     {% else %}<p class="text-danger"><i class="fa fa-thumbs-down" aria-hidden="true"></i>  معطلة </p>
                     {% endif %}
                 </span>
+                <span>
+                    <a class="dx-btn" href="{% url 'vps_update' vps.id %}">تعديل</a>
+                </span>
             </span>
         </div>
         {% endfor %}
@@ -366,3 +378,6 @@
 </div>
 
 {% endblock content %}
+{% block botpress %}
+{% include 'home/botpress.html' %}
+{% endblock botpress %}

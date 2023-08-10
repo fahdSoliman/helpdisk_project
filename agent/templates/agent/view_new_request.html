@@ -1,0 +1,400 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+
+<header class="dx-header dx-box-5">
+    <div class="container">
+        <div class="bg-image bg-image-parallax">
+            <img src="{% static 'assets/images/cover.jpg' %}" class="jarallax-img" alt="">
+            <div style="background-color: rgba(27, 27, 27, .8);"></div>
+        </div>
+
+        <div class="container mnb-8">
+            <h1 class="h4 mb-10 text-white text-center">العميل</h1>
+            <!-- START: Breadcrumbs -->
+            <ul class="dx-breadcrumbs text-center">
+                <li><a href="index.html">الصفحة الرئيسية</a></li>
+                <li>عرض اشتراكات الزبائن الجديدة</li>
+            </ul>
+            <!-- END: Breadcrumbs -->
+        </div>
+    </div>
+</header>
+
+<!-- End of header -->
+
+<div class="dx-box-5 bg-grey-6">
+    <div class="container">
+        <div class="row align-items-center justify-content-between vertical-gap mnt-30 sm-gap mb-50">
+            <div class="col pl-30 pr-30 d-none d-sm-block">
+                <div class="dx-separator ml-10 mr-10"></div>
+            </div>
+            <div class="col-auto">
+                <h2 class="h4 mb-0 mt-0">اشتراكات استضافة النطاق</h2>
+            </div>
+            <div class="col pl-30 pr-30 d-none d-sm-block">
+                <div class="dx-separator ml-10 mr-10"></div>
+            </div>
+        </div>
+        <!-- start of host domain requests -->
+        {% if not host_products %}
+        <p class="text-center">لا يتوفر طلبات جديدة لهذه الخدمة</p>
+        {% else %}
+        {% for host in host_products %}
+        <div class="dx-ticket-item dx-ticket-new dx-ticket-clused dx-block-decorated">
+            <span class="dx-ticket-img">
+                <img src="{{ host.my_product.product_img.url }}" alt="">
+            </span>
+            <span class="dx-ticket-cont" style="padding-right: 10px; margin-left: 30px;">
+                <span class="dx-ticket-name">
+                    المشترك
+                </span>
+                <a href="{% url 'detail' host.my_product.id %}" class="dx-ticket-title ">
+                    <p>{{ host.my_product.product_name }}</p>
+                </a>
+                <ul class="dx-ticket-info">
+                    <li>المعرف: {{ host.id }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li> الانشاء: {{ host.pretty_reg_date }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li>أخر تعديل: {{ host.pretty_updated }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li>بداية الاشتراك: {{ host.pretty_start_date }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li>نهاية الاشتراك: {{ host.pretty_expire_date }}</li>
+                </ul>
+            </span>
+            <span class="dx-ticket-cont" style="padding-right: 10px; margin-left: 30px;">
+                <span class="dx-ticket-name">
+                     النطاق
+                </span>
+                <a href="{{ host.domain_name }}" class="dx-ticket-title">
+                    <p> {{ host.domain_name }}</p>
+                </a>
+                <ul class="dx-ticket-info">
+                    <li>عنوان الانترنت: {{ host.ip_address }}</li>
+                </ul>
+            </span>
+            <span class="dx-ticket-cont" style="padding-right: 10px; margin-left: 30px;" >
+                <p class="dx-ticket-name" style="margin-left: 20px;">
+                    ملاحظات
+                </p>
+                <span class="dx-ticket-title">
+                    {{ host.note | safe | truncatewords_html:10  }}
+                </span>
+            </span>
+            <span class="dx-ticket-cont" style="padding-right: 10px; margin-left: 30px;" >
+                <p class="dx-ticket-name" style="margin-left: 20px;">
+                    الحالة
+                </p>
+                <span class="dx-ticket-title">
+                    {% if host.is_valid == 1 %}<p class="text-success"><i class="fa fa-check-circle" aria-hidden="true"></i> تم التدقيق</p>
+                    {% else %}<p class="text-warning"><i class="fa fa-cog" aria-hidden="true"></i> للتدقيق</p>
+                    {% endif %}
+                    {% if host.is_active == 1 %}<p class="text-success"><i class="fa fa-thumbs-up" aria-hidden="true"></i> مفعلة </p>
+                    {% else %}<p class="text-danger"><i class="fa fa-thumbs-down" aria-hidden="true"></i>  معطلة </p>
+                    {% endif %}
+                </span>
+                <span>
+                    <a class="dx-btn" href="{% url 'agent_process_hostdomain' host.id %}">معالجة</a>
+                </span>
+            </span>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <!-- end of host domain requests -->
+    </div>    
+</div>
+<div class="dx-box-5 bg-grey-6">
+    <div class="container">
+        <div class="row align-items-center justify-content-between vertical-gap mnt-30 sm-gap mb-50">
+            <div class="col pl-30 pr-30 d-none d-sm-block">
+                <div class="dx-separator ml-10 mr-10"></div>
+            </div>
+            <div class="col-auto">
+                <h2 class="h4 mb-0 mt-0">اشتراكات تسجيل النطاق</h2>
+            </div>
+            <div class="col pl-30 pr-30 d-none d-sm-block">
+                <div class="dx-separator ml-10 mr-10"></div>
+            </div>
+        </div>
+        <!-- start of reservation domain requests -->
+        {% if not resdomain_products %}
+        <p class="text-center">لا يتوفر طلبات جديدة لهذه الخدمة</p>
+        {% else %}
+        {% for res in resdomain_products %}
+        <div class="dx-ticket-item dx-ticket-new dx-ticket-clused dx-block-decorated">
+            <span class="dx-ticket-img">
+                <img src="{{ res.my_product.product_img.url }}" alt="">
+            </span>
+            <span class="dx-ticket-cont" style="padding-right: 10px; margin-left: 30px;">
+                <span class="dx-ticket-name">
+                    {{ res.my_product.product_type.type_name }}
+                </span>
+                <a href="{% url 'detail' res.my_product.id %}" class="dx-ticket-title ">
+                    <p>{{ res.my_product.product_name }}</p>
+                </a>
+                <ul class="dx-ticket-info">
+                    <li>المعرف: {{ res.id }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li> الانشاء: {{ res.pretty_reg_date }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li>أخر تعديل: {{ res.pretty_updated }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li>بداية الاشتراك: {{ res.pretty_start_date }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li>نهاية الاشتراك: {{ res.pretty_expire_date }}</li>
+                </ul>
+            </span>
+            <span class="dx-ticket-cont" style="padding-right: 10px; margin-left: 30px;" >
+                <span class="dx-ticket-name">
+                    النطاق
+                </span>
+                <a href="{{ res.domain_name }}" class="dx-ticket-title">
+                    <p>{{ res.domain_name }}</p>
+                </a>
+                
+                <ul class="dx-ticket-info">
+                    <li>مع تفعيل: {{ res.activate }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li> مخدم الاسماء الاولي: {{ res.primary_name_server }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li> مخدم الاسماء الثانوي: {{ res.secondary_name_server }}</li>
+                </ul>
+            </span>
+            <span class="dx-ticket-cont" style="padding-right: 10px; margin-left: 30px;" >
+                <p class="dx-ticket-name" style="margin-left: 20px;">
+                    ملاحظات
+                </p>
+                <span class="dx-ticket-title">
+                    {{ res.note | safe | truncatewords_html:10  }}
+                </span>
+            </span>
+            <span class="dx-ticket-cont" style="padding-right: 10px; margin-left: 30px;" >
+                <p class="dx-ticket-name" style="margin-left: 10px;">
+                    الحالة
+                </p>
+                <span class="dx-ticket-title">
+                    {% if res.is_valid == 1 %}<p class="text-success"><i class="fa fa-check-circle" aria-hidden="true"></i> تم التدقيق</p>
+                    {% else %}<p class="text-warning"><i class="fa fa-cog" aria-hidden="true"></i> للتدقيق</p>
+                    {% endif %}        
+                    {% if res.is_active == 1 %}<p class="text-success"><i class="fa fa-thumbs-up" aria-hidden="true"></i> مفعلة </p>
+                    {% else %}<p class="text-danger"><i class="fa fa-thumbs-down" aria-hidden="true"></i>  معطلة </p>
+                    {% endif %}
+                </span>
+                <span>
+                    <a class="dx-btn" href="{% url 'agent_process_resdomain' res.id %}">معالجة</a>
+                </span>
+            </span>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <!-- end of reservation domain requests -->
+    </div>    
+</div>
+<div class="dx-box-5 bg-grey-6">
+    <div class="container">
+        <div class="row align-items-center justify-content-between vertical-gap mnt-30 sm-gap mb-50">
+            <div class="col pl-30 pr-30 d-none d-sm-block">
+                <div class="dx-separator ml-10 mr-10"></div>
+            </div>
+            <div class="col-auto">
+                <h2 class="h4 mb-0 mt-0">اشتراكات الاستضافة المشتركة</h2>
+            </div>
+            <div class="col pl-30 pr-30 d-none d-sm-block">
+                <div class="dx-separator ml-10 mr-10"></div>
+            </div>
+        </div>
+        <!-- start of shared hosting requests -->
+        {% if not shared_products %}
+        <p class="text-center">لا يتوفر طلبات جديدة لهذه الخدمة</p>
+        {% else %}
+        {% for shared in shared_products %}
+        <div class="dx-ticket-item dx-ticket-new dx-ticket-clused dx-block-decorated">
+            <span class="dx-ticket-img">
+                <img src="{{ shared.my_product.product_img.url }}" alt="">
+            </span>
+            <span class="dx-ticket-cont" style="padding-right: 10px; margin-left: 30px;">
+                <span class="dx-ticket-name">
+                    {{ shared.my_product.product_type.type_name }}
+                </span>
+                <a href="{% url 'detail' shared.my_product.id %}" class="dx-ticket-title ">
+                    <p>{{ shared.my_product.product_name }}</p>
+                </a>
+                <ul class="dx-ticket-info">
+                    <li>المعرف: {{ shared.id }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li> الانشاء: {{ shared.pretty_reg_date }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li>أخر تعديل: {{ shared.pretty_updated }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li>بداية الاشتراك: {{ shared.pretty_start_date }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li>نهاية الاشتراك: {{ shared.pretty_expire_date }}</li>
+                </ul>
+            </span>
+            <span class="dx-ticket-cont" style="padding-right: 10px; margin-left: 30px;" >
+                <span class="dx-ticket-name">
+                    اسم الموقع:
+                </span>
+                <span class="dx-ticket-title">
+                    <p>{{ shared.website_name }}</p>
+                </span>
+                <ul class="dx-ticket-info">
+                    <li>نظام التشغيل: {{ shared.get_operation }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li>نقل بيانات الموقع: {{ shared.transfer_website }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li>النسخ الاحتياطي: {{ shared.backup_website }}</li>
+                </ul>
+
+            </span>
+            <span class="dx-ticket-cont" style="padding-right: 10px; margin-left: 30px;" >
+                <p class="dx-ticket-name" style="margin-left: 10px;">
+                    ملاحظات
+                </p>
+                <span class="dx-ticket-title">
+                    {{ shared.note | safe | truncatewords_html:10  }}
+                </span>
+            </span>
+            <span class="dx-ticket-cont" style="padding-right: 10px; margin-left: 30px;" >
+                <p class="dx-ticket-name" style="margin-left: 10px;">
+                    الحالة
+                </p>
+                <span class="dx-ticket-title">
+                    {% if shared.is_valid == 1 %}<p class="text-success"><i class="fa fa-check-circle" aria-hidden="true"></i> تم التدقيق</p>
+                    {% else %}<p class="text-warning"><i class="fa fa-cog" aria-hidden="true"></i> للتدقيق</p>
+                    {% endif %}        
+                    {% if shared.is_active == 1 %}<p class="text-success"><i class="fa fa-thumbs-up" aria-hidden="true"></i> مفعلة </p>
+                    {% else %}<p class="text-danger"><i class="fa fa-thumbs-down" aria-hidden="true"></i>  معطلة </p>
+                    {% endif %}
+                </span>
+                <span>
+                    <a class="dx-btn" href="{% url 'agent_process_shared' shared.id %}">معالجة</a>
+                </span>
+            </span>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <!-- end of shared hosting requests -->
+    </div>
+</div>
+<div class="dx-box-5 bg-grey-6">
+    <div class="container">
+        <div class="row align-items-center justify-content-between vertical-gap mnt-30 sm-gap mb-50">
+            <div class="col pl-30 pr-30 d-none d-sm-block">
+                <div class="dx-separator ml-10 mr-10"></div>
+            </div>
+            <div class="col-auto">
+                <h2 class="h4 mb-0 mt-0">اشتراكات الاستضافة المستقلة الافتراضية VPS</h2>
+            </div>
+            <div class="col pl-30 pr-30 d-none d-sm-block">
+                <div class="dx-separator ml-10 mr-10"></div>
+            </div>
+        </div>
+        <!-- start of VPS hosting requests -->
+        {% if not vps_products %}
+        <p class="text-center"> لا يتوفر طلبات جديدة لهذه الخدمة</p>
+        {% else %}
+        {% for vps in vps_products %}
+        <div href="{% url 'detail' vps.my_product.id %}"  class="dx-ticket-item dx-ticket-new dx-ticket-clused dx-block-decorated">
+            <span class="dx-ticket-img">
+                <img src="{{ vps.my_product.product_img.url }}" alt="">
+            </span>
+            <span class="dx-ticket-cont" style="padding-right: 10px; margin-left: 30px;">
+                <span class="dx-ticket-name">
+                    {{ vps.my_product.product_type.type_name }}
+                </span>
+                <span class="dx-ticket-title ">
+                    <p>{{ vps.my_product.product_name }}</p>
+                </span>
+                <ul class="dx-ticket-info">
+                    <li>المعرف: {{ vps.id }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li> الانشاء: {{ vps.pretty_reg_date }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li>أخر تعديل: {{ vps.pretty_updated }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li>بداية الاشتراك: {{ vps.pretty_start_date }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li>نهاية الاشتراك: {{ vps.pretty_expire_date }}</li>
+                </ul>
+            </span>
+            <span class="dx-ticket-cont" style="padding-right: 10px; margin-left: 30px;" >
+                <span class="dx-ticket-name">
+                    اسم الموقع
+                </span>
+                <span class="dx-ticket-title">
+                    <p>{{ vps.website_name }}</p>
+                </span>
+                <ul class="dx-ticket-info">
+                    <li>نظام التشغيل: {{ vps.get_operation }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li>عنوان الشبكة: {{ vps.ip_address }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li>عدد العناوين : {{ vps.ip_count }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li>عنوان المنفذ: {{ vps.port_numbers }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li>نقل بيانات الموقع: {{ vps.data_transfer }}</li>
+                </ul>
+                <ul class="dx-ticket-info">
+                    <li>النسخ الاحتياطي: {{ vps.data_backup }}</li>
+                </ul>
+            </span>
+            <span class="dx-ticket-cont" style="padding-right: 10px; margin-left: 30px;" >
+                <p class="dx-ticket-name" style="margin-left: 10px;">
+                    ملاحظات
+                </p>
+                <span class="dx-ticket-title">
+                    {{ vps.note | safe | truncatewords_html:10  }}
+                </span>
+            </span>
+            <span class="dx-ticket-cont" style="padding-right: 10px; margin-left: 30px;" >
+                <p class="dx-ticket-name" style="margin-left: 10px;">
+                    الحالة
+                </p>
+                <span class="dx-ticket-title">
+                    {% if vps.is_valid == 1 %}<p class="text-success"><i class="fa fa-check-circle" aria-hidden="true"></i> تم التدقيق</p>
+                    {% else %}<p class="text-warning"><i class="fa fa-cog" aria-hidden="true"></i> للتدقيق</p>
+                    {% endif %}        
+                    {% if vps.is_active == 1 %}<p class="text-success"><i class="fa fa-thumbs-up" aria-hidden="true"></i> مفعلة </p>
+                    {% else %}<p class="text-danger"><i class="fa fa-thumbs-down" aria-hidden="true"></i>  معطلة </p>
+                    {% endif %}
+                </span>
+                <span>
+                    <a class="dx-btn" href="{% url 'agent_process_vps' vps.id %}">معالجة</a>
+                </span>
+            </span>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <!-- end of VPS hosting requests -->
+    </div>    
+</div>
+
+{% endblock content %}

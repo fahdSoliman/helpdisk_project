@@ -4,14 +4,15 @@
 <form method="POST" class="dx-form" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="dx-box-content text-right">
+        {{ resdomain_form.domain_name.errors }}
         <div class="dx-form-group">
             <label for="domain-name" class="mnt-7">اسم النطاق</label>
             {% render_field resdomain_form.domain_name id="domain-name" class="form-control form-control-style-2" placeholder="أدخل اسم للنطاق الخاص بك" %}
         </div>
         <div class="dx-form-group">
             <label for="activate" class="form-check-label">التفعيل الفوري بعد التسجيل</label>
-            {% render_field resdomain_form.activate id="activate" class="form-check-input" %}
-            <label for="activate" style="margin-right: 20px;" class="form-check-label">أرغب بالتفعيل الفوري بعد التسجيل</label>
+            {% render_field resdomain_form.activate id="activate" dir="ltr" type="checkbox" data-toggle="switchbutton"  data-size="sm" data-onlabel="نعم" data-offlabel="لا" %}
+            <label for="activate" class="form-check-label">أرغب بالتفعيل الفوري بعد التسجيل</label>
         </div>
         <div class="dx-form-group">
             <label for="email-address" class="mnt-7">عنوان السيرفر الاساسي</label>
@@ -37,6 +38,3 @@
 
 
 {% endblock reg %}
-
-
-

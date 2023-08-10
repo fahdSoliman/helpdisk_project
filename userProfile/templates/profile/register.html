@@ -10,7 +10,7 @@
                     <article class="card-body mx-auto" style="max-width: 400px;">
                         <h4 class="card-title mt-3 text-center">قم بإنشاء حساب جديد</h4>
                         <p class="text-center">لتتمكن من الاستفادة من الخدمات التي نقدمها</p>
-                        <form method="POST" class="">
+                        <form method="POST" class="" name="regform">
                             {% csrf_token %}
                             <div class="form-group">
                             {{ form.non_field_errors}}
@@ -45,10 +45,14 @@
                                 {% render_field form.password2 class="form-control form-control-style-4" placeholder="Repeat password" type="password" %} 
                             </div> <!-- form-group// -->                                      
                             <div class="form-group">
+                                <input type="hidden" name="botpressID" value="">
                                 <button type="submit" class="dx-btn dx-btn-block dx-btn-popup"> أنشئ الحساب  </button>
                             </div> <!-- form-group// -->      
                             <p class="text-center">هل لديك حساب؟ <a href="{% url 'login' %}">تسجيل الدخول</a> </p>                                                                 
                         </form>
+                        <script type="text/javascript"> 
+                            document.forms['regform']['botpressID'].value = window.localStorage.getItem("userId");
+                        </script>
                     </article>
                 </div>
             </div>

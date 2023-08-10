@@ -1,0 +1,64 @@
+<!-- BOTPRESS SECTION -->
+<script src="http://localhost:3000/assets/modules/channel-web/inject.js"></script>
+
+{% if user.is_authenticated %}
+<script>
+    window.botpressWebChat.init({
+        host: 'http://localhost:3000/',
+        botId: 'techagent',
+        userId: '{{ request.user.profile.botpress }}',
+        extraStylesheet: '/assets/modules/channel-web/goldstyle.css',
+    })
+    {% comment %} window.addEventListener('message', function(event) {
+        if (event.data.name === 'webchatReady') {
+            window.botpressWebChat.sendEvent({
+                type: 'set_name',
+                channel: 'web',
+                payload: { username: '{{ request.user.username }}',
+                        firstname: '{{ request.user.first_name }}',
+                        lastname: '{{ request.user.last_name }}',
+                        email: '{{ request.user.email }}'}
+            })
+        }
+    }) {% endcomment %}
+</script>
+{% else %}
+<script>
+    function isLocalStorageAvailable(){
+        var test = 'test';
+        try {
+            localStorage.setItem(test, test);
+            localStorage.removeItem(test);
+            return true;
+        } catch(e) {
+            return false;
+        }
+    }
+    
+    if(isLocalStorageAvailable()){
+        if (window.localStorage.getItem('userId') == null) {
+            window.localStorage.setItem('userId', nanoid(24));
+            console.log(window.localStorage.getItem('userId'));
+        }
+        console.log(window.localStorage.getItem('userId'));
+        window.botpressWebChat.init({
+            host: 'http://localhost:3000/', 
+            botId: 'techagent',
+            userId: window.localStorage.getItem('userId'),
+            extraStylesheet: '/assets/modules/channel-web/goldstyle.css'
+        });
+    }else{
+        console.log("your browser LocalStorage is Turned OFF, you need it to work the Botpress appropriately");
+    }
+    
+    {% comment %} window.addEventListener('message', function(event) {
+        if (event.data.name === 'webchatOpened') {
+            window.botpressWebChat.sendEvent({
+                type: 'proactive-trigger',
+                channel: 'web',
+                payload: { text: 'مرحبا' }
+            })
+        }
+    }); {% endcomment %}
+</script>
+{% endif %}
