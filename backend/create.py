@@ -6,12 +6,12 @@ headers = {
 }
 
 data = {
-    'user': 55,
-    'my_product': 12,
-    'domain_name': 'http://www.apitest2.sy',
+    'user': 99,
+    'my_product': 6,
+    'domain_name': 'http://www.apitest3.sy',
     'note': f'<p dir="rtl">created with botpress, Date: {datetime.now()}</p>'
 }
-endpoint = "http://localhost:8000/api/product/1/resdomain/"
+endpoint = "http://localhost:8000/api/product/resdomain/"
 
 get_response = requests.post(endpoint, headers=headers, data=data)
 print(get_response.json())

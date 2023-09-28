@@ -150,7 +150,7 @@ class ResDomainAPI(generics.RetrieveUpdateAPIView, generics.CreateAPIView):
     def perform_update(self, serializer):
         return super().perform_update(serializer)
 
-ResDomain_Retrieve_Update_Create_API = ResDomainAPI.as_view()
+ResDomain_Retrieve_Update_API = ResDomainAPI.as_view()
 
 
 class HostDomainAPI(generics.RetrieveUpdateAPIView, generics.CreateAPIView):
@@ -170,7 +170,7 @@ class HostDomainAPI(generics.RetrieveUpdateAPIView, generics.CreateAPIView):
     def perform_update(self, serializer):
         return super().perform_update(serializer)
 
-HostDomain_Retrieve_Update_Create_API = HostDomainAPI.as_view()
+HostDomain_Retrieve_Update_API = HostDomainAPI.as_view()
 
 
 class SharedHostingAPI(generics.RetrieveUpdateAPIView, generics.CreateAPIView):
@@ -190,7 +190,7 @@ class SharedHostingAPI(generics.RetrieveUpdateAPIView, generics.CreateAPIView):
     def perform_update(self, serializer):
         return super().perform_update(serializer)
 
-Shared_Retrieve_Update_Create_API = SharedHostingAPI.as_view()
+Shared_Retrieve_Update_API = SharedHostingAPI.as_view()
 
 
 class VPS_API(generics.RetrieveUpdateAPIView, generics.CreateAPIView):
@@ -208,7 +208,6 @@ class VPS_API(generics.RetrieveUpdateAPIView, generics.CreateAPIView):
         return super().retrieve(request, *args, **kwargs)
 
     def perform_update(self, serializer):
-        
         return super().perform_update(serializer)
 
-VPS_Retrieve_Update_Create_API = VPS_API.as_view()
+VPS_Retrieve_Update_API = VPS_API.as_view()

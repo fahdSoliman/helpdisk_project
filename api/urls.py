@@ -5,7 +5,9 @@ from rest_framework.authtoken.views import obtain_auth_token
 urlpatterns = [
     path('auth/', obtain_auth_token), # authentication view to get a token
     
-    path('product/<str:type_name>', views.Type_list_view), 
+    path('product/<str:type_name>', views.Type_list_view), # product list view api
+
+    ## user profile api
     path('user/<str:id>/', views.User_Retrieve_View),
     path('user/botpress/<str:botpress>', views.User_Botpress_Retrieve_View),
     path('user/botpress2/<str:botpress>',views.CompanyProfile),
@@ -14,14 +16,19 @@ urlpatterns = [
     path('user/<int:user>/company/', views.UserCompanyProfileView.as_view()), 
     path('user/<int:user>/finrespose/', views.User_FinanicalResponse_View), 
     path('user/<int:user>/techresponse/', views.User_TechResponse_View),
-    path('product/<int:id>/resdomain/', views.ResDomain_Retrieve_Update_Create_API), 
-    path('product/<int:id>/hostdomain/', views.HostDomain_Retrieve_Update_Create_API),
-    path('product/<int:id>/shared/', views.Shared_Retrieve_Update_Create_API), 
-    path('product/<int:id>/vps/', views.VPS_Retrieve_Update_Create_API),  
 
-    # path('product/hostdomain/', views.Type_list_view),
-    # path('product/shared/', views.Type_list_view), 
-    # path('product/vps/', views.Type_list_view),
+    ## product reservation api
+    path('product/resdomain/<int:id>/', views.ResDomain_Retrieve_Update_API), # retreive/update
+    path('product/resdomain/', views.ResDomain_Retrieve_Update_API), # create
+    
+    path('product/hostdomain/<int:id>/', views.HostDomain_Retrieve_Update_API),
+    path('product/hostdomain/',views.HostDomain_Retrieve_Update_API),
+
+    path('product/shared/<int:id>/', views.Shared_Retrieve_Update_API), 
+    path('product//shared/', views.Shared_Retrieve_Update_API), 
+
+    path('product/vps/<int:id>/', views.VPS_Retrieve_Update_API),  
+    path('product/vps/', views.VPS_Retrieve_Update_API), 
 ]
 
 
