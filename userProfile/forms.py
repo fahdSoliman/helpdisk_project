@@ -48,6 +48,8 @@ class TechUpdateForm(forms.ModelForm):
 # User Services Update Forms 
 
 class ResDomainForm(forms.ModelForm):
+    bill_file = forms.FileField(required=False)
+
     class Meta:
         model = ResDomain
         Fields = [
@@ -66,10 +68,12 @@ class ResDomainForm(forms.ModelForm):
             'start_date',
             'expire_date',
             'note',
-
         ]
+    def clean_bill_file(self):
+        return self.cleaned_data['bill_file'] or None
 
 class HostDomainForm(forms.ModelForm):
+    bill_file = forms.FileField(required=False)
     class Meta:
         model = HostDomain
         fields = [
@@ -86,8 +90,12 @@ class HostDomainForm(forms.ModelForm):
             'expire_date',
             'note',
         ]
+    def clean_bill_file(self):
+        return self.cleaned_data['bill_file'] or None
 
 class SharedHostingForm(forms.ModelForm):
+    bill_file = forms.FileField(required=False)
+
     class Meta:
         model = SharedHosting
         Fields = [
@@ -106,8 +114,11 @@ class SharedHostingForm(forms.ModelForm):
             'expire_date',
             'note',
         ]
+    def clean_bill_file(self):
+        return self.cleaned_data['bill_file'] or None
 
 class VPSForm(forms.ModelForm):
+    bill_file = forms.FileField(required=False)
     class Meta:
         model = VPS
         fields = [
@@ -129,3 +140,5 @@ class VPSForm(forms.ModelForm):
             'expire_date',
             'note',
         ]
+    def clean_bill_file(self):
+        return self.cleaned_data['bill_file'] or None

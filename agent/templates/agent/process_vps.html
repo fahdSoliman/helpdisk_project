@@ -108,12 +108,18 @@
                     </div>
                     <div class="col-md-5">
                         <div class="dx-gallery p-5">
+                            {% if  detail.bill_file %}
                             <a href="{{ detail.bill_file.url }}" data-fancybox="images" class="dx-gallery-item">
                                 <span class="dx-gallery-item-overlay">
                                     <span class="icon pe-7s-exapnd2"></span>
                                 </span>
+                                
                                 <img src="{{ detail.bill_file.url }}" class="dx-img" alt="">
+                                
                             </a>
+                            {% else %}
+                            <p>لا يوجد وصل دفع مرفق</p>
+                            {% endif %}
                             <!-- START: Slider Gallery
                             Additional Classes:
                             .dx-slider-arrows (clone arrows)

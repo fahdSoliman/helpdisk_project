@@ -8,7 +8,7 @@ headers = {
 data = {
     'user': 99,
     'my_product': 6,
-    'domain_name': 'http://www.apitest3.sy',
+    'domain_name': 'http://www.apitest4.sy',
     'note': f'<p dir="rtl">created with botpress, Date: {datetime.now()}</p>'
 }
 endpoint = "http://localhost:8000/api/product/resdomain/"

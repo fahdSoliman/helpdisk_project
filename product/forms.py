@@ -7,6 +7,7 @@ from django.contrib import messages
 
 
 class HostDomainForm(forms.ModelForm):
+    bill_file = forms.FileField(required=False)
 
     class Meta:
         model = HostDomain
@@ -20,13 +21,12 @@ class HostDomainForm(forms.ModelForm):
     def clean_domain_name(self,*args, **kwargs):
         webname = self.cleaned_data.get("domain_name")
         vps = HostDomain.objects.filter(domain_name=webname).count()
-        print(vps)
         if vps>0:
             raise forms.ValidationError(f"النطاق {webname} الذي أدخلته محجوز مسبقاً، يرجى استخدام نطاق آخر.")
         return webname
 
 class ResDomainForm(forms.ModelForm):
-    # bill_file = forms.CharField()
+    bill_file = forms.FileField(required=False)
     class Meta:
         model = ResDomain
         fields = [
@@ -42,12 +42,15 @@ class ResDomainForm(forms.ModelForm):
     def clean_domain_name(self,*args, **kwargs):
         webname = self.cleaned_data.get("domain_name")
         vps = ResDomain.objects.filter(domain_name=webname).count()
-        print(vps)
         if vps>0:
             raise forms.ValidationError(f"النطاق {webname} الذي أدخلته محجوز مسبقاً، يرجى استخدام نطاق آخر.")
         return webname
 
+    def clean_bill_file(self):
+        return self.cleaned_data['bill_file'] or None
+
 class SharedHostingForm(forms.ModelForm):
+    bill_file = forms.FileField(required=False)
 
     class Meta:
         model = SharedHosting
@@ -63,12 +66,14 @@ class SharedHostingForm(forms.ModelForm):
     def clean_website_name(self,*args, **kwargs):
         webname = self.cleaned_data.get("website_name")
         vps = SharedHosting.objects.filter(website_name=webname).count()
-        print(vps)
         if vps>0:
             raise forms.ValidationError(f"اسم الموقع {webname} الذي أدخلته محجوز مسبقاً، يرجى استخدام اسم آخر.")
         return webname
+    def clean_bill_file(self):
+        return self.cleaned_data['bill_file'] or None
 
 class VPSForm(forms.ModelForm):
+    bill_file = forms.FileField(required=False)
 
     class Meta:
         model = VPS
@@ -87,8 +92,8 @@ class VPSForm(forms.ModelForm):
     def clean_website_name(self,*args, **kwargs):
         webname = self.cleaned_data.get("website_name")
         vps = VPS.objects.filter(website_name=webname).count()
-        print(vps)
         if vps>0:
             raise forms.ValidationError(f"اسم الموقع {webname} الذي أدخلته محجوز مسبقاً، يرجى استخدام اسم آخر")
         return webname
-
+    def clean_bill_file(self):
+        return self.cleaned_data['bill_file'] or None
