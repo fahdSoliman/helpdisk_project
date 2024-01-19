@@ -76,6 +76,9 @@ class UserSerializer(serializers.Serializer):
     companyprofile = CompanyProfileSerializer(read_only=True)
     technicalresponse = TechnicalResponseSerializer(read_only=True)
     finanicalresponse = FinanicalResponseSerializer(read_only=True)
+    
+
+class UserReservationsSerializer(serializers.Serializer):
     services = serializers.SerializerMethodField(read_only=True)
 
     def get_services(self, obj):
@@ -89,6 +92,7 @@ class UserSerializer(serializers.Serializer):
             'sharedhosting': SharedHostingSerializer(sharedhosting_qs,read_only=True,many=True,context=self.context).data,
             'vps': VPSSerializer(vps_qs,read_only=True,many=True,context=self.context).data,
         }
+
 
 class UserUpdateSerializer(serializers.ModelSerializer):
     class Meta:

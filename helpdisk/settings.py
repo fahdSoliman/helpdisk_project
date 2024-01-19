@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import inspect
+import django_dyn_dt
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
     'agent.apps.AgentConfig',
     'userProfile.apps.UserprofileConfig',
     'product.apps.ProductConfig',
+    'qa_model.apps.QaModelConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,6 +53,8 @@ INSTALLED_APPS = [
     'djmoney',
     'rest_framework',
     'rest_framework.authtoken',
+    'django_dyn_dt',
+    'django_tables2'
 ]
 
 MIDDLEWARE = [
@@ -64,10 +69,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'helpdisk.urls'
 
+TEMPLATE_DIR_DATATB = os.path.join(BASE_DIR, "django_dyn_dt/templates")
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_DIR_DATATB],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -136,10 +142,18 @@ MEDIA_URL = '/media/'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+DYN_DB_PKG_ROOT = os.path.dirname( inspect.getfile( django_dyn_dt ) ) # <-- NEW App
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'helpdisk/static')
+    os.path.join(BASE_DIR, 'helpdisk/static'),
+    os.path.join(DYN_DB_PKG_ROOT, "templates/static"),
 ]
 
+
+DYNAMIC_DATATB = {
+    # SLUG -> Import_PATH 
+    'passage'  : "qa_model.models.Passage",
+}
 #########################
 # Phone Number Settings #
 #########################
@@ -279,3 +293,11 @@ JAZZMIN_SETTINGS = {
     "show_ui_builder": True
 }
 # JAZZMIN_SETTINGS["show_ui_builder"] = True
+
+
+DJANGO_TABLES2_TABLE_ATTRS = {
+    'class': 'table table-hover',
+    'thead': {
+        'class': 'table-light',
+    },
+}

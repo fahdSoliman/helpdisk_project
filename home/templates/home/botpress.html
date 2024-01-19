@@ -9,18 +9,15 @@
         userId: '{{ request.user.profile.botpress }}',
         extraStylesheet: '/assets/modules/channel-web/goldstyle.css',
     })
-    {% comment %} window.addEventListener('message', function(event) {
+    window.addEventListener('message', function(event) {
         if (event.data.name === 'webchatReady') {
             window.botpressWebChat.sendEvent({
-                type: 'set_name',
+                type: 'proactive_customer',
                 channel: 'web',
-                payload: { username: '{{ request.user.username }}',
-                        firstname: '{{ request.user.first_name }}',
-                        lastname: '{{ request.user.last_name }}',
-                        email: '{{ request.user.email }}'}
+                payload: { text: 'مرحبا' }
             })
         }
-    }) {% endcomment %}
+    }); 
 </script>
 {% else %}
 <script>
@@ -36,7 +33,7 @@
     }
     
     if(isLocalStorageAvailable()){
-        if (window.localStorage.getItem('userId') == null) {
+        if (window.localStorage.getItem('userId') === null) {
             window.localStorage.setItem('userId', nanoid(24));
             console.log(window.localStorage.getItem('userId'));
         }
@@ -51,14 +48,14 @@
         console.log("your browser LocalStorage is Turned OFF, you need it to work the Botpress appropriately");
     }
     
-    {% comment %} window.addEventListener('message', function(event) {
-        if (event.data.name === 'webchatOpened') {
+    window.addEventListener('message', function(event) {
+        if (event.data.name === 'webchatReady') {
             window.botpressWebChat.sendEvent({
                 type: 'proactive-trigger',
                 channel: 'web',
                 payload: { text: 'مرحبا' }
             })
         }
-    }); {% endcomment %}
+    }); 
 </script>
 {% endif %}

@@ -6,17 +6,20 @@ urlpatterns = [
     path('auth/', obtain_auth_token), # authentication view to get a token
     
     path('product/<str:type_name>', views.Type_list_view), # product list view api
+    path('product/', views.Type_list_view), # product list view api
+
 
     ## user general profile api
-    path('user/<str:id>/', views.User_Retrieve_View),
+    path('user/<int:id>/', views.User_Retrieve_View),
+    path('user/<int:id>/reservations/', views.User_Reservations_Retrieve_View),
     path('user/botpress/<str:botpress>', views.User_Botpress_Retrieve_View),
     path('user/telegram/<str:telegram>', views.User_Telegram_View),
 
     ## user profiles retrieve/update APIs
     path('user/<int:user>/profile/', views.Use_Profile_View), 
     path('user/<int:user>/company/', views.User_CompanyProfile_View), 
-    path('user/<int:user>/finrespose/', views.User_FinanicalResponse_View), 
-    path('user/<int:user>/techresponse/', views.User_TechResponse_View),
+    path('user/<int:user>/finanical/', views.User_FinanicalResponse_View), 
+    path('user/<int:user>/technical/', views.User_TechResponse_View),
 
     ## product reservation api
     path('product/resdomain/<int:id>/', views.ResDomain_Retrieve_Update_API), # retreive/update

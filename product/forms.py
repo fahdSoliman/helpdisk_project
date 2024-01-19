@@ -1,8 +1,5 @@
-from urllib import request
 from django import forms
-from django.contrib.auth.models import User
-from .models import Type, Product, SharedHosting, ResDomain, VPS, HostDomain
-from django.contrib import messages
+from .models import  SharedHosting, ResDomain, VPS, HostDomain
 
 
 
@@ -16,7 +13,8 @@ class HostDomainForm(forms.ModelForm):
             'user',
             'domain_name',
             'ip_address',
-            'bill_file'
+            'bill_file',
+            'note'
         ]
     def clean_domain_name(self,*args, **kwargs):
         webname = self.cleaned_data.get("domain_name")
@@ -37,7 +35,8 @@ class ResDomainForm(forms.ModelForm):
             'primary_name_server',
             'secondary_name_server',
             'hosting_company',
-            'bill_file'
+            'bill_file',
+            'note'
         ]
     def clean_domain_name(self,*args, **kwargs):
         webname = self.cleaned_data.get("domain_name")
@@ -61,8 +60,11 @@ class SharedHostingForm(forms.ModelForm):
             'operation', 
             'transfer_website', 
             'backup_website', 
-            'bill_file'
+            'bill_file',
+            'note'
         ]
+    
+    
     def clean_website_name(self,*args, **kwargs):
         webname = self.cleaned_data.get("website_name")
         vps = SharedHosting.objects.filter(website_name=webname).count()
@@ -87,7 +89,8 @@ class VPSForm(forms.ModelForm):
             'port_numbers',
             'data_transfer',
             'data_backup',
-            'bill_file'
+            'bill_file',
+            'note'
         ]
     def clean_website_name(self,*args, **kwargs):
         webname = self.cleaned_data.get("website_name")

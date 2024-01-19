@@ -214,6 +214,9 @@
                                     <a href="{% url 'admin:index' %}"><span class="icon pe-7s-users"></span> إدارة الموقع</a>
                                 </li>
                                 <li>
+                                    <a href="{% url 'view_k' %}"><span class="icon pe-7s-server"></span> إدارة قاعدة المعرفة</a>
+                                </li>
+                                <li>
                                     <a href="{% url 'settings' %}"><span class="icon pe-7s-config"></span> إعدادات حسابي</a>
                                 </li>
                                 <li>
@@ -260,7 +263,7 @@
                                     <a href="{% url 'account' %}"><span class="icon pe-7s-user"></span> الحساب</a>
                                 </li>
                                 <li>
-                                    <a href="{% url 'myproducts' %}"><span class="icon pe-7s-download"></span> منتجاتي</a>
+                                    <a href="{% url 'myproducts' %}"><span class="icon pe-7s-download"></span> اشتراكاتي</a>
                                 </li>
                                 <li>
                                     <a href="{% url 'settings' %}"><span class="icon pe-7s-config"></span> إعدادات حسابي</a>
@@ -524,7 +527,7 @@
     }
     
     if(isLocalStorageAvailable()){
-        if (window.localStorage.getItem('userId') == null) {
+        if (window.localStorage.getItem('userId') === null) {
             window.localStorage.setItem('userId', nanoid(24));
             console.log(window.localStorage.getItem('userId'));
         }

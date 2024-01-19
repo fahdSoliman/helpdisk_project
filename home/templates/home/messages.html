@@ -1,7 +1,7 @@
 {% if messages %}
     {% for message in messages %}
-    <div class="position-fixed bottom-1 left-1 p-20" style="z-index: 5; left: 0; bottom: 0;">
-        <div id="livetoast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000">
+    <div class="position-fixed bottom-1 left-1 p-20" style="z-index: 5; left: 0px; bottom:{% widthratio forloop.counter0 1 100 %}px ;">
+        <div id="livetoast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="6000">
             <div class="toast-header" style="background-color: rgb(154 156 255 / 85%); color: #8d6900;">
                 <strong class="mr-auto">
                     {% if message.tags == 'error' %}

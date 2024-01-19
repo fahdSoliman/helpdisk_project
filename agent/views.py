@@ -8,6 +8,7 @@ import sqlite3, psycopg2
 from product.models import HostDomain,ResDomain,SharedHosting,VPS
 from .forms import Resdomain_Form, Hostdomain_Form,Shared_Form, Vps_Form,Botpress_form,Botpress_user
 from .models import Botpress
+from django.db.models import Q
 # Create your views here.
 
 
@@ -21,10 +22,10 @@ from .models import Botpress
 def view_new_request(request):
     today = now()
     last_7_days = datetime.now() - timedelta(days=7)
-    hostdomain_products = HostDomain.objects.filter(start_date__gte = last_7_days, start_date__lte = today, is_active = 0).order_by('-updated')
-    resdomain_products = ResDomain.objects.filter(start_date__gte = last_7_days, start_date__lte = today, is_active = 0).order_by('-updated')
-    shared_products = SharedHosting.objects.filter(start_date__gte = last_7_days, start_date__lte = today, is_active = 0).order_by('-updated')
-    vps_products = VPS.objects.filter(start_date__gte = last_7_days, start_date__lte = today, is_active = 0).order_by('-updated')  
+    hostdomain_products = HostDomain.objects.filter(Q(is_active = 0) | Q(is_valid = 0 ) | Q(start_date__gte = last_7_days) | Q(start_date__lte = today)).order_by('-updated')
+    resdomain_products = ResDomain.objects.filter(Q(is_active = 0) | Q(is_valid = 0 ) | Q(start_date__gte = last_7_days) | Q(start_date__lte = today)).order_by('-updated')
+    shared_products = SharedHosting.objects.filter(Q(is_active = 0) | Q(is_valid = 0 ) | Q(start_date__gte = last_7_days) | Q(start_date__lte = today)).order_by('-updated')
+    vps_products = VPS.objects.filter(Q(is_active = 0) | Q(is_valid = 0 ) | Q(start_date__gte = last_7_days) | Q(start_date__lte = today)).order_by('-updated')  
     context = {
         'host_products': hostdomain_products,
         'resdomain_products': resdomain_products,

@@ -21,6 +21,7 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'أهلاً بك يا {username} تم انشاء حسابك بنجاح!')
+            messages.info(request, f'يتوجب عليك الآن استكمال بيانات حسابك كي تتمكن من الاشتراك بالخدمات لاحقاً')
             id = request.POST.get('botpressID')
             botpressIdUpdate(id, username)
             return redirect('home')
@@ -145,7 +146,7 @@ def resdomain_update(request, id):
                 date = datetime.now().strftime('%Y/%m/%d - %H:%M')
                 note = service.note
                 print(note)
-                service.note = str(f"<p> تم تعديل الطلب من قبل الزبون بتاريخ {date} </p>") + note
+                service.note = str(f"<p> تم تعديل الطلب من قبل الزبون بتاريخ {date} </p><hr/>") + note
                 resdomain_form.save()
                 messages.success(request, f'تم تعديل الخدمة')
                 return redirect('myproducts')
@@ -172,7 +173,7 @@ def hostdomain_update(request, id):
                 service.is_valid = False
                 date = datetime.now().strftime('%Y/%m/%d - %H:%M')
                 note = service.note
-                service.note = str(f"<p> تم تعديل الطلب من قبل الزبون بتاريخ {date} </p>") + note
+                service.note = str(f"<p> تم تعديل الطلب من قبل الزبون بتاريخ {date} </p><hr/>") + note
                 hostdomain_form.save()
                 messages.success(request, f'تم تعديل الخدمة بنجاح')
                 return redirect('myproducts')
@@ -197,6 +198,10 @@ def shared_update(request, id):
         if request.method == "POST":
             shared_form = SharedHostingForm(request.POST, request.FILES, instance=service)
             if shared_form.is_valid():
+                service.is_valid = False
+                date = datetime.now().strftime('%Y/%m/%d - %H:%M')
+                note = service.note
+                service.note = str(f"<p> تم تعديل الطلب من قبل الزبون بتاريخ {date} </p><hr/>") + note
                 shared_form.save()
                 messages.success(request, f'تم تعديل الخدمة بنجاح')
                 return redirect('myproducts')
@@ -220,6 +225,10 @@ def vps_update(request, id):
         if request.method == "POST":
             vps_form = VPSForm(request.POST, request.FILES, instance=service)
             if vps_form.is_valid():
+                service.is_valid = False
+                date = datetime.now().strftime('%Y/%m/%d - %H:%M')
+                note = service.note
+                service.note = str(f"<p> تم تعديل الطلب من قبل الزبون بتاريخ {date} </p><hr/>") + note
                 vps_form.save()
                 messages.success(request, f'تم تعديل الخدمة بنجاح')
                 return redirect('myproducts')

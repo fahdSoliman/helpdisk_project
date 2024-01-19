@@ -5,8 +5,8 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Profile(models.Model):
-    GENDER_MALE = 0
-    GENDER_FEMALE = 1
+    GENDER_MALE = 'male'
+    GENDER_FEMALE = 'female'
     GENDER_CHOICES = [(GENDER_MALE, 'ذكر'), (GENDER_FEMALE, 'أنثى')]
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default.png' ,upload_to='profile_Img/', null=True)
@@ -14,7 +14,7 @@ class Profile(models.Model):
     telegram = models.CharField(max_length=255,blank=True, null=True, unique=True)
     botpress = models.CharField(max_length=255,blank=True, null=True, unique=True)
     is_complete = models.BooleanField(default=False)
-    gender = models.IntegerField(choices=GENDER_CHOICES, null=True)
+    gender = models.CharField(choices=GENDER_CHOICES, null=True, max_length=25)
 
     def __str__(self):
         return self.user.username
@@ -27,13 +27,13 @@ class Profile(models.Model):
 
 
 class CompanyProfile(models.Model):
-    gov_fin_org = 0
-    gov_man_org = 1
-    special_org = 2
+    gov_fin_org = 'gov_fin' ## need to change some time
+    gov_man_org = 'gov_man'
+    special_org = 'special'
     org_type = [(gov_fin_org, 'مؤسسة حكومية مالية'), (gov_man_org, 'مؤسسة حكومية إدارية'), (special_org, 'مؤسسة خاصة')]
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     customer_name = models.CharField(max_length=255)
-    customer_type = models.IntegerField(choices=org_type,default=2, null=True)
+    customer_type = models.CharField(choices=org_type,default=2, null=True, max_length=15)
     country = models.CharField(max_length=255, null=True)
     phone = PhoneNumberField(null=True)
     email = models.EmailField(null=True)
@@ -42,8 +42,10 @@ class CompanyProfile(models.Model):
         return str(self.customer_name)
     
     def get_type(self):
-        t = self.org_type[self.customer_type] # type: ignore
-        return str(t[1])
+        for value, label in self.org_type:
+            if value == self.customer_type:
+                return label
+        return "Unknown Type"  
 
 class FinanicalResponse(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

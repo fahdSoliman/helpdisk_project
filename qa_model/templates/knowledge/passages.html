@@ -1,0 +1,35 @@
+{% extends "home/base.html" %}
+{% load render_table from django_tables2 %}
+{% load static %}
+{% block content %}
+
+<header class="dx-header dx-box-5">
+    <div class="container">
+        <div class="bg-image bg-image-parallax">
+            <img src="{% static 'assets/images/cover.jpg' %}" class="jarallax-img" alt="">
+            <div style="background-color: rgba(27, 27, 27, .8);"></div>
+        </div>
+
+        <div class="container mnb-8">
+            <h1 class="h4 mb-10 text-white text-center">إدارة قاعدة المعرفة</h1>
+            <!-- START: Breadcrumbs -->
+            <ul class="dx-breadcrumbs text-center">
+                <li><a href="{% url 'home' %}">الصفحة الرئيسية</a></li>
+                <li><a href="{% url 'view_k' %}">إدارة قاعدة المعرفة</a></li>
+                <li><a href="{% url 'view_data' %}">عرض كافة النصوص</a></li>
+                <li>عرض كافة الفقرات</li>
+            </ul>
+            <!-- END: Breadcrumbs -->
+        </div>
+    </div>
+</header>
+
+<!-- End of header -->
+
+<div class="dx-box-5 bg-grey-6">
+    <div class="container">
+        {% render_table passages %}
+    </div>
+</div>
+
+{% endblock %}

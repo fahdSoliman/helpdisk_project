@@ -1,7 +1,7 @@
 from api.permissions import isBotpressPermission
 from product.models import Product, Type, ResDomain, HostDomain, SharedHosting, VPS
 from product.serializers import TypeSerializer, ProductSerializer, ResDomainSerializer, HostDomainSerializer, SharedHostingSerializer, VPSSerializer
-from userProfile.serializers import TechnicalResponseSerializer, FinanicalResponseSerializer, CompanyProfileSerializer, ProfileSerializer, UserSerializer
+from userProfile.serializers import UserReservationsSerializer , TechnicalResponseSerializer, FinanicalResponseSerializer, CompanyProfileSerializer, ProfileSerializer, UserSerializer
 from userProfile.models import Profile, CompanyProfile, FinanicalResponse, TechnicalResponse
 from django.contrib.auth.models import User
 from rest_framework import generics, mixins
@@ -40,6 +40,21 @@ class UserRetrieveView(generics.RetrieveAPIView):
     authentication_classes = [TokenAuthentication, SessionAuthentication]
 
 User_Retrieve_View = UserRetrieveView.as_view()
+
+class UserReservationsRetrieveView(generics.RetrieveAPIView):
+    '''
+    view for retrieve all the user information based on the ID given,
+    for read only and view all by side the services was registred by the user,
+    and all that for more base-info for botpress bot.
+    Methods: GET
+    '''
+    queryset = User.objects.all()
+    lookup_field = 'id'
+    serializer_class = UserReservationsSerializer
+    permission_classes = [isBotpressPermission]
+    authentication_classes = [TokenAuthentication, SessionAuthentication]
+
+User_Reservations_Retrieve_View = UserReservationsRetrieveView.as_view()
 
 
 class UserBotpressRetrieveView(generics.RetrieveAPIView):
@@ -128,9 +143,9 @@ class UserTelegramView(generics.RetrieveAPIView):
     
 User_Telegram_View = UserTelegramView.as_view()
 
-###############################################
-# Services Reservations Retrieve/Update Views #
-###############################################
+######################################################
+# Services Reservations Retrieve/Update/Create Views #
+######################################################
 
 
 class ResDomainAPI(generics.RetrieveUpdateAPIView, generics.CreateAPIView):

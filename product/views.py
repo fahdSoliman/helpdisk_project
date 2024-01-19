@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from product.models import Product, HostDomain, ResDomain, SharedHosting, VPS
 from django.contrib import messages
 from .forms import HostDomainForm, ResDomainForm, SharedHostingForm, VPSForm
-
+from datetime import datetime
 def product_home(request):
     
     products = Product.objects.all()
@@ -50,7 +50,8 @@ def add_RegDomain(request, prod):
     if request.method == "POST":
         print("POST")
         updated_request = request.POST.copy()
-        updated_request.update({'user': request.user.id, 'my_product': prod.id})
+        note = f"<p>تم التسجيل في الخدمة عبر الموقع، التوقيت: {datetime.now().strftime('%Y/%m/%d - %H:%M')}</p><hr/>"
+        updated_request.update({'user': request.user.id, 'my_product': prod.id, 'note': note})
         resdomain_form = ResDomainForm(updated_request, request.FILES)
         if resdomain_form.is_valid():
             print("sucsses")
@@ -71,8 +72,9 @@ def add_RegDomain(request, prod):
 def add_HostDomain(request, prod):
     product = prod.product_type.type_name + " / " + prod.product_name
     if request.method == "POST":
-        updated_request = request.POST.copy()
-        updated_request.update({'user': request.user.id, 'my_product':prod.id})
+        updated_request = request.POST.copy()        
+        note = f"<p>تم التسجيل في الخدمة عبر الموقع، التوقيت: {datetime.now().strftime('%Y/%m/%d - %H:%M')}</p><hr/>"
+        updated_request.update({'user': request.user.id, 'my_product':prod.id, 'note': note})
         hostdomain_form = HostDomainForm(updated_request, request.FILES)
         if hostdomain_form.is_valid():
             hostdomain_form.save()
@@ -92,7 +94,8 @@ def add_SharedHosting(request, prod):
     product = prod.product_type.type_name + " / " + prod.product_name
     if request.method == "POST":
         updated_request = request.POST.copy()
-        updated_request.update({'user': request.user.id, 'my_product':prod.id})
+        note = f"<p>تم التسجيل في الخدمة عبر الموقع، التوقيت: {datetime.now().strftime('%Y/%m/%d - %H:%M')}</p><hr/>"
+        updated_request.update({'user': request.user.id, 'my_product':prod.id, 'note': note})
         sharedhosting_form = SharedHostingForm(updated_request, request.FILES)
         if sharedhosting_form.is_valid():
             sharedhosting_form.save()
@@ -112,7 +115,8 @@ def add_VPS(request, prod):
     product = prod.product_type.type_name + " / " + prod.product_name
     if request.method == "POST":
         updated_request = request.POST.copy()
-        updated_request.update({'user': request.user.id, 'my_product':prod.id})
+        note = f"<p>تم التسجيل في الخدمة عبر الموقع، التوقيت: {datetime.now().strftime('%Y/%m/%d - %H:%M')}</p><hr/>"
+        updated_request.update({'user': request.user.id, 'my_product':prod.id, 'note': note})
         vps_form = VPSForm(updated_request, request.FILES)
         if vps_form.is_valid():
             vps_form.save()

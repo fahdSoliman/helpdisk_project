@@ -26,7 +26,9 @@ urlpatterns = [
     path('account/', include('userProfile.urls')),
     path('product/', include('product.urls')),
     path('agent/', include('agent.urls')),
+    path('qa/', include('qa_model.urls')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    path('passages/', include('django_dyn_dt.urls')),  # <-- NEW: API routing rules
 ] 
 
 

@@ -31,6 +31,8 @@ class HostDomainSerializer(serializers.ModelSerializer):
             'ip_address',
             'note',
             'bill_file',
+            'start_date',
+            'expire_date',
         ]
         read_only_fields = [
             'id',
@@ -54,7 +56,9 @@ class ResDomainSerializer(serializers.ModelSerializer):
             'hosting_company',
             'bill_file',
             'note',
-            'clean_note'
+            'clean_note',
+            'start_date',
+            'expire_date',
         ]
         read_only_fields = [
             'id',
@@ -68,7 +72,7 @@ class ResDomainSerializer(serializers.ModelSerializer):
 
 
 class SharedHostingSerializer(serializers.ModelSerializer):
-
+    operation = serializers.CharField(source='get_operation_display')
     class Meta:
         model = SharedHosting
         fields = [
@@ -80,6 +84,8 @@ class SharedHostingSerializer(serializers.ModelSerializer):
             'backup_website',
             'bill_file',
             'note',
+            'start_date',
+            'expire_date',
         ]
         read_only_fields = [
             'id',
@@ -90,7 +96,7 @@ class SharedHostingSerializer(serializers.ModelSerializer):
         ]
 
 class VPSSerializer(serializers.ModelSerializer):
-
+    operation_system = serializers.CharField(source='get_operation_system_display')
     class Meta:
         model = VPS
         fields= [
@@ -105,6 +111,8 @@ class VPSSerializer(serializers.ModelSerializer):
             'data_backup',
             'bill_file',
             'note',
+            'start_date',
+            'expire_date',
         ]
         read_only_fields = [
             'id',

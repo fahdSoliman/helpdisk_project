@@ -1,0 +1,57 @@
+{% extends "home/base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+
+<!-- begin of header -->
+<header class="dx-header dx-box-5">
+    <div class="container">
+        <div class="bg-image bg-image-parallax">
+            <img src="{% static 'assets/images/cover.jpg' %}" class="jarallax-img" alt="">
+            <div style="background-color: rgba(27, 27, 27, .8);"></div>
+        </div>
+
+        <div class="container mnb-8">
+            <h1 class="h4 mb-10 text-white text-center">إدارة قاعدة المعرفة</h1>
+            <!-- START: Breadcrumbs -->
+            <ul class="dx-breadcrumbs text-center">
+                <li><a href="{% url 'home' %}">الصفحة الرئيسية</a></li>
+                <li>إدارة قاعدة المعرفة</li>
+                <li>تعديل فقرة</li>
+            </ul>
+            <!-- END: Breadcrumbs -->
+        </div>
+    </div>
+</header>
+
+<!-- End of header -->
+<div class="dx-box-5 bg-grey-6">
+    <div class="container">
+        <form method="POST" class="dx-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="dx-box-content text-right">
+                {{ passage_form.errors }}
+                <div class="dx-form-group">
+                    <label for="doc-name" class="mnt-7">مرجعية المستند</label>
+                    {% render_field passage_form.knowledge id="doc-name" dir="rtl" class="form-control form-control-style-2 text-right" placeholder="أدخل اسم المستند" %}
+                </div>
+                <div class="dx-form-group">
+                    <label for="text" class="form-check-label">القسم الاساسي</label>
+                    {% render_field passage_form.text id="text" class="form-control form-control-style-2 text-right"  %}
+                </div>
+                <div class="dx-form-group">
+                    <label for="new_passage" class="mnt-7"> القسم الجديد</label>
+                    <textarea cols="40" rows="10" class="form-control form-control-style-2 text-right" id="new_passage" name="new_passage"></textarea>
+                    
+                </div>
+                <div class="dx-form-group">
+                    <button type="submit" class="dx-btn dx-btn-xl dx-btn-block">حفظ البيانات</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock %}

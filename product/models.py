@@ -7,6 +7,7 @@ from django.utils.timezone import now
 from djmoney.models.fields import MoneyField
 from ckeditor.fields import RichTextField
 from django.utils.html import strip_tags
+from django.db.models import Q
 
 class Type(models.Model):
     type_name = models.CharField(max_length=255)
@@ -192,7 +193,7 @@ class VPS(models.Model):
         return self.expire_date.strftime('%Y/%m/%d')
 
     
-    def get_operation(self):
+    def get_operation_system(self):
         t = self.operation_choice[self.operation_system]
         return str(t[1])
     
