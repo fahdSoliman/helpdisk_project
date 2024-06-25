@@ -24,7 +24,7 @@ class ResDomainAdmin(admin.ModelAdmin):
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "my_product":
             # print(db_field.clean)
-            kwargs["queryset"] = Product.objects.filter(product_type=11)
+            kwargs["queryset"] = Product.objects.filter(product_type=2)
         return super(ResDomainAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
 
@@ -39,7 +39,7 @@ class HostDomainAdmin(admin.ModelAdmin):
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "my_product":
             # print(db_field.clean)
-            kwargs["queryset"] = Product.objects.filter(product_type=10)
+            kwargs["queryset"] = Product.objects.filter(product_type=1)
         return super(HostDomainAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
 
@@ -54,7 +54,7 @@ class SharedAdmin(admin.ModelAdmin):
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "my_product":
             # print(db_field.clean)
-            kwargs["queryset"] = Product.objects.filter(product_type=12)
+            kwargs["queryset"] = Product.objects.filter(product_type=3)
         return super(SharedAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
 class VPSAdmin(admin.ModelAdmin):
@@ -68,7 +68,7 @@ class VPSAdmin(admin.ModelAdmin):
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "my_product":
             # print(db_field.clean)
-            kwargs["queryset"] = Product.objects.filter(product_type=13)
+            kwargs["queryset"] = Product.objects.filter(product_type=4)
         return super(VPSAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 admin.site.register(Type)
 admin.site.register(Product, ProductAdmin)

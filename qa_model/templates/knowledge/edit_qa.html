@@ -1,0 +1,74 @@
+{% extends "home/base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+
+<!-- begin of header -->
+<header class="dx-header dx-box-5">
+    <div class="container">
+        <div class="bg-image bg-image-parallax">
+            <img src="{% static 'assets/images/cover.jpg' %}" class="jarallax-img" alt="">
+            <div style="background-color: rgba(27, 27, 27, .8);"></div>
+        </div>
+
+        <div class="container mnb-8">
+            <h1 class="h4 mb-10 text-white text-center">إدارة قاعدة المعرفة</h1>
+            <!-- START: Breadcrumbs -->
+            <ul class="dx-breadcrumbs text-center">
+                <li><a href="{% url 'home' %}">الصفحة الرئيسية</a></li>
+                <li><a href="{% url 'view_data' %}">إدارة قاعدة المعرفة</a></li>
+                <li><a href="{% url 'logs' %}">عرض سجل سؤال/جواب</a></li>
+                <li>تعديل سجل سؤال/جواب</li>
+            </ul>
+            <!-- END: Breadcrumbs -->
+        </div>
+    </div>
+</header>
+
+<!-- End of header -->
+<div class="dx-box-5 bg-grey-6">
+    <div class="container">
+        <form method="POST" class="dx-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="dx-box-content">
+                {{ qa_form.errors }}
+                <div class="dx-form-group">
+                    <label for="doc-name" class="mnt-7">السؤال</label>
+                    {% render_field qa_form.ar_question id="doc-name" dir="rtl" class="form-control form-control-style-2 text-right" placeholder="أدخل اسم المستند" %}
+                </div>
+                <div class="dx-form-group">
+                    <label for="text" class="form-check-label">ترجمة السؤال</label>
+                    {% render_field qa_form.question id="text" class="form-control form-control-style-2 text-left"  %}
+                </div>
+                <div class="dx-form-group">
+                    <label for="email-address" class="mnt-7">الجواب</label>
+                    {% render_field qa_form.ar_answer dir="ltr" class="form-control form-control-style-2 text-right"  %}
+                </div>
+                <div class="dx-form-group">
+                    <label for="data_type" class="mnt-7"> ترجمة الجواب</label>
+                    {% render_field qa_form.answer class="form-control form-control-style-2"  %}
+                </div>
+                <div class="dx-form-group">
+                    <label for="data_type" class="mnt-7">علامة السؤال</label>
+                    {% render_field qa_form.score class="form-control form-control-style-2"  %}
+                </div>
+                <div class="dx-form-group">
+                    <button type="submit" class="dx-btn dx-btn-xl dx-btn-block">حفظ البيانات</button>
+                </div>
+            </div>
+            <div class="dx-box-content">
+                <h4>النصوص المرجعية</h4>
+                {% for passage in qa_form.instance.passages.all %}
+                    <p dir="rtl" style="word-wrap: break-word;">{{ passage.text }}</p>
+                {% endfor %}
+                {% for passage in qa_form.instance.passages.all %}
+                    <p dir="ltr" style="word-wrap: break-word; text-align: left">{{ passage.translate }}</p>
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock %}

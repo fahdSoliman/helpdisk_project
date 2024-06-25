@@ -41,6 +41,21 @@ class UserRetrieveView(generics.RetrieveAPIView):
 
 User_Retrieve_View = UserRetrieveView.as_view()
 
+class UserRetrieveView2(generics.RetrieveAPIView):
+    '''
+    view for retrieve all the user information based on the Username given,
+    for read only and view all by side the services was registred by the user,
+    and all that for more base-info for botpress bot.
+    Methods: GET
+    '''
+    queryset = User.objects.all()
+    lookup_field = 'username'
+    serializer_class = UserSerializer
+    permission_classes = [isBotpressPermission]
+    authentication_classes = [TokenAuthentication, SessionAuthentication]
+
+User_Retrieve_View2 = UserRetrieveView2.as_view()
+
 class UserReservationsRetrieveView(generics.RetrieveAPIView):
     '''
     view for retrieve all the user information based on the ID given,

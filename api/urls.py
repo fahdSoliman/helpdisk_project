@@ -11,6 +11,7 @@ urlpatterns = [
 
     ## user general profile api
     path('user/<int:id>/', views.User_Retrieve_View),
+    path('user/username/<str:username>', views.User_Retrieve_View2),
     path('user/<int:id>/reservations/', views.User_Reservations_Retrieve_View),
     path('user/botpress/<str:botpress>', views.User_Botpress_Retrieve_View),
     path('user/telegram/<str:telegram>', views.User_Telegram_View),
@@ -22,7 +23,7 @@ urlpatterns = [
     path('user/<int:user>/technical/', views.User_TechResponse_View),
 
     ## product reservation api
-    path('product/resdomain/<int:id>/', views.ResDomain_Retrieve_Update_API), # retreive/update
+    path('product/resdomain/<str:id>/', views.ResDomain_Retrieve_Update_API), # retreive/update
     path('product/resdomain/', views.ResDomain_Retrieve_Update_API), # create
     
     path('product/hostdomain/<int:id>/', views.HostDomain_Retrieve_Update_API), # retreive/update
@@ -33,6 +34,10 @@ urlpatterns = [
 
     path('product/vps/<int:id>/', views.VPS_Retrieve_Update_API),  # retreive/update
     path('product/vps/', views.VPS_Retrieve_Update_API), # create
+
+
+    ## QA update question score
+    path('qa/update/', views.HostDomain_Retrieve_Update_API),
 ]
 
 

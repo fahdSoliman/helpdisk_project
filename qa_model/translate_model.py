@@ -8,7 +8,7 @@ class Translator:
         self.model = M2M100ForConditionalGeneration.from_pretrained(self.model_dir)
         self.tokenizer = M2M100Tokenizer.from_pretrained(self.model_dir)
     
-    def ar_translate(self, text):
+    def translate_to_en(self, text):
         self.tokenizer.src_lang = "ar"
         encoded_ar = self.tokenizer(text, return_tensors="pt")
         generated_tokens = self.model.generate(**encoded_ar, forced_bos_token_id=self.tokenizer.get_lang_id("en"))
@@ -16,12 +16,12 @@ class Translator:
 
         return out[0]
     
-    def en_translate(self, text):
+    def translate_to_ar(self, text):
         self.tokenizer.src_lang = "en"
-        encoded_en = self.tokenizer(text, return_tensors="pt")
+        encoded_en = self.tokenizer(text, return_tensors="pt", padding=True)
         generated_tokens = self.model.generate(**encoded_en, forced_bos_token_id=self.tokenizer.get_lang_id("ar"))
         out = self.tokenizer.batch_decode(generated_tokens, skip_special_tokens=True)
-        return out[0]
+        return out
     
 
 

@@ -3,6 +3,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=django
 
 /LLM_models
+/LLM_models/ar_stanza
 /media
 /static
 /.vscode

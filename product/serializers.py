@@ -17,7 +17,16 @@ class TypeSerializer(serializers.Serializer):
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = [
+            'id',
+            'product_type',
+            'product_name',
+            'product_img',
+            'product_file',
+            'year_fees',
+            'get_descritpion_markdown',
+            'get_specification_markdown'
+        ]
         # read_only_fiields = '__all__'
 
 class HostDomainSerializer(serializers.ModelSerializer):
@@ -25,6 +34,7 @@ class HostDomainSerializer(serializers.ModelSerializer):
     class Meta:
         model = HostDomain
         fields = [
+            'id',
             'user',
             'my_product',
             'domain_name',
@@ -35,7 +45,6 @@ class HostDomainSerializer(serializers.ModelSerializer):
             'expire_date',
         ]
         read_only_fields = [
-            'id',
             'is_valid',
             'is_active',
             'start_date',
@@ -47,6 +56,7 @@ class ResDomainSerializer(serializers.ModelSerializer):
     class Meta:
         model = ResDomain
         fields = [
+            'id',
             'user',
             'my_product',
             'domain_name',
@@ -61,7 +71,6 @@ class ResDomainSerializer(serializers.ModelSerializer):
             'expire_date',
         ]
         read_only_fields = [
-            'id',
             'is_valid',
             'is_active',
             'start_date',
@@ -76,6 +85,7 @@ class SharedHostingSerializer(serializers.ModelSerializer):
     class Meta:
         model = SharedHosting
         fields = [
+            'id',
             'user',
             'my_product',
             'website_name',
@@ -88,7 +98,6 @@ class SharedHostingSerializer(serializers.ModelSerializer):
             'expire_date',
         ]
         read_only_fields = [
-            'id',
             'is_valid',
             'is_active',
             'start_date',
@@ -100,6 +109,7 @@ class VPSSerializer(serializers.ModelSerializer):
     class Meta:
         model = VPS
         fields= [
+            'id',
             'user',
             'my_product',
             'website_name',
@@ -115,7 +125,6 @@ class VPSSerializer(serializers.ModelSerializer):
             'expire_date',
         ]
         read_only_fields = [
-            'id',
             'is_valid',
             'is_active',
             'start_date',

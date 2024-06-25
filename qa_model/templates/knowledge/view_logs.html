@@ -1,0 +1,50 @@
+{% extends "home/base.html" %}
+
+{% load render_table from django_tables2 %}
+{% load static %}
+{% block content %}
+
+<header class="dx-header dx-box-5">
+    <div class="container">
+        <div class="bg-image bg-image-parallax">
+            <img src="{% static 'assets/images/cover.jpg' %}" class="jarallax-img" alt="">
+            <div style="background-color: rgba(27, 27, 27, .8);"></div>
+        </div>
+
+        <div class="container mnb-8">
+            <h1 class="h4 mb-10 text-white text-center">إدارة قاعدة المعرفة</h1>
+            <!-- START: Breadcrumbs -->
+            <ul class="dx-breadcrumbs text-center">
+                <li><a href="{% url 'home' %}">الصفحة الرئيسية</a></li>
+                <li><a href="{% url 'view_k' %}">إدارة قاعدة المعرفة</a></li>
+                <li>عرض السجل</li>
+            </ul>
+            <!-- END: Breadcrumbs -->
+        </div>
+    </div>
+</header>
+
+<!-- End of header -->
+<div class="dx-box-5 bg-grey-6">
+    <div class="container">
+        <div class="row align-items-center justify-content-between vertical-gap mnt-30 sm-gap mb-50">
+            <div class="col-auto">
+                <h2 class="h4 mb-0 mt-0">سجل الأسئلة والاجوبة</h2>
+            </div>
+            <div class="col pl-30 pr-30 d-none d-sm-block">
+                <div class="dx-separator ml-10 mr-10"></div>
+            </div>
+            <div class="col-auto">
+                <a href="{% url 'download_db' %}" class="dx-btn dx-btn-md">تنزيل قاعدة بيانات التدريب</a>
+            </div>
+            <div class="dx-box-5 bg-grey-6">
+                <div class="container">
+                    {% render_table logs_data %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

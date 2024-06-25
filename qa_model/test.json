@@ -1,0 +1,95 @@
+[
+    {
+        "answer": "Platelets don't have antigens (the things antibodies recognize) on them. What might be a good way to remember this is that they're not made from red blood cells where the ABO blood group antigens are, they're shed from cells in the bone marrow called megakaryocytes. \n\nThat's not to say platelets are JUST floating bits of cytoplasm. They've got glycoproteins on the outside to recognize various signals that, if received, may then induce them to release granules filled with clotting factors.\n\nBut why don't people have antibodies to these glycoproteins? People have antibodies against certain glycoproteins on red blood cells, right? Yes, they do. However, basically EVERYONE has the same platelet glycoproteins. Developing an immune reaction against them would almost certainly mean death. Super bad thrombocytopenia (low platelets) AND what's basically a bad transfusion reaction, which can kill a person in minutes.\n\nThat being said, there are bleeding disorders where people lack some of these platelet factors (von Willebrand disease, for example). That's different from their bodies actively attacking any cell that has them, and they have problems with clotting and blood vessel damage, for the most part.",
+        "provenance": null
+    },
+    {
+        "answer": null,
+        "provenance": [
+            {
+                "wikipedia_id": "3516857",
+                "title": "Blood donation in England",
+                "section": "Section::::Donations.:Blood Component donations.\n",
+                "start_paragraph_id": 40,
+                "start_character": 0,
+                "end_paragraph_id": 40,
+                "end_character": 642,
+                "text": "Most platelet donations are given to patients who are unable to make enough platelets in their bone marrow. For example, patients with leukaemia or other cancers may have too few platelets as the result of their disease or treatment. Also after major surgery or extensive injury, patients may need platelet transfusions to replace those lost through bleeding. Platelets are often life-saving and special in that they can help up to 3 adults or even 12 children. As platelets can only be stored for a few days, regular and frequent donors are in great demand and that is why platelet donors are asked to attend at least 8 - 10 times per year.\n",
+                "bleu_score": null,
+                "meta": null
+            },
+            {
+                "wikipedia_id": "196121",
+                "title": "Platelet",
+                "section": "Section::::Therapy with platelets.:Transfusion.:Collection.\n",
+                "start_paragraph_id": 169,
+                "start_character": 0,
+                "end_paragraph_id": 169,
+                "end_character": 1428,
+                "text": "Apheresis platelets are collected using a mechanical device that draws blood from the donor and centrifuges the collected blood to separate out the platelets and other components to be collected. The remaining blood is returned to the donor. The advantage to this method is that a single donation provides at least one therapeutic dose, as opposed to the multiple donations for whole-blood platelets. This means that a recipient is not exposed to as many different donors and has less risk of transfusion-transmitted disease and other complications. Sometimes a person such as a cancer patient who requires routine transfusions of platelets will receive repeated donations from a specific donor to further minimize the risk. Pathogen reduction of platelets using for example, riboflavin and UV light treatments can also be carried out to reduce the infectious load of pathogens contained in donated blood products, thereby reducing the risk of transmission of transfusion transmitted diseases. Another photochemical treatment process utilizing amotosalen and UVA light has been developed for the inactivation of viruses, bacteria, parasites, and leukocytes that can contaminate blood components intended for transfusion. In addition, apheresis platelets tend to contain fewer contaminating red blood cells because the collection method is more efficient than “soft spin” centrifugation at isolating the desired blood component.\n",
+                "bleu_score": null,
+                "meta": null
+            },
+            {
+                "wikipedia_id": "1494752",
+                "title": "Plateletpheresis",
+                "section": "Section::::Platelet collection.:Apheresis.\n",
+                "start_paragraph_id": 37,
+                "start_character": 0,
+                "end_paragraph_id": 37,
+                "end_character": 202,
+                "text": "Platelets are the clotting cells of the blood, and when donated, frequently go to cancer patients, because due to chemotherapy many cancer patients are unable to generate enough platelets of their own.\n",
+                "bleu_score": null,
+                "meta": null
+            },
+            {
+                "wikipedia_id": "5129355",
+                "title": "NHS Blood and Transplant",
+                "section": "Section::::Operations.:Blood Donation.\n",
+                "start_paragraph_id": 20,
+                "start_character": 0,
+                "end_paragraph_id": 20,
+                "end_character": 268,
+                "text": "Besides the main blood donations, known as \"whole blood\", platelets are also collected. As platelets can only be stored for a few days, regular and frequent donors are in great demand and that is why platelet donors are asked to attend at least 8 – 10 times per year.\n",
+                "bleu_score": null,
+                "meta": null
+            },
+            {
+                "wikipedia_id": "1494752",
+                "title": "Plateletpheresis",
+                "section": "Section::::Platelet transfusion.:Whole blood platelets.\n",
+                "start_paragraph_id": 6,
+                "start_character": 0,
+                "end_paragraph_id": 6,
+                "end_character": 671,
+                "text": "Not all platelet transfusions use platelets collected by automated apheresis. The platelets can also be separated from donations of whole blood collected in a traditional blood donation, but there are several advantages to separating the platelets at the time of collection. The first advantage is that the whole-blood platelets, sometimes called \"random\" platelets, from a single donation are not numerous enough for a dose to give to an adult patient. They must be pooled from several donors to create a single transfusion, and this complicates processing and increases the risk of diseases that can be spread in transfused blood, such as human immunodeficiency virus.\n",
+                "bleu_score": null,
+                "meta": null
+            },
+            {
+                "wikipedia_id": "1494752",
+                "title": "Plateletpheresis",
+                "section": "Section::::Platelet collection.:Leukoreduction.\n",
+                "start_paragraph_id": 32,
+                "start_character": 0,
+                "end_paragraph_id": 32,
+                "end_character": 629,
+                "text": "Due to their higher relative density, white blood cells are collected as an unwanted component with the platelets. Since it takes up to 3 liters of whole blood (the amount of a dozen blood bags) to generate a dose of platelets, white blood cells from one or several donors will also be collected along with the platelets. A 70 kg (154 lb) man has only about 6 liters of blood. If all of the incidentally collected white blood cells are transfused with the platelets, substantial rejection problems can occur. Therefore, it is standard practice to filter out white blood cells before transfusion by the process of leukoreduction.\n",
+                "bleu_score": null,
+                "meta": null
+            },
+            {
+                "wikipedia_id": "3516857",
+                "title": "Blood donation in England",
+                "section": "Section::::Donations.:Post-donation.\n",
+                "start_paragraph_id": 36,
+                "start_character": 0,
+                "end_paragraph_id": 36,
+                "end_character": 732,
+                "text": "Donations can also be taken by machines called cell separators, usually in larger blood donation centres located in city centres. These machines use a process called apheresis to collect either blood plasma only, or plasma and platelets, the other blood cells being returned to the patient. Platelets are the tiny fragments of cells in the blood which help it to clot and so stop bleeding, and are used in the treatment of cancer and leukaemia. A constant supply is vital because platelets only last five days once collected. People who give plasma and/or platelets can donate every two weeks, and each donation usually gives two or three adult doses. One adult dose of platelets would otherwise require four whole blood donations.\n",
+                "bleu_score": null,
+                "meta": null
+            }
+        ]
+    }
+]

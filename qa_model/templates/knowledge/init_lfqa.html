@@ -1,0 +1,122 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<header class="dx-header dx-box-5">
+    <div class="container">
+        <div class="bg-image bg-image-parallax">
+            <img src="{% static 'assets/images/cover.jpg' %}" class="jarallax-img" alt="">
+            <div style="background-color: rgba(27, 27, 27, .8);"></div>
+        </div>
+
+        <div class="container mnb-8">
+            <h1 class="h4 mb-10 text-white text-center">تهيئة قاعدة المعرفة</h1>
+            <!-- START: Breadcrumbs -->
+            <ul class="dx-breadcrumbs text-center">
+                <li><a href="{% url 'home' %}">الصفحة الرئيسية</a></li>
+                <li>إدارة قاعدة المعرفة</li>
+                <li>نموذج BART_LFQA</li>
+            </ul>
+            <!-- END: Breadcrumbs -->
+        </div>
+    </div>
+</header>
+
+<!-- End of header -->
+<!-- Start of Content -->
+<div class="dx-box-5 bg-grey-6">
+    <div class="container">
+        <div class="row align-items-center justify-content-between vertical-gap mnt-30 sm-gap mb-50">
+            <div class="col-auto">
+                <h2 class="h4 mb-0 mt-0">اختبار نموذج اللغة Long-Form QA BART LLM</h2>
+            </div>
+            <div class="col pl-30 pr-30 d-none d-sm-block">
+                <div class="dx-separator ml-10 mr-10"></div>
+            </div>
+            <div class="col-auto">
+                <a href="{% url 'init_semantic_search' %}" class="dx-btn dx-btn-md">اختبار البحث الدلالي</a>
+            </div>
+        </div>
+        <div class="dx-box-decorated">
+            <div class="dx-box-content">  
+                <h4 class="text-center">اختبار النموذج</h4>
+                <div class="row" style="padding-bottom: 15px;">
+                    <div class="col-md">
+                        <form method="POST" class="dx-form" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="dx-box-content">
+                                <div class="dx-form-group">
+                                    <label  for="question" class="mnt-7">السؤال</label>
+                                    <textarea class="form-control form-control-style-2"  type="text" id="question" name="question" style="text-align: right; direction:rtl;" >{{ question }}</textarea>
+                                </div>
+                                <div class="dx-form-group">
+                                    <button type="submit" class="dx-btn dx-btn-xl dx-btn-block">استعلام</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom: 15px;">
+                    <div class="col-md">
+                        <label>الفقرات المستخدمة لتوليد الجواب:</label>
+                    </div>
+                    <div class="col-md-10 center">
+                        {% for text in retrieved_text %}
+                        <p class="text-justify">{{ text.text }}</p>
+                        <p> {{ text.score | floatformat:4 }} </p>
+                        <p>{{ text.pk }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom: 15px;">
+                    <div class="col-md">
+                        <label>Passages in English:</label>
+                    </div>
+                    <div class="col-md-10 center">
+                        {% for text in retrieved_text %}
+                        <p class="text-justify text-left">{{ text.translate }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-md-12 center">
+                    <h4 class="text-center"> النتائج </h4>
+                    {% if answer %}
+                    <h7>الجواب:</h7>
+                    <p class="text-justify">  {{ answer }} </p>
+                    {% endif %}
+                    {% if en_answer %}
+                    <h7 class="text-justify" dir='ltr'>answer in English:</h7>
+                    <p class="text-justify text-left" dir="ltr"> {{ en_answer }} </p>
+                    {% endif %}
+                    {% if translate1 %}
+                    <h7>ترجمة السؤال:</h7>
+                    <p> {{ translate1 | floatformat:4 }} ثانية</p>
+                    {% endif %}
+                    {% if abstact %}
+                    <h7>توليد الاجابة:</h7>
+                    <p> {{ abstact | floatformat:4 }} ثانية</p>
+                    {% endif %}
+                    {% if translate2 %}
+                    <h7>ترجمة الجواب:</h7>
+                    <p> {{ translate2 | floatformat:4 }} ثانية</p>
+                    {% endif %}
+                    {% if time %}
+                    <h7>الزمن الكلي:</h7>
+                    <p> {{ time | floatformat:4 }} ثانية</p>
+                    {% endif %}
+                    
+                    {% if q_score %}
+                    <h7>سكور التطابق:</h7>
+                    <p> {{ q_score | floatformat:4 }} </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="dx-separator"></div>
+
+
+{% endblock %}

@@ -7,49 +7,50 @@ from transformers import  AutoModelForSeq2SeqLM
 from sentence_transformers import SentenceTransformer,util
 import stanza
 
-model_cache = LRUCache(maxsize=3)
+model_cache = LRUCache(maxsize=4)
 
-class QnAGenerator:
+class AraELECTRA:
     prep_object = ArabertPreprocessor(model_name="araelectra-base-discriminator")
     qa_modelname = settings.BASE_DIR + "\\LLM_models\\AraElectra-Arabic-SQuADv2-QA"
 
-    def __init__(self, text="اسمي محمد وأنا أعمل في التجارة احب السباحة وركوب الخيل") -> None:
-        self.text = text
-        self.context = self.pre_process_context(self.text)
+    def __init__(self) -> None:
         self.qa_model = ElectraForQuestionAnswering.from_pretrained(self.qa_modelname)
         self.tokenizer = AutoTokenizer.from_pretrained(self.qa_modelname) 
         self.qa_pipe = pipeline('question-answering', model=self.qa_model, tokenizer=self.tokenizer) 
         pass
 
+    # its not important , its for text cleaning 
     def pre_process_context(self, text):
         context = self.prep_object.preprocess(text)
         return context
     
+
+    # its not important , its for text cleaning 
     def pre_process_question(self, question):
         q = self.prep_object.preprocess(question)
         return q
 
-    def predict(self, question):
+    def predict(self, question, context):
         QA_input = {
             'question': self.pre_process_question(question),
-            'context': self.context
+            'context': context
         }
         qa_res = self.qa_pipe(QA_input)
         return qa_res
 
-    def update_text(self, updated_text):
-        self.text = updated_text
-        self.context = self.pre_process_context(self.text)
-        return
+    # def update_text(self, updated_text):
+    #     self.text = updated_text
+    #     self.context = self.pre_process_context(self.text)
+    #     return
 
 
 
-'''
-Author:
-Vladimir Blagojevic: dovlex [at] gmail.com
-'''
+
 class LFQA:
-    
+    '''
+    Author:
+    Vladimir Blagojevic: dovlex [at] gmail.com
+    '''
     def __init__(self) -> None:
         self.model_dir = settings.BASE_DIR + "\\LLM_models\\bart_lfqa"
         self.model = AutoModelForSeq2SeqLM.from_pretrained(self.model_dir)
@@ -69,8 +70,8 @@ class LFQA:
                                                 max_length=200,
                                                 do_sample=False, 
                                                 early_stopping=True,
-                                                num_beams=8,
-                                                temperature=1.0,
+                                                num_beams=10,
+                                                temperature=3,
                                                 top_k=None,
                                                 top_p=None,
                                                 eos_token_id=self.tokenizer.eos_token_id,
@@ -91,11 +92,10 @@ class SentenceTrans:
         corpus_embeddings = self.model.encode(corpus)
         return corpus_embeddings
     
-    def semantic_search(self, question_embeddings, corpus_embeddings):
+    def semantic_search(self, question_embeddings, corpus_embeddings, k):
         elected = util.semantic_search(query_embeddings=question_embeddings, 
                                        corpus_embeddings=corpus_embeddings, 
-                                       top_k=5, 
-                                       score_function='cos_sim')
+                                       top_k=k)
         return elected
 
 
@@ -103,12 +103,16 @@ class SentenceTrans:
 
 class StanfordModel:
     def __init__(self) -> None:
-        self.model_dir = settings.BASE_DIR + "\\LLM_models\\ar_stanza"
-        self.model = stanza.Pipeline(lang='ar', dir=self.model_dir, logging_level='error', download_method=None)
+        self.model_dir = settings.BASE_DIR + "\\LLM_models\\stanza"
+        self.model = stanza.Pipeline(lang='en', 
+                                     processors='tokenize', 
+                                     dir=self.model_dir, 
+                                     logging_level='error', 
+                                     download_method=None)
         pass
 
     def NLP(self, document):
-        structured = self.model(document)
+        structured = self.model(document, processors='tokenize')
         return structured
     
     def sentece_split(self, structured):

@@ -8,6 +8,7 @@ from djmoney.models.fields import MoneyField
 from ckeditor.fields import RichTextField
 from django.utils.html import strip_tags
 from django.db.models import Q
+from markdownify import markdownify
 
 class Type(models.Model):
     type_name = models.CharField(max_length=255)
@@ -31,7 +32,6 @@ class Product(models.Model):
     def __str__(self):
         return str(self.product_name)
 
-
     def pretty_pub_date(self):
         return self.pub_date.strftime('%b %Y')
         
@@ -41,6 +41,11 @@ class Product(models.Model):
     def get_specification_clean(self):
         return strip_tags(str(self.product_specification))
 
+    def get_descritpion_markdown(self):
+        return markdownify(self.product_description)
+    
+    def get_specification_markdown(self):
+        return markdownify(self.product_specification)
 ## product related to user classes
 
 class HostDomain(models.Model):
@@ -162,7 +167,7 @@ class VPS(models.Model):
     my_product = models.ForeignKey(Product, on_delete=models.CASCADE)
     website_name = models.CharField(unique=True,max_length=255)
     operation_system = models.IntegerField(choices=operation_choice, null=True)
-    ip_address = models.GenericIPAddressField(null=True)
+    ip_address = models.BooleanField(default=True)
     ip_count = models.IntegerField(null=True)
     port_numbers = models.CharField(max_length=255)
     data_transfer = models.BooleanField(default=False)
