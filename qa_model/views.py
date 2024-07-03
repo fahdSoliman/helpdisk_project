@@ -58,10 +58,12 @@ def edit_qa(request, id):
     return render(request, 'knowledge/edit_qa.html', context)
 
 def download_db(request):
-    qas = QA.objects.all()
+    qas = QA.objects.all().filter(score='0')
 
     qa_data = []
     for qa in qas:
+        ref = qa.passages.first()
+        reference  = Passage.objects.get(id=ref.id)
         qa_dict = {
             'id': qa.id,
             'question': qa.question,
@@ -69,6 +71,7 @@ def download_db(request):
             'answer': qa.answer,
             'ar_answer': qa.ar_answer,
             'score': qa.score,
+            'reference': reference.knowledge.title,
             'related_text': [{'id': passage.id, 'text': passage.text, 'translate': passage.translate} for passage in qa.passages.all()]
         }
         qa_data.append(qa_dict)
